@@ -11,6 +11,7 @@
 
 # misc
 .env
+yarn.lock
 .DS_Store
 .env
 .env.local
