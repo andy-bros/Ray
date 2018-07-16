@@ -2,11 +2,10 @@ require("dotenv").config();
 const express = require("express"),
   app = express(),
   cors = require("cors"),
-  { json } = require("body-parser"),
-  PORT = process.env.PORT || 3001,
-  stripe = require("stripe")(process.env.STRIPE_KEY);
+  PORT = 9001,
+  stripe = require("./controllers/stripe");
 
-app.use(json());
+app.use(express.json());
 app.use(cors());
 
 app.post("/charge", (req, res) => {
@@ -24,5 +23,6 @@ app.post("/charge", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Magic Happens on port ${PORT}`);
+  console.log(`"${PORT} Shelby Drive look alive, look alive."
+  -Drizzy`);
 });
