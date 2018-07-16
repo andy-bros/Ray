@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import "./App.css";
+import { StripeProvider } from "react-stripe-elements";
+import routes from "./routes";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>what up github</h1>
-      </div>
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+        {routes}
+      </StripeProvider>
     );
   }
 }
