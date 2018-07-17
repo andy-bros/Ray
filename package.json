@@ -15,7 +15,7 @@
     "react-stripe-elements": "^2.0.1",
     "stripe": "^6.2.1"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:9001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
