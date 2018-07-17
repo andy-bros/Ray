@@ -3,7 +3,7 @@ const express = require("express"),
   app = express(),
   cors = require("cors"),
   PORT = 9001,
-  stripe = require("./controllers/stripe");
+  { getAWS } = require("./controllers/aws");
 
 app.use(express.json());
 app.use(cors());
@@ -21,6 +21,8 @@ app.post("/charge", (req, res) => {
   //   .then(res => console.log(res))
   //   .catch(err => console.log(err));
 });
+
+app.get("/api/getmp3pdf", getAWS);
 
 app.listen(PORT, () => {
   console.log(`"${PORT} Shelby Drive look alive, look alive."
