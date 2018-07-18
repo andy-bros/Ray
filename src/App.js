@@ -7,12 +7,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}> */}
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
         <Fragment>
           <header className="donate-form">Ray McCollum</header>
           {routes}
         </Fragment>
-        {/* </StripeProvider> */}
+         </StripeProvider>
       </Router>
     );
   }
