@@ -1,0 +1,14 @@
+@mixin borderfy($color) {
+  border: 1px solid $color;
+}
+@mixin dimensions($width, $height, $borderRadius) {
+  width: $width;
+  height: $height;
+  border-radius: $borderRadius;
+}
+@mixin flex($justifyContent, $alignItems, $flex-direction) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-direction: $flex-direction;
+}
