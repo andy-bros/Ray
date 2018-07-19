@@ -1,3 +1,54 @@
 .bottom-border {
   border-bottom: 1px grey solid;
+  // font-family: Roboto, sans-serif;
+  &.title {
+    @include dimensions(90vw, 35px, 0px);
+    max-width: 500px;
+    text-align: center;
+    margin: 20px auto;
+  }
+}
+.donation-amount {
+  @include flex(space-around, center, row);
+  @include dimensions(95vw, 42vh, 0px);
+  margin: 10px auto;
+  max-width: 500px;
+}
+
+.button-primary {
+  background: $button-disabled;
+  width: 142px;
+  height: 57px;
+  border-radius: 100px;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 300;
+  &:hover {
+    opacity: 0.85;
+  }
+}
+.frequency-amount {
+  @include dimensions(95vw, 120px, 0px);
+  @include flex(space-around, center, row);
+  max-width: 500px;
+  margin: 0 auto;
+  & > div {
+    max-width: 300px;
+  }
+}
+.ctrl-inputs {
+  @include dimensions(90vw, 40px, 0px);
+  @include flex(space-around, center, row);
+  &.dollar-amount {
+    input {
+      @include dimensions(80%, 50px, 0px);
+      @include borderfy($button-primary);
+      font-size: 20px;
+      font-weight: 300;
+    }
+  }
+}
+.credentials-input {
+  @include dimensions(90vw, 40px, 10px);
+  @include marginCenter;
 }

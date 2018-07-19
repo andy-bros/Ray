@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./../../App.css";
+import { RadioBtn, InputCredentials } from "./Customs";
 
 class GiftAmount extends Component {
   constructor() {
@@ -9,58 +9,87 @@ class GiftAmount extends Component {
       selected: "",
       checked: "one-time"
     };
+    this.buttonInput = React.createRef();
   }
 
-  handleSelection = ({ event, value }) => {
-    this.setState({ [event.target.id]: value });
+  handleSelection = ({ event, value, i }) => {
+    // console.log([event.target.id]);
+    // if ([event.target.id][0] !== "money-input") {
+    //   let btn = document.querySelectorAll(".button-primary");
+    //   btn.forEach(e => (e.style.backgroundColor = "#dddddd"));
+    //   btn[i].style.backgroundColor = "#0099e5";
+    // }
+    this.setState({
+      [event.target.name]: value
+    });
   };
   render() {
     let mappedAmounts = this.state.defaultAmounts.map((el, i) => {
       return (
-        <li
+        <button
           key={i}
-          id="selected"
-          onClick={event => this.handleSelection({ event, value: el })}
+          className="button-primary boxShadow"
+          name="selected"
+          style={{ background: "#ddd" }}
+          onClick={event => this.handleSelection({ event, value: el, i })}
+          ref={this.buttonInput}
         >
-          {el}
-        </li>
+          ${el}
+        </button>
       );
     });
     return (
-      <form>
-        <h2 className="bottom-border">Gift Amount</h2>
+      <div>
+        <h2 className="bottom-border title">Gift Amount</h2>
         <div className="gift-form">
           <ul className="donation-amount">{mappedAmounts}</ul>
           <section className="frequency-amount">
-            <div>
+            <div className="ctrl-inputs dollar-amount">
               <span>$</span>
-              <input defaultValue={this.state.selected} placeholder="amount" />
+              <input
+                value={this.state.selected}
+                name="selected"
+                id="money-input"
+                placeholder="amount"
+                onChange={event =>
+                  this.handleSelection({ event, value: event.target.value })
+                }
+              />
             </div>
-            <div>
-              <input
-                type="radio"
-                id="checked"
-                value="monthly"
-                checked={this.state.checked == "monthly"}
-                onChange={event =>
-                  this.handleSelection({ event, value: event.target.value })
-                }
-              />
-              <label>Monthly</label>
-              <input
-                type="radio"
-                id="checked"
+            <div className="ctrl-inputs">
+              <RadioBtn
                 value="one-time"
-                checked={this.state.checked == "one-time"}
-                onChange={event =>
-                  this.handleSelection({ event, value: event.target.value })
-                }
+                label="One Time"
+                handleSelection={this.handleSelection}
+                checked={this.state.checked}
               />
-              <label>One Time</label>
+              <RadioBtn
+                value="monthly"
+                label="Monthly"
+                handleSelection={this.handleSelection}
+                checked={this.state.checked}
+              />
             </div>
           </section>
         </div>
-      </form>
+      </div>
+    );
+  }
+}
+
+class Credentials extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  render() {
+    return (
+      <div>
+        <h2 className="bottom-border title">Credientials</h2>
+        <div className="credentials-input">
+          <InputCredentials title="First Name" />
+        </div>
+      </div>
     );
   }
 }
@@ -72,8 +101,8 @@ class DonateForm extends Component {
   render() {
     return (
       <div>
-        <h1 className="donate-form">Donate form</h1>
         <GiftAmount />
+        <Credentials />
       </div>
     );
   }
