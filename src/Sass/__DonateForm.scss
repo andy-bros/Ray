@@ -10,7 +10,7 @@
 }
 .donation-amount {
   @include flex(space-around, center, row);
-  @include dimensions(95vw, 42vh, 0px);
+  @include dimensions(95vw, 200px, 0px);
   margin: 10px auto;
   max-width: 500px;
 }

@@ -30,7 +30,7 @@ class GiftAmount extends Component {
           key={i}
           className="button-primary boxShadow"
           name="selected"
-          style={{ background: "#ddd" }}
+          // style={{ background: "#ddd" }}
           onClick={event => this.handleSelection({ event, value: el, i })}
           ref={this.buttonInput}
         >
