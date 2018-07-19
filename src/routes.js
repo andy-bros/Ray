@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Donate from "./components/Donate/Donate";
 import Products from "./components/Product/Product";
+import DonateForm from "./components/Donate/DonateForm";
+import Checkout from "./components/Donate/Checkout";
 
 export default (
   /*
@@ -18,5 +20,6 @@ export default (
     <Route path="/contact" component={() => <h1>Contact page</h1>} />
     <Route path="/donations" component={() => <h1>Donations Page</h1>} />
     <Route path="/checkout" component={Donate} />
+    <Route path="/donate" component={DonateForm} />
   </Switch>
 );
