@@ -4,6 +4,7 @@ import Donate from "./components/Donate/Donate";
 import Products from "./components/Product/Product";
 import DonateForm from "./components/Donate/DonateForm";
 import Checkout from "./components/Donate/Checkout";
+import Messages from "./components/Messages/Messages";
 
 export default (
   /*
@@ -21,5 +22,6 @@ export default (
     <Route path="/donations" component={() => <h1>Donations Page</h1>} />
     <Route path="/checkout" component={Donate} />
     <Route path="/donate" component={DonateForm} />
+    <Route path="/messages" component={Messages} />
   </Switch>
 );
