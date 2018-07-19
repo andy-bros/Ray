@@ -3,7 +3,7 @@ const express = require("express"),
   app = express(),
   cors = require("cors"),
   PORT = 9001,
-  { getAWS } = require("./controllers/aws");
+  { getMessagesSections } = require("./controllers/aws/messages");
 
 app.use(express.json());
 app.use(cors());
@@ -22,7 +22,7 @@ app.post("/charge", (req, res) => {
   //   .catch(err => console.log(err));
 });
 
-app.get("/api/getmp3pdf", getAWS);
+app.get("/api/getmessages", getMessagesSections);
 
 app.listen(PORT, () => {
   console.log(`"${PORT} Shelby Drive look alive, look alive."

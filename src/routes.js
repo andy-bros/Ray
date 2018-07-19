@@ -4,6 +4,7 @@ import Donate from "./components/Donate/Donate";
 import Products from "./components/Product/Product";
 import DonateForm from "./components/Donate/DonateForm";
 import Checkout from "./components/Donate/Checkout";
+import Messages from "./components/Messages/Messages";
 
 export default (
   /*
@@ -20,6 +21,11 @@ export default (
     <Route path="/contact" component={() => <h1>Contact page</h1>} />
     <Route path="/donations" component={() => <h1>Donations Page</h1>} />
     <Route path="/checkout" component={Donate} />
+<<<<<<< HEAD
+    <Route path="/donate" component={DonateForm} />
+    <Route path="/messages" component={Messages} />
+=======
     <Route path="/donate" render={() => <DonateForm />} />
+>>>>>>> master
   </Switch>
 );

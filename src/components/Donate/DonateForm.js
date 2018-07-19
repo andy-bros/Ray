@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { RadioBtn, InputCredentials } from "./Customs";
-
 class GiftAmount extends Component {
   constructor() {
     super();
@@ -11,7 +10,6 @@ class GiftAmount extends Component {
     };
     this.buttonInput = React.createRef();
   }
-
   handleSelection = ({ event, value, i }) => {
     // console.log([event.target.id]);
     // if ([event.target.id][0] !== "money-input") {
@@ -30,7 +28,7 @@ class GiftAmount extends Component {
           key={i}
           className="button-primary boxShadow"
           name="selected"
-          style={{ background: "#ddd" }}
+          // style={{ background: "#ddd" }}
           onClick={event => this.handleSelection({ event, value: el, i })}
           ref={this.buttonInput}
         >
@@ -76,7 +74,6 @@ class GiftAmount extends Component {
     );
   }
 }
-
 class Credentials extends Component {
   constructor() {
     super();
@@ -93,7 +90,6 @@ class Credentials extends Component {
     );
   }
 }
-
 class DonateForm extends Component {
   constructor() {
     super();
