@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { RadioBtn, InputCredentials } from "./Customs";
 
 class GiftAmount extends Component {
   constructor() {
@@ -8,21 +9,30 @@ class GiftAmount extends Component {
       selected: "",
       checked: "one-time"
     };
+    this.buttonInput = React.createRef();
   }
 
-  handleSelection = ({ event, value }) => {
-    console.log("here is the value", value);
-    this.setState({ [event.target.id]: value });
+  handleSelection = ({ event, value, i }) => {
+    // console.log([event.target.id]);
+    // if ([event.target.id][0] !== "money-input") {
+    //   let btn = document.querySelectorAll(".button-primary");
+    //   btn.forEach(e => (e.style.backgroundColor = "#dddddd"));
+    //   btn[i].style.backgroundColor = "#0099e5";
+    // }
+    this.setState({
+      [event.target.name]: value
+    });
   };
   render() {
-    console.log(this.state.selected);
     let mappedAmounts = this.state.defaultAmounts.map((el, i) => {
       return (
         <button
           key={i}
           className="button-primary boxShadow"
-          id="selected"
-          onClick={event => this.handleSelection({ event, value: el })}
+          name="selected"
+          style={{ background: "#ddd" }}
+          onClick={event => this.handleSelection({ event, value: el, i })}
+          ref={this.buttonInput}
         >
           ${el}
         </button>
@@ -39,40 +49,45 @@ class GiftAmount extends Component {
               <input
                 value={this.state.selected}
                 name="selected"
+                id="money-input"
                 placeholder="amount"
-                // className="ctrl-inputs-dollar-amount"
                 onChange={event =>
                   this.handleSelection({ event, value: event.target.value })
                 }
               />
             </div>
             <div className="ctrl-inputs">
-              <aside>
-                <input
-                  type="radio"
-                  id="checked"
-                  value="monthly"
-                  checked={this.state.checked == "monthly"}
-                  onChange={event =>
-                    this.handleSelection({ event, value: event.target.value })
-                  }
-                />
-                <label>Monthly</label>
-              </aside>
-              <aside>
-                <input
-                  type="radio"
-                  id="checked"
-                  value="one-time"
-                  checked={this.state.checked == "one-time"}
-                  onChange={event =>
-                    this.handleSelection({ event, value: event.target.value })
-                  }
-                />
-                <label>One Time</label>
-              </aside>
+              <RadioBtn
+                value="one-time"
+                label="One Time"
+                handleSelection={this.handleSelection}
+                checked={this.state.checked}
+              />
+              <RadioBtn
+                value="monthly"
+                label="Monthly"
+                handleSelection={this.handleSelection}
+                checked={this.state.checked}
+              />
             </div>
           </section>
+        </div>
+      </div>
+    );
+  }
+}
+
+class Credentials extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  render() {
+    return (
+      <div>
+        <h2 className="bottom-border title">Credientials</h2>
+        <div className="credentials-input">
+          <InputCredentials title="First Name" />
         </div>
       </div>
     );
@@ -87,6 +102,7 @@ class DonateForm extends Component {
     return (
       <div>
         <GiftAmount />
+        <Credentials />
       </div>
     );
   }
