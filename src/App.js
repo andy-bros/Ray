@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import routes from "./routes";
-import { StripeProvider } from "react-stripe-elements";
+import Navbar from "./components/Navbar/Navbar";
+// import { StripeProvider } from "react-stripe-elements";
 
 class App extends Component {
   render() {
@@ -9,7 +10,7 @@ class App extends Component {
       <Router>
         {/* <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}> */}
         <Fragment>
-          <header className="donate-form">Ray McCollum</header>
+          <Navbar />
           {routes}
         </Fragment>
         {/* </StripeProvider> */}

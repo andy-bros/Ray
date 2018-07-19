@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Donate from "./components/Donate/Donate";
 import Products from "./components/Product/Product";
 import DonateForm from "./components/Donate/DonateForm";
+import Checkout from "./components/Donate/Checkout";
 
 export default (
   /*
