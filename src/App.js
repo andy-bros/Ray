@@ -8,12 +8,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}> */}
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
         <Fragment>
           <Navbar />
           {routes}
         </Fragment>
-        {/* </StripeProvider> */}
+         </StripeProvider>
       </Router>
     );
   }
