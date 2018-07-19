@@ -16,7 +16,11 @@
 }
 
 .button-primary {
+<<<<<<< HEAD
   background: $radio-button-primary;
+=======
+  background: $button-disabled;
+>>>>>>> master
   width: 142px;
   height: 57px;
   border-radius: 100px;
@@ -42,8 +46,19 @@
   &.dollar-amount {
     input {
       @include dimensions(80%, 50px, 0px);
+<<<<<<< HEAD
+=======
+      @include borderfy($button-primary);
+>>>>>>> master
       font-size: 20px;
       font-weight: 300;
     }
   }
+<<<<<<< HEAD
+=======
+}
+.credentials-input {
+  @include dimensions(90vw, 40px, 10px);
+  @include marginCenter;
+>>>>>>> master
 }
