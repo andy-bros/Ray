@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import "./../../App.css";
 
 class GiftAmount extends Component {
   constructor() {
@@ -12,55 +11,70 @@ class GiftAmount extends Component {
   }
 
   handleSelection = ({ event, value }) => {
+    console.log("here is the value", value);
     this.setState({ [event.target.id]: value });
   };
   render() {
+    console.log(this.state.selected);
     let mappedAmounts = this.state.defaultAmounts.map((el, i) => {
       return (
-        <li
+        <button
           key={i}
+          className="button-primary boxShadow"
           id="selected"
           onClick={event => this.handleSelection({ event, value: el })}
         >
-          {el}
-        </li>
+          ${el}
+        </button>
       );
     });
     return (
-      <form>
-        <h2 className="bottom-border">Gift Amount</h2>
+      <div>
+        <h2 className="bottom-border title">Gift Amount</h2>
         <div className="gift-form">
           <ul className="donation-amount">{mappedAmounts}</ul>
           <section className="frequency-amount">
-            <div>
+            <div className="ctrl-inputs dollar-amount">
               <span>$</span>
-              <input defaultValue={this.state.selected} placeholder="amount" />
+              <input
+                value={this.state.selected}
+                name="selected"
+                placeholder="amount"
+                // className="ctrl-inputs-dollar-amount"
+                onChange={event =>
+                  this.handleSelection({ event, value: event.target.value })
+                }
+              />
             </div>
-            <div>
-              <input
-                type="radio"
-                id="checked"
-                value="monthly"
-                checked={this.state.checked == "monthly"}
-                onChange={event =>
-                  this.handleSelection({ event, value: event.target.value })
-                }
-              />
-              <label>Monthly</label>
-              <input
-                type="radio"
-                id="checked"
-                value="one-time"
-                checked={this.state.checked == "one-time"}
-                onChange={event =>
-                  this.handleSelection({ event, value: event.target.value })
-                }
-              />
-              <label>One Time</label>
+            <div className="ctrl-inputs">
+              <aside>
+                <input
+                  type="radio"
+                  id="checked"
+                  value="monthly"
+                  checked={this.state.checked == "monthly"}
+                  onChange={event =>
+                    this.handleSelection({ event, value: event.target.value })
+                  }
+                />
+                <label>Monthly</label>
+              </aside>
+              <aside>
+                <input
+                  type="radio"
+                  id="checked"
+                  value="one-time"
+                  checked={this.state.checked == "one-time"}
+                  onChange={event =>
+                    this.handleSelection({ event, value: event.target.value })
+                  }
+                />
+                <label>One Time</label>
+              </aside>
             </div>
           </section>
         </div>
-      </form>
+      </div>
     );
   }
 }
@@ -72,7 +86,6 @@ class DonateForm extends Component {
   render() {
     return (
       <div>
-        <h1 className="donate-form">Donate form</h1>
         <GiftAmount />
       </div>
     );
