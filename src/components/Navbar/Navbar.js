@@ -1,9 +1,13 @@
 import React from "react";
+import { HamburgerBun } from "./../Donate/Customs";
 
 function Navbar(props) {
   return (
     <nav>
-      <header>Pastor Ray McCollum</header>
+      <header>
+        <HamburgerBun />
+        Pastor Ray McCollum
+      </header>
     </nav>
   );
 }

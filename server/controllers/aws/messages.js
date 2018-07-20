@@ -35,6 +35,7 @@ const getMessageSections = () => {
 const getMessagesSections = async (req, res) => {
   await getMessageSections();
   console.log("next");
+  console.log(messageSections);
   res.status(200).json(messageSections);
 };
 module.exports = {

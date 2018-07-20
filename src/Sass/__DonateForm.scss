@@ -10,23 +10,21 @@
 }
 .donation-amount {
   @include flex(space-around, center, row);
-  @include dimensions(95vw, 42vh, 0px);
+  @include dimensions(95vw, 200px, 0px);
   margin: 10px auto;
   max-width: 500px;
 }
 
-.button-primary {
-<<<<<<< HEAD
-  background: $radio-button-primary;
-=======
+.btn-primary {
+  // @extend %boxShadow;
   background: $button-disabled;
->>>>>>> master
   width: 142px;
   height: 57px;
   border-radius: 100px;
   margin: 5px;
   font-size: 20px;
   font-weight: 300;
+
   &:hover {
     opacity: 0.85;
   }
@@ -46,19 +44,16 @@
   &.dollar-amount {
     input {
       @include dimensions(80%, 50px, 0px);
-<<<<<<< HEAD
-=======
       @include borderfy($button-primary);
->>>>>>> master
       font-size: 20px;
       font-weight: 300;
     }
   }
-<<<<<<< HEAD
-=======
 }
-.credentials-input {
-  @include dimensions(90vw, 40px, 10px);
-  @include marginCenter;
->>>>>>> master
+.credentials-container {
+  height: 100vh;
+  .credentials-input {
+    @include dimensions(90vw, auto, 10px);
+    @include marginCenter;
+  }
 }
