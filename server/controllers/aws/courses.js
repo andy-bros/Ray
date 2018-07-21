@@ -4,7 +4,7 @@ const s3 = new AWS.S3({
   accessKeyId: process.env.AWSAccessKeyId
 });
 
-let courses = [];
+var courses = [];
 const getCourses = (req, res) => {
   // console.log("first first");
   new Promise(function(fulfill, reject) {
@@ -14,63 +14,42 @@ const getCourses = (req, res) => {
         if (err) reject(err);
         if (good) {
           courses = good.CommonPrefixes;
-          // console.log("HERE => ", courses);
+          console.log("HERE => ", courses);
           fulfill(courses);
         }
       }
     );
   })
-    .then(result => {
-      // console.log("HERE => ", courses);
-      console.log("second second");
-
-      new Promise(function(done, denied) {
-        // console.log("HERE => ", courses);
-        courses = courses.forEach((e, i) => {
-          // console.log(e);
-          e.messages = s3.listObjects(
+    .then(
+      //THIS IS RUNNING BEFORE THE FIRST ^^ FINISHES. THIS IS WHY COURSES === []
+      new Promise(function(finished, denied) {
+        console.log("HAHAHAHAHAH", courses);
+        courses.forEach((e, i, a) => {
+          // console.log("eeeeee =>", e);
+          return s3.listObjects(
             { Bucket: "raymp3s", Prefix: e.Prefix },
             function(err, tru) {
               if (err) console.log(err);
               if (tru) {
-                console.log("AYYYEE", tru.Contents);
-                return tru.Contents;
+                // console.log("AYYYEE");
+                a[i].messages = tru.Contents;
+
+                // console.log(e);
               }
             }
           );
-          // console.log(e.Prefix);
         });
-        // console.log(result);
-        done(result);
-      });
-    })
+        console.log("COURSESSSS", courses);
+        finished(courses);
+      })
+    )
     .then(resultz => {
-      console.log(resultz);
+      // console.log("here=>>>>>>>>", resultz);
       console.log("third third");
       // console.log(courses);
-      // res.status(200).json(courses);
     });
 
   // console.log("first first");
-
-  // }).then(result => {
-  //   console.log("right here", result);
-  //   new Promise(function(resolved, rejected) {
-  //     courses = result.map((e, i) => {
-  //       e.messages = s3.listObjects(
-  //         { Bucket: "raymp3s", Prefix: e.Prefix },
-  //         function(err, tru) {
-  //           if (err) console.log(err);
-  //           if (tru) {
-  //             console.log("DONE");
-  //             return tru.Contents;
-  //           }
-  //         }
-  //       );
-  //     });
-  //     resolved(courses);
-  //   }).then(() => console.log("hello world"));
-  // });
 };
 module.exports = {
   getCourses
