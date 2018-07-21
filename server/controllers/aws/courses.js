@@ -24,29 +24,29 @@ const getCourses = (req, res) => {
       // console.log("HERE => ", courses);
       console.log("second second");
 
-      new Promise(function(done, denied) {
+      new Promise(function(finished, denied) {
         // console.log("HERE => ", courses);
-        courses = courses.forEach((e, i) => {
+        courses.forEach((e, i) => {
           // console.log(e);
-          e.messages = s3.listObjects(
-            { Bucket: "raymp3s", Prefix: e.Prefix },
-            function(err, tru) {
-              if (err) console.log(err);
-              if (tru) {
-                console.log("AYYYEE", tru.Contents);
-                return tru.Contents;
-              }
+          s3.listObjects({ Bucket: "raymp3s", Prefix: e.Prefix }, function(
+            err,
+            tru
+          ) {
+            if (err) console.log(err);
+            if (tru) {
+              console.log("AYYYEE");
+              e.messages = tru.Contents;
             }
-          );
+          });
           // console.log(e.Prefix);
         });
-        // console.log(result);
-        done(result);
+        // console.log(courses);
+        finished();
       });
     })
     .then(resultz => {
-      console.log(resultz);
-      console.log("third third");
+      console.log("here=>>>>>>>>", resultz);
+      // console.log("third third");
       // console.log(courses);
       // res.status(200).json(courses);
     });
