@@ -2,12 +2,16 @@
 //COLOR PALLETTE CHOICES CAME FROM https://stripe.com/docs
 $subtle-grey: rgb(245, 247, 249);
 $stripe-blue: #0099e5;
-$google-blue: #298fca;
-$google-green: #61bd4f;
 $white-blue: rgb(245, 247, 249);
 $button-disabled: #dddddd;
-$btn-submit: #d34836;
+$google-green: #61bd4f;
+$google-blue: #298fca;
+$google-yellow: #fbbc05;
+$google-red: #d34836;
 $charcoal: #333333;
+$inactive-box-shadow: rgba(0, 0, 0, 0.1px) 0px 0px 40px 0px;
+$active-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.07),
+  0 7px 17px 0 rgba(0, 0, 0, 0.1);
 
 //*********Palette 1*********
 // $primary-color: #4d9bcb;

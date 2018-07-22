@@ -74,19 +74,20 @@ class Credentials extends Component {
     super();
     this.state = {
       inputFields: [
-        "First Name",
-        "Last Name",
-        "Email Address",
-        "Street Address 1",
-        "Street Address 2",
-        "City",
-        "Zip Code"
+        { label: "First Name" },
+        { label: "Last Name" },
+        { label: "Email Address" },
+        { label: "Street Address 1" },
+        { label: "Street Address 2", notRequired: true },
+        { label: "Phone Number", notRequired: true },
+        { label: "City" },
+        { label: "Zip Code" }
       ],
       states: ["Alabama", "Alaska"]
     };
   }
-  toCamelCase = str => {
-    let word = str.split(" ");
+  toCamelCase = ({ label }) => {
+    let word = label.split(" ");
     word[0] = word[0].toLowerCase();
     return word.join("");
   };
