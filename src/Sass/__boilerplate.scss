@@ -1,13 +1,29 @@
-%boxShadow {
+%btnDefault {
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.07), 0 7px 17px 0 rgba(0, 0, 0, 0.1);
+  background: $button-disabled;
+  width: 142px;
+  height: 57px;
+  border-radius: 100px;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 300;
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-0.5px);
+  }
 }
 button,
 input {
   cursor: pointer;
 }
 
-span[require="true"] {
-  color: red;
+span {
+  &[require="true"] {
+    color: red;
+  }
+  &[require="false"] {
+    display: none;
+  }
 }
 input,
 select {

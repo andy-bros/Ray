@@ -14,11 +14,15 @@ export function RadioBtn({ value, label, handleChange, checked }) {
     </aside>
   );
 }
-export function InputCredentials({ title, handleChange, name }) {
+export function InputCredentials({ title, handleChange, name, currentValue }) {
   return (
     <div>
       <h3>
-        {title}:<span require="true">*</span>
+        {title}:<span
+          require={currentValue || name == "streetAddress2" ? "false" : "true"}
+        >
+          *
+        </span>
       </h3>
       <input
         name={name}
@@ -28,23 +32,27 @@ export function InputCredentials({ title, handleChange, name }) {
     </div>
   );
 }
-export function SelectBox(props) {
-  return (
-    <select className="sexy-input" required>
-      <option value selected disabled>
-        Please Select
+export function SelectBox({ selection, handleChange }) {
+  let options = selection.map((e, i) => {
+    return (
+      <option key={e + i} value={e}>
+        {e}
       </option>
-      <option value="TN"> Tennessee</option>
-      <option value="TX"> Texas</option>
-      <option value="TN"> Arkansas</option>
-      <option value="W"> Wisconsin</option>
-      <option value="AL"> Alabama</option>
-      <option value="FL"> Florid</option>
-      <option value="NY"> NY</option>
-      <option value="WOW"> Tennessee</option>
-      <option value="AHHA"> Tennessee</option>
+    );
+  });
+  return (
+    <select
+      className="sexy-input"
+      onChange={event => handleChange({ event, value: event.target.value })}
+      required="required"
+      name="state"
+    >
+      {options}
     </select>
   );
+}
+export function SubmitButton() {
+  return <input type="submit" value="Submit" className="btn-submit" />;
 }
 export function HamburgerBun() {
   return <h1>HamburgerBun</h1>;

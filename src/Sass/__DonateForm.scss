@@ -15,18 +15,20 @@
   max-width: 500px;
 }
 
-.btn-primary {
-  // @extend %boxShadow;
-  background: $button-disabled;
-  width: 142px;
-  height: 57px;
-  border-radius: 100px;
-  margin: 5px;
-  font-size: 20px;
-  font-weight: 300;
-
-  &:hover {
-    opacity: 0.85;
+.btn {
+  &-primary {
+    @extend %btnDefault;
+  }
+  &-submit {
+    @extend %btnDefault;
+    @include dimensions(90vw, 38px, 8px);
+    background: $btn-submit;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  &-selected {
+    @extend %btnDefault;
+    background: $stripe-blue;
   }
 }
 .frequency-amount {
@@ -44,16 +46,20 @@
   &.dollar-amount {
     input {
       @include dimensions(80%, 50px, 0px);
-      @include borderfy($button-primary);
+      @include borderfy($stripe-blue);
       font-size: 20px;
       font-weight: 300;
     }
   }
 }
 .credentials-container {
-  height: 100vh;
   .credentials-input {
     @include dimensions(90vw, auto, 10px);
     @include marginCenter;
+    max-width: 850px;
   }
+}
+.donation-page {
+  background: $white-blue;
+  @include flex(center, space-around, column);
 }
