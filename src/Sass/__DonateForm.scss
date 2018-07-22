@@ -22,7 +22,7 @@
   &-submit {
     @extend %btnDefault;
     @include dimensions(90vw, 38px, 8px);
-    background: $btn-submit;
+    background: $google-green;
     max-width: 600px;
     margin: 0 auto;
   }

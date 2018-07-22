@@ -107,7 +107,7 @@ class Credentials extends Component {
     });
     return (
       <div className="credentials-container">
-        <h2 className="bottom-border title">Credientials</h2>
+        <h2 className="bottom-border title">Your Information</h2>
         <div className="credentials-input">
           {mappedInputs}
           <SelectBox
