@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { RadioBtn, InputCredentials, SelectBox } from "./Customs";
+import { RadioBtn, InputCredentials, SelectBox, SubmitButton } from "./Customs";
+import { states } from "./data";
+//////////////////////
+//___GIFT_AMOUNT___///
+//////////////////////
 class GiftAmount extends Component {
   constructor() {
     super();
@@ -8,16 +12,20 @@ class GiftAmount extends Component {
       frequency: [
         { value: "one-time", label: "One Time" },
         { value: "monthly", label: "Monthly" }
-      ]
+      ],
+      currentBtn: ""
     };
   }
   render() {
     let mappedAmounts = this.state.defaultAmounts.map((el, i) => (
       <button
         key={i}
-        className={true ? "btn-primary" : "btn-primary"}
+        className={this.props.selected == el ? "btn-selected" : "btn-primary"}
         name="selected"
-        onClick={event => this.props.handleChange({ event, value: el })}
+        onClick={event => {
+          this.setState({ currentBtn: el });
+          this.props.handleChange({ event, value: el });
+        }}
         ref={this.buttonInput}
       >
         ${el}
@@ -57,6 +65,10 @@ class GiftAmount extends Component {
     );
   }
 }
+
+//////////////////////
+//___CREDENTIALS___///
+//////////////////////
 class Credentials extends Component {
   constructor() {
     super();
@@ -68,9 +80,9 @@ class Credentials extends Component {
         "Street Address 1",
         "Street Address 2",
         "City",
-        "State",
         "Zip Code"
-      ]
+      ],
+      states: ["Alabama", "Alaska"]
     };
   }
   toCamelCase = str => {
@@ -80,17 +92,16 @@ class Credentials extends Component {
   };
 
   render() {
+    const { handleChange, values } = this.props;
     let mappedInputs = this.state.inputFields.map((e, i) => {
       let camelCase = this.toCamelCase(e);
-      if (camelCase == "state") {
-        return <div>hello</div>;
-      }
       return (
         <InputCredentials
+          currentValue={values[camelCase]}
           name={camelCase}
           key={i}
           title={e}
-          handleChange={this.props.handleChange}
+          handleChange={handleChange}
         />
       );
     });
@@ -99,13 +110,18 @@ class Credentials extends Component {
         <h2 className="bottom-border title">Credientials</h2>
         <div className="credentials-input">
           {mappedInputs}
-          <SelectBox />
+          <SelectBox
+            selection={states}
+            handleChange={this.props.handleChange}
+          />
         </div>
-        {/* <SelectBox /> */}
       </div>
     );
   }
 }
+//////////////////////
+//___DONATE_FORM___///
+//////////////////////
 class DonateForm extends Component {
   constructor() {
     super();
@@ -123,20 +139,33 @@ class DonateForm extends Component {
     };
   }
   handleChange = ({ event, value }) => {
+    [event.target.name][0] !== "checked" && event.preventDefault();
     this.setState({
       [event.target.name]: value
     });
   };
+  submitForm = () => {
+    //SUBMIT FORM HERE!!!!
+    console.log("SUBMITTING FORM...", this.state);
+  };
   render() {
     return (
-      <div>
+      <form
+        className="donation-page"
+        onSubmit={e => {
+          e.preventDefault();
+          this.submitForm();
+        }}
+      >
         <GiftAmount
           handleChange={this.handleChange}
           selected={this.state.selected}
           checked={this.state.checked}
         />
-        <Credentials handleChange={this.handleChange} />
-      </div>
+        <Credentials values={this.state} handleChange={this.handleChange} />
+        <SubmitButton />
+        <br />
+      </form>
     );
   }
 }
