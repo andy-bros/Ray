@@ -38,13 +38,19 @@ const getCourses = (req, res) => {
           if (err) console.log(err);
           if (tru) {
             console.log("AYYYEE");
-            e.messages = tru.Contents;
+            return (e.messages = tru.Contents);
           }
         });
+        resolveThis(courses);
       });
       thisWillFinish(courses);
-    }).then(() => console.log("done"));
+    }).then(() =>
+      //this is proof that courses is getting mapped, and that each course is receiving the messages it needs
+      // setTimeout(() => console.log(courses), 5000)
+      console.log(courses)
+    );
   });
+
   // .then(() => setTimeout(() => console.log(courses[0].messages[0]), 5000));
 };
 module.exports = {
