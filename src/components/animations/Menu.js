@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Menu extends Component {
-  render() {
-    return (
-      <div className="menu-container">
-        <div className="menu-slice" />
-        <div className="menu-slice" />
-        <div className="menu-slice" />
-      </div>
-    );
-  }
+export default function Menu({ handleNav, opened }) {
+  return (
+    <button className="menu-container" onClick={() => handleNav(!opened)}>
+      <div className="menu-slice" />
+      <div className="menu-slice" />
+      <div className="menu-slice" />
+    </button>
+  );
 }

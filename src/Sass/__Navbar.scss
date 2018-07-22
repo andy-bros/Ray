@@ -1,5 +1,41 @@
-header {
-  @include borderfy(black);
-  @include dimensions(100vw, 75px, 0px);
-  @include flex(space-around, center, row);
+nav {
+  &.top {
+    border-bottom: 1px solid grey;
+    margin: 0 auto;
+    @include dimensions(100vw, 75px, 0px);
+    @include flex(space-around, center, row);
+    position: fixed;
+    top: 0;
+    background: white;
+    .mapped-links {
+      @media (max-width: 500px) {
+        visibility: hidden;
+      }
+    }
+    .join-divs {
+      @include dimensions(130px, 50px, 0px);
+      @include flex(space-between, center, row);
+    }
+  }
+  &.side-navbar {
+    width: 100vw;
+    max-width: 335px;
+    background: $charcoal;
+    opacity: 0.99;
+    height: calc(100vh - 75px);
+    position: fixed;
+    @include flex(space-around, center, column);
+    color: white;
+    font-size: 20px;
+    &.opened {
+      left: 0px;
+      transition: left 0.5s;
+      transition-timing-function: ease;
+    }
+    &.closed {
+      left: -800px;
+      transition: left 0.5s;
+      transition-timing-function: ease-out;
+    }
+  }
 }

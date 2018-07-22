@@ -30,6 +30,18 @@
     @extend %btnDefault;
     background: $stripe-blue;
   }
+  &-donate {
+    @include dimensions(68px, 38px, 5px);
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid $google-red;
+    background: white;
+    color: $google-red;
+    &:hover {
+      background: $google-red;
+      color: white;
+    }
+  }
 }
 .frequency-amount {
   @include dimensions(95vw, 120px, 0px);
@@ -60,6 +72,6 @@
   }
 }
 .donation-page {
-  background: $white-blue;
+  // background: $white-blue;
   @include flex(center, space-around, column);
 }

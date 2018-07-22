@@ -18,8 +18,8 @@ export function InputCredentials({ title, handleChange, name, currentValue }) {
   return (
     <div>
       <h3>
-        {title}:<span
-          require={currentValue || name == "streetAddress2" ? "false" : "true"}
+        {title.label}:<span
+          require={currentValue || title.notRequired ? "false" : "true"}
         >
           *
         </span>
@@ -27,6 +27,7 @@ export function InputCredentials({ title, handleChange, name, currentValue }) {
       <input
         name={name}
         className="sexy-input"
+        placeholder={title.notRequired && "optional"}
         onChange={event => handleChange({ event, value: event.target.value })}
       />
     </div>
@@ -54,6 +55,6 @@ export function SelectBox({ selection, handleChange }) {
 export function SubmitButton() {
   return <input type="submit" value="Submit" className="btn-submit" />;
 }
-export function HamburgerBun() {
-  return <h1>HamburgerBun</h1>;
+export function DonateBtn() {
+  return <button className="btn-donate">Donate</button>;
 }

@@ -1,10 +1,14 @@
 .menu-container {
-  // @include borderfy($charcoal);
   @include dimensions(45px, 27px, 0px);
   @include flex(space-around, center, column);
+  border: none;
+  background: none;
   .menu-slice {
     @include borderfy($charcoal);
-    @include dimensions(39px, 4px, 0px);
+    @include dimensions(33px, 4px, 0px);
     background: $charcoal;
+  }
+  @media (min-width: 500px) {
+    visibility: hidden;
   }
 }
