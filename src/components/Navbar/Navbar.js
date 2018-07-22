@@ -1,12 +1,12 @@
 import React from "react";
-import { HamburgerBun } from "./../Donate/Customs";
+import Menu from "./../animations/Menu";
 
 function Navbar(props) {
   return (
     <nav>
       <header>
-        <HamburgerBun />
         Pastor Ray McCollum
+        <Menu />
       </header>
     </nav>
   );

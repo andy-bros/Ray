@@ -1,5 +1,5 @@
 header {
   @include borderfy(black);
   @include dimensions(100vw, 75px, 0px);
-  @include flex(center, center, row);
+  @include flex(space-around, center, row);
 }
