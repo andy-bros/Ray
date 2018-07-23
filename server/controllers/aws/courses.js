@@ -5,11 +5,34 @@ const s3 = new AWS.S3({
 });
 
 var courses = [];
+function getMessages(e) {
+  return new Promise(function(r) {
+    //
+    //
+    //This s3 call is getting all of the MESSAGES for each
+    //course and returning them, once returned th messages
+    // are stored on a messages key of that courses object
+    //of line 49
+    //
+    //
+    s3.listObjects({ Bucket: "raymp3s", Prefix: e }, function(err, tru) {
+      console.log("THIS IS THE S3 OJECTS");
+      if (err) console.log(err);
+      if (tru) {
+        console.log("AYYYEE");
+        r(tru.Contents);
+      }
+    });
+  });
+}
 const getCourses = (req, res) => {
   new Promise(function(fulfill, reject) {
     //
-    //this s3 call is initially getting all of the sections that are inside
-    //of the clients s3 courses section of the aws bucket.
+    //
+    //This s3 call is getting all of the titles for each
+    //course and storing the return values in the courses
+    // variable
+    //
     //
     s3.listObjects(
       { Bucket: "raymp3s", Prefix: "Courses/", Delimiter: "/" },
@@ -22,36 +45,14 @@ const getCourses = (req, res) => {
       }
     );
   }).then(results => {
-    new Promise(function(thisWillFinish, thisIs404) {
-      courses.forEach((e, i, a) => {
-        console.log("eeeeee");
-        //
-        //this is mapping through the sections, and plugging in the stored
-        //values that we received from above, and getting the messages for
-        //each one of those sections, and making a message key to make it equal
-        //the returned messages
-        //
-        s3.listObjects({ Bucket: "raymp3s", Prefix: e.Prefix }, function(
-          err,
-          tru
-        ) {
-          if (err) console.log(err);
-          if (tru) {
-            console.log("AYYYEE");
-            return (e.messages = tru.Contents);
-          }
-        });
-        resolveThis(courses);
-      });
-      thisWillFinish(courses);
-    }).then(() =>
-      //this is proof that courses is getting mapped, and that each course is receiving the messages it needs
-      // setTimeout(() => console.log(courses), 5000)
-      console.log(courses)
-    );
+    //once this forEach is completed, res.status(200).json(courses)
+    //needs to be invoked
+    courses.forEach(async (e, i, a) => {
+      e.messages = await getMessages(e.Prefix);
+      console.log(courses);
+    });
+    console.log("me first");
   });
-
-  // .then(() => setTimeout(() => console.log(courses[0].messages[0]), 5000));
 };
 module.exports = {
   getCourses
