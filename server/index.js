@@ -3,8 +3,7 @@ const express = require("express"),
   app = express(),
   cors = require("cors"),
   PORT = 9001,
-  { getMessagesSections } = require("./controllers/aws/messages"),
-  { getCourses } = require("./controllers/aws/courses");
+  { getMessageSermons } = require("./controllers/aws/utils");
 
 app.use(express.json());
 app.use(cors());
@@ -23,8 +22,7 @@ app.post("/charge", (req, res) => {
   //   .catch(err => console.log(err));
 });
 
-app.get("/api/getmessages", getMessagesSections);
-app.get("/api/getcourses", getCourses);
+app.get("/api/getmessages", getMessageSermons);
 
 app.listen(PORT, () => {
   console.log(`"${PORT} Shelby Drive look alive, look alive."
