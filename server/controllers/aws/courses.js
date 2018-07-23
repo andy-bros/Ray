@@ -3,28 +3,9 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.AWSSecretKey,
   accessKeyId: process.env.AWSAccessKeyId
 });
+const { getMessages } = require("./utils");
 
 var courses = [];
-function getMessages(e) {
-  return new Promise(function(r) {
-    //
-    //
-    //This s3 call is getting all of the MESSAGES for each
-    //course and returning them, once returned th messages
-    // are stored on a messages key of that courses object
-    //of line 49
-    //
-    //
-    s3.listObjects({ Bucket: "raymp3s", Prefix: e }, function(err, tru) {
-      console.log("THIS IS THE S3 OJECTS");
-      if (err) console.log(err);
-      if (tru) {
-        console.log("AYYYEE");
-        r(tru.Contents);
-      }
-    });
-  });
-}
 const getCourses = (req, res) => {
   new Promise(function(fulfill, reject) {
     //
@@ -51,6 +32,9 @@ const getCourses = (req, res) => {
       courses.map(async e => {
         return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
       })
+      // courses.map(async e => {
+      //   return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+      // })
     );
     newCourses.then(resultzz => {
       console.log(resultzz);
