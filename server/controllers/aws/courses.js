@@ -47,9 +47,14 @@ const getCourses = (req, res) => {
   }).then(results => {
     //once this forEach is completed, res.status(200).json(courses)
     //needs to be invoked
-    courses.forEach(async (e, i, a) => {
-      e.messages = await getMessages(e.Prefix);
-      console.log(courses);
+    let newCourses = Promise.all(
+      courses.map(async e => {
+        return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+      })
+    );
+    newCourses.then(resultzz => {
+      console.log(resultzz);
+      res.status(200).json(resultzz);
     });
     console.log("me first");
   });
