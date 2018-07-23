@@ -3,41 +3,35 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.AWSSecretKey,
   accessKeyId: process.env.AWSAccessKeyId
 });
+const { getMessages } = require("./utils");
 
-let messageSections = ["dogs"];
-
-// GETS ALL MESSAGE SECTION TITLES
-const getMessageSections = () => {
-  return new Promise(resolve =>
+let messageSections = [];
+const getMessageSermons = (req, res) => {
+  new Promise(resolve =>
     s3.listObjects(
       { Bucket: "raymp3s", Prefix: "Messages/", Delimiter: "/" },
       function(err, res) {
         if (err) console.log(err);
         if (res) {
           messageSections = res.CommonPrefixes;
-          messageSections.map((e, i) => {
-            e.messages = s3.listObjects(
-              { Bucket: "raymp3s", Prefix: e.Prefix },
-              function(err, res) {
-                //   if (err) console.log(err);
-                if (res) {
-                  console.log(res.Contents);
-                  return res.Contents;
-                }
-              }
-            );
-          });
+          console.log("====>", messageSections);
+          resolve(messageSections);
         }
       }
     )
-  );
-};
-const getMessagesSections = async (req, res) => {
-  await getMessageSections();
-  console.log("next");
-  console.log(messageSections);
-  res.status(200).json(messageSections);
+  ).then(results => {
+    let newMessages = Promise.all(
+      messageSections.map(async e => {
+        return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+      })
+    );
+    newMessages.then(resultzz => {
+      console.log(resultzz);
+      res.status(200).json(resultzz);
+    });
+    console.log("me first");
+  });
 };
 module.exports = {
-  getMessagesSections
+  getMessageSermons
 };
