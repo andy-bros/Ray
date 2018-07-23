@@ -26,14 +26,13 @@ span {
     display: none;
   }
 }
-input,
-select {
-  &.sexy-input {
-    @include dimensions(100%, 45px, 6px);
-    font-size: 20px;
-    margin: 10px 0;
-  }
+
+.sexy-input {
+  @include dimensions(100%, 45px, 6px);
+  font-size: 20px;
+  margin: 10px 0;
 }
+
 #routes {
   margin-top: 75px;
   background: $white-blue;

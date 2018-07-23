@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import { RadioBtn, InputCredentials, SelectBox, SubmitButton } from "./Customs";
+import {
+  RadioBtn,
+  InputCredentials,
+  SelectBox,
+  SubmitButton,
+  Card
+} from "./Customs";
 import { states } from "./data";
+import assets from "./../../assets/data";
+import { CardElement, Elements, injectStripe } from "react-stripe-elements";
+import axios from "axios";
 //////////////////////
 //___GIFT_AMOUNT___///
 //////////////////////
@@ -108,7 +117,7 @@ class Credentials extends Component {
     });
     return (
       <div className="credentials-container">
-        <h2 className="bottom-border title">Your Information</h2>
+        <h2 className="bottom-border title">Billing Information</h2>
         <div className="credentials-input">
           {mappedInputs}
           <SelectBox
@@ -145,9 +154,17 @@ class DonateForm extends Component {
       [event.target.name]: value
     });
   };
-  submitForm = () => {
-    //SUBMIT FORM HERE!!!!
+  submitForm = async () => {
     console.log("SUBMITTING FORM...", this.state);
+    /*ALL THE INFO YOU NEED FROM 
+    THE USER IS STORED ON STATE.
+    TAKE WHAT YOU NEED IN ORDER 
+    TO CONFIRM PAYMENT.*/
+    let { token } = await this.props.stripe.createToken({ name: "Name" });
+    await axios.post("/charge", {
+      token: token.id,
+      amount: this.state.selected
+    });
   };
   render() {
     return (
@@ -158,11 +175,21 @@ class DonateForm extends Component {
           this.submitForm();
         }}
       >
+        <Card text={assets.cardText} />
+
         <GiftAmount
           handleChange={this.handleChange}
           selected={this.state.selected}
           checked={this.state.checked}
         />
+
+        <h2 className="bottom-border title">Payment Information</h2>
+        <Card text={"Please fill out your credit card information"} />
+        <div className="card-info sexy-input" style={{ padding: "12px" }}>
+          <Elements>
+            <CardElement />
+          </Elements>
+        </div>
         <Credentials values={this.state} handleChange={this.handleChange} />
         <SubmitButton />
         <br />

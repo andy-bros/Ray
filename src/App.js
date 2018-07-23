@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import routes from "./routes";
-import { TopNavbar, SideNavbar, NavbarRP } from "./components/Navbar/Navbars";
+import { TopNavbar, SideNavbar } from "./components/Navbar/Navbars";
 import { StripeProvider } from "react-stripe-elements";
+import Footer from "./components/Navbar/Footer";
 
 class App extends Component {
   constructor() {
@@ -10,10 +11,10 @@ class App extends Component {
     this.state = {
       opened: false,
       navLinks: [
-        { nav: "PRODUCTS", to: "/products" },
-        { nav: "CONTACT", to: "/contact" },
-        { nav: "ABOUT", to: "/about" },
-        { nav: "DONATE", to: "/donate" }
+        { nav: "HOME", to: "/" },
+        { nav: "DONATE", to: "/donate" },
+        { nav: "STORE", to: "/products" },
+        { nav: "COURSES", to: "/courses" }
       ]
     };
   }
@@ -21,24 +22,27 @@ class App extends Component {
     this.setState({ opened: val });
   };
   render() {
-    let { opened, navLinks } = this.state;
+    let mappedLinks = this.state.navLinks.map((e, i) => {
+      return (
+        <Link key={e.to} to={e.to} onClick={() => this.handleNav(false)}>
+          {e.nav}
+        </Link>
+      );
+    });
     return (
       <Router>
         <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
           <Fragment>
             <TopNavbar
-              opened={opened}
+              {...this.state}
+              mappedLinks={mappedLinks}
               handleNav={this.handleNav}
-              navLinks={navLinks}
             />
-            <SideNavbar
-              opened={opened}
-              handleNav={this.handleNav}
-              navLinks={navLinks}
-            />
+            <SideNavbar {...this.state} mappedLinks={mappedLinks} />
             <section id="routes" onClick={() => this.handleNav(false)}>
               {routes}
             </section>
+            <Footer mappedLinks={mappedLinks} />
           </Fragment>
         </StripeProvider>
       </Router>
