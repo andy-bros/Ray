@@ -72,6 +72,24 @@
   }
 }
 .donation-page {
-  // background: $white-blue;
   @include flex(center, space-around, column);
+}
+.card-container {
+  @extend %box-shadow;
+  @include dimensions(95vw, 250px, 7px);
+  @include flex(center, center, row);
+  @include marginCenter;
+  margin-top: 20px;
+  max-width: 500px;
+  line-height: 20px;
+  padding: 0 10%;
+  @media (min-width: 400px) {
+    height: 200px;
+  }
+}
+.card-info {
+  @include borderfy(black);
+  @include dimensions(90vw, 45px, 6px);
+  max-width: 850px;
+  @include marginCenter;
 }

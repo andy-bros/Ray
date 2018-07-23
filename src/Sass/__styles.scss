@@ -1,3 +1,6 @@
-// .donate-form {
-//   background: $primary-color;
-// }
+%box-shadow {
+  box-shadow: $inactive-box-shadow;
+  &:active {
+    box-shadow: $active-box-shadow;
+  }
+}
