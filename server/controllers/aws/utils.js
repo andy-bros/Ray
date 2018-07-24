@@ -23,32 +23,42 @@ const getMessages = function(e) {
     });
   });
 };
+function trackMyIndex() {
+  let messageIndex = 0;
+  let coursesIndex = 0;
+}
 let messageSections = [];
 const getMessageSermons = (req, res) => {
-  new Promise(resolve =>
-    s3.listObjects(
-      { Bucket: "raymp3s", Prefix: `${req.query.section}/`, Delimiter: "/" },
-      function(err, res) {
-        if (err) console.log(err);
-        if (res) {
-          messageSections = res.CommonPrefixes;
-          console.log("====>", messageSections);
-          resolve(messageSections);
-        }
-      }
-    )
-  ).then(results => {
-    let newMessages = Promise.all(
-      messageSections.map(async e => {
-        return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
-      })
-    );
-    newMessages.then(resultzz => {
-      console.log(resultzz);
-      res.status(200).json(resultzz);
-    });
-    console.log("me first");
-  });
+  messageSections.length !== 0
+    ? req.status(200).json(messageSections)
+    : new Promise(resolve =>
+        s3.listObjects(
+          {
+            Bucket: "raymp3s",
+            Prefix: `${req.query.section}/`,
+            Delimiter: "/"
+          },
+          function(err, res) {
+            if (err) console.log(err);
+            if (res) {
+              messageSections = res.CommonPrefixes;
+              console.log("====>", messageSections);
+              resolve(messageSections);
+            }
+          }
+        )
+      ).then(results => {
+        let newMessages = Promise.all(
+          messageSections.map(async e => {
+            return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+          })
+        );
+        newMessages.then(resultzz => {
+          console.log(resultzz);
+          res.status(200).json(resultzz);
+        });
+        console.log("me first");
+      });
 };
 
 module.exports = {
