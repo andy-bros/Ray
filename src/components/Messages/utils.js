@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Messages extends Component {
   state = {
@@ -7,6 +8,7 @@ class Messages extends Component {
     currMessage: []
   };
   componentDidMount() {
+    console.log(this.props.type);
     axios.get(`/api/getmessages?section=${this.props.type}`).then(res => {
       console.log(res.data);
       this.setState({ messages: res.data });
@@ -15,14 +17,25 @@ class Messages extends Component {
   render() {
     let { messages } = this.state;
     console.log("messages", messages);
-    let mappedMessages = messages.map((e, i) => (
-      //
-      //DO NOT TOUCH I AM COMING BACK TO  THIS
-
-      <h1 key={i} onClick={() => this.setState()}>
-        {e.Title}
-      </h1>
-    ));
+    let mappedMessages = messages.map((e, i) => {
+      // console.log(
+      //   "TITLE",
+      //   e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
+      // );
+      // let title=e.Title.slice(this.props.type.length + 1)
+      return (
+        <div key={i}>
+          <Link
+            to={`/${this.props.type[0].toLowerCase() +
+              this.props.type.slice(1)}/${i}`}
+          >
+            <h1>
+              {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)}
+            </h1>
+          </Link>
+        </div>
+      );
+    });
     return (
       <div
         style={{
