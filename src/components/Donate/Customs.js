@@ -58,6 +58,11 @@ export function SubmitButton() {
 export function DonateBtn() {
   return <button className="btn-donate">Donate</button>;
 }
-export function Card({ text, size }) {
-  return <section className="card-container">{text}</section>;
+export function Card({ text, size, img }) {
+  return (
+    <div className="pic-and-card">
+      <img className="picture-container" src={img} width="400px" />
+      <section className="card-container">{text}</section>,
+    </div>
+  );
 }

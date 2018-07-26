@@ -1,3 +1,7 @@
+%menu-activity {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
 .menu-container {
   @include dimensions(45px, 27px, 0px);
   @include flex(space-around, center, column);
@@ -6,25 +10,21 @@
   .menu-slice {
     @include dimensions(33px, 4px, 0px);
     background: $charcoal;
+    &.top-opened,
+    &.bottom-opened,
+    &.top-closed,
+    &.bottom-closed {
+      @extend %menu-activity;
+    }
     &.top-opened {
       transform: translateY(8px);
-      transition: all 0.2s ease-in-out;
-      position: relative;
     }
     &.bottom-opened {
       transform: translateY(-8px);
-      transition: all 0.2s ease-in-out;
-      position: relative;
     }
-    &.top-closed {
-      transform: translateY(0px);
-      transition: all 0.2s ease-in-out;
-      position: relative;
-    }
+    &.top-closed,
     &.bottom-closed {
       transform: translateY(0px);
-      transition: all 0.2s ease-in-out;
-      position: relative;
     }
   }
   @media (min-width: 500px) {
