@@ -47,9 +47,21 @@ class SpecificMessages extends Component {
   };
   render() {
     let { messages } = this.state;
-    let newMessages = messages.map((e, i) => {
-      // console.log("eeeeee", e);
+    let newMessages = messages.map((e, i, a) => {
+      console.log("eeee", a[i + 1]);
+      let notesFlag = true;
+      let nextArr = [];
       let str = e.Key.split("/")[2];
+      if (
+        i !== a.length - 1 &&
+        str.slice(str.length - 3, str.length) === "mp3" &&
+        a[i + 1].Key.split("/")[2].slice(str.length - 3, str.length) === "pdf"
+      ) {
+        notesFlag = true;
+        nextArr = messages.splice(i + 1, 1);
+      } else {
+        notesFlag = false;
+      }
       let date = `${this.findMonth(str.slice(7, 9))} ${str.slice(
         9,
         11
@@ -59,8 +71,8 @@ class SpecificMessages extends Component {
         .split("_")
         .splice(1)
         .join(" ");
-      //   console.log(str.slice(0, str.length - 4));
-      console.log("bahaha", str);
+      console.log("bahaha", notesFlag);
+
       return (
         //
         //
@@ -81,6 +93,12 @@ class SpecificMessages extends Component {
             alignItems: "center"
           }}
         >
+          {notesFlag && (
+            <a href={`https://s3.amazonaws.com/raymp3s/${nextArr.Key}`}>
+              click here for notes
+            </a>
+          )}
+
           <a href={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
             <p>{date}</p>
             {str.slice(0, str.length - 4)}
