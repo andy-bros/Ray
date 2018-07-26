@@ -160,6 +160,7 @@ class DonateForm extends Component {
     THE USER IS STORED ON STATE.
     TAKE WHAT YOU NEED IN ORDER 
     TO CONFIRM PAYMENT.*/
+
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     await axios.post("/charge", {
       token: token.id,
@@ -175,7 +176,7 @@ class DonateForm extends Component {
           this.submitForm();
         }}
       >
-        <Card text={assets.cardText} />
+        <Card text={assets.cardText} img={assets.donationPic} />
 
         <GiftAmount
           handleChange={this.handleChange}

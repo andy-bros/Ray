@@ -5,13 +5,14 @@ import Products from "./components/Product/Product";
 import DonateForm from "./components/Donate/DonateForm";
 import Checkout from "./components/Donate/Checkout";
 import Messages from "./components/Messages/Messages";
+import Home from "./components/Home/Home";
 
 export default (
   /*
     Here is the backbone for our routes.
    */
   <Switch>
-    <Route exact path="/" component={() => <h1>Home Page</h1>} />
+    <Route exact path="/" component={Home} />
     <Route path="/about" component={() => <h1>About Page</h1>} />
     <Route path="/products" component={Products} />
     <Route

@@ -7,7 +7,7 @@ nav {
     @include flex(space-around, center, row);
     position: fixed;
     top: 0;
-    background: white;
+    background: $stripe-blue;
     .mapped-links {
       @media (max-width: 500px) {
         visibility: hidden;
@@ -30,15 +30,30 @@ nav {
     font-size: 20px;
     z-index: 100;
     &.opened {
-      left: 0px;
-      transition: left 0.5s;
-      transition-timing-function: ease;
+      animation: handleOpen 0.3s;
     }
     &.closed {
-      left: -1500px;
-      transition: left 0.5s;
-      transition-timing-function: ease-out;
+      visibility: hidden;
+      animation: handleClose 0.3s;
     }
+  }
+}
+@keyframes handleClose {
+  from {
+    visibility: visible;
+    left: 0px;
+  }
+  to {
+    left: -100vw;
+    display: none;
+  }
+}
+@keyframes handleOpen {
+  from {
+    left: -100vw;
+  }
+  to {
+    left: 0px;
   }
 }
 footer {

@@ -16,18 +16,18 @@
 }
 
 .btn {
-  &-primary {
+  &-primary,
+  &-submit,
+  &-selected {
     @extend %btnDefault;
   }
   &-submit {
-    @extend %btnDefault;
     @include dimensions(90vw, 38px, 8px);
     background: $google-green;
     max-width: 600px;
     margin: 0 auto;
   }
   &-selected {
-    @extend %btnDefault;
     background: $stripe-blue;
   }
   &-donate {
@@ -74,22 +74,33 @@
 .donation-page {
   @include flex(center, space-around, column);
 }
-.card-container {
+.card-container,
+.picture-container {
   @extend %box-shadow;
+}
+.card-container {
   @include dimensions(95vw, 250px, 7px);
   @include flex(center, center, row);
-  @include marginCenter;
-  margin-top: 20px;
-  max-width: 500px;
+  max-width: 450px;
   line-height: 20px;
   padding: 0 10%;
   @media (min-width: 400px) {
     height: 200px;
   }
 }
+.picture-container {
+}
 .card-info {
   @include borderfy(black);
   @include dimensions(90vw, 45px, 6px);
   max-width: 850px;
   @include marginCenter;
+}
+.pic-and-card {
+  margin: 20px;
+  @include flex(space-around, center, row);
+  @media (max-width: 918px) {
+    flex-direction: column;
+    min-height: 500px;
+  }
 }
