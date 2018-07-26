@@ -2,5 +2,5 @@ import React from "react";
 import Utils from "./utils";
 
 export default function Courses() {
-  return <Utils type="Messages" />;
+  return <Utils type="Courses" />;
 }

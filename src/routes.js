@@ -6,6 +6,8 @@ import DonateForm from "./components/Donate/DonateForm";
 import Checkout from "./components/Donate/Checkout";
 import Messages from "./components/Messages/Messages";
 import Home from "./components/Home/Home";
+import Courses from "./components/Messages/Courses";
+import SpecificMessages from "./components/Messages/SpecificMessages";
 
 export default (
   /*
@@ -23,6 +25,9 @@ export default (
     <Route path="/donations" component={() => <h1>Donations Page</h1>} />
     <Route path="/checkout" component={Donate} />
     <Route path="/donate" component={DonateForm} />
+    <Route path="/messages/:messages" component={SpecificMessages} />
+    <Route path="/courses/:courses" component={SpecificMessages} />
     <Route path="/messages" component={Messages} />
+    <Route path="/courses" component={Courses} />
   </Switch>
 );
