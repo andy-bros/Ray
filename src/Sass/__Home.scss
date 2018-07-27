@@ -1,0 +1,19 @@
+.home-page {
+  @include flex(space-around, center, column);
+  min-height: 28vh;
+  margin: 0 auto;
+  background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/New-Website-Banners4-1024x369.png");
+  background-size: cover;
+  // background-position: 21% 100%;
+  background-position: 21% 100%;
+}
+@media (min-width: 600px) {
+  .home-page {
+    min-height: 45vh;
+  }
+}
+@media (min-width: 743px) {
+  .home-page {
+    min-height: 56vh;
+  }
+}
