@@ -154,20 +154,26 @@ class DonateForm extends Component {
       [event.target.name]: value
     });
   };
-  submitForm = async () => {
-    console.log("SUBMITTING FORM...", this.state);
+  submitForm = () => {
+    // console.log("SUBMITTING FORM...", this.state);
     /*ALL THE INFO YOU NEED FROM 
     THE USER IS STORED ON STATE.
     TAKE WHAT YOU NEED IN ORDER 
     TO CONFIRM PAYMENT.*/
 
-    let { token } = await this.props.stripe.createToken({ name: "Name" });
-    await axios.post("/charge", {
-      token: token.id,
-      amount: this.state.selected
-    });
+    this.props.stripe
+      .createToken({ name: "Name" })
+      .then(res =>
+        axios.post("/charge", {
+          token: res.token.id,
+          amount: this.state.selected
+        })
+      )
+      .catch(() => console.log("error"));
+    // console.log(token);
   };
   render() {
+    console.log("HERERERERE", this.props);
     return (
       <form
         className="donation-page"
@@ -187,9 +193,9 @@ class DonateForm extends Component {
         <h2 className="bottom-border title">Payment Information</h2>
         <Card text={"Please fill out your credit card information"} />
         <div className="card-info sexy-input" style={{ padding: "12px" }}>
-          <Elements>
-            <CardElement />
-          </Elements>
+          {/* <Elements> */}
+          <CardElement />
+          {/* </Elements> */}
         </div>
         <Credentials values={this.state} handleChange={this.handleChange} />
         <SubmitButton />
@@ -198,4 +204,15 @@ class DonateForm extends Component {
     );
   }
 }
-export default DonateForm;
+const DonateForm1 = injectStripe(DonateForm);
+class DonateForms extends Component {
+  render() {
+    return (
+      <Elements>
+        <DonateForm1 />
+      </Elements>
+    );
+  }
+}
+
+export default DonateForms;
