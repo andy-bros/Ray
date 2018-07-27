@@ -7,6 +7,7 @@
   @include flex(space-around, center, column);
   border: none;
   background: none;
+  margin-right: 10px;
   .menu-slice {
     @include dimensions(33px, 4px, 0px);
     background: $charcoal;

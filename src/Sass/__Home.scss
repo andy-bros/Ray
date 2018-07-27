@@ -1,19 +1,48 @@
 .home-page {
-  @include flex(space-around, center, column);
+  // @include flex(space-around, center, column);
   min-height: 28vh;
   margin: 0 auto;
   background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/New-Website-Banners4-1024x369.png");
   background-size: cover;
   // background-position: 21% 100%;
-  background-position: 21% 100%;
+  background-position: 21% 10%;
+}
+@media (min-width: 743px) {
+  .home-page {
+    min-height: 56vh;
+  }
+}
+.content-container {
+  @include flex(space-around, center, column);
+  padding: 15px 10px 10px 10px;
+  max-width: 800px;
+  min-height: 450px;
+  margin: 0 auto;
+  img {
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    padding: 8px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .content-container {
+    @include flex(space-around, flex-start, row);
+  }
 }
 @media (min-width: 600px) {
   .home-page {
     min-height: 45vh;
   }
-}
-@media (min-width: 743px) {
-  .home-page {
-    min-height: 56vh;
+  .content-container {
+    @include flex(space-around, flex-start, row);
+  }
+  .description {
+    width: 400px;
   }
 }
