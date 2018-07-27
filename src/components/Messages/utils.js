@@ -23,6 +23,7 @@ class Messages extends Component {
       //   e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
       // );
       // let title=e.Title.slice(this.props.type.length + 1)
+      console.log(e);
       return (
         <div key={i}>
           <Link

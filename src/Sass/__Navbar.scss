@@ -3,14 +3,14 @@ nav {
   &.top {
     border-bottom: 1px solid grey;
     margin: 0 auto;
-    @include dimensions(100vw, 75px, 0px);
-    @include flex(space-around, center, row);
+    @include dimensions(100vw, 60px, 0px);
+    @include flex(flex-end, center, row);
     position: fixed;
     top: 0;
     background: $stripe-blue;
     .mapped-links {
       @media (max-width: 500px) {
-        visibility: hidden;
+        display: none;
       }
     }
     .join-divs {
@@ -23,7 +23,7 @@ nav {
 
     background: $charcoal;
     opacity: 0.99;
-    height: calc(100vh - 75px);
+    height: calc(100vh - 60px);
     position: fixed;
     @include flex(space-around, center, column);
     color: white;
@@ -34,6 +34,7 @@ nav {
     }
     &.closed {
       visibility: hidden;
+      display: block;
       animation: handleClose 0.3s;
     }
   }
