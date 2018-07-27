@@ -15,6 +15,7 @@ class App extends Component {
         { nav: "DONATE", to: "/donate" },
         { nav: "STORE", to: "/products" },
         { nav: "COURSES", to: "/courses" },
+        { nav: "CHECKOUT", to: "/checkout" },
         { nav: "MESSAGES", to: "/messages" }
       ]
     };
