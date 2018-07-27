@@ -54,6 +54,7 @@ app.post("/api/addusercart", (req, res) => {
 
 app.post("/charge", (req, res) => {
   //make customer
+  //store customer id on sessions?
   //make sure the customers description is the email and name
   //email and description
   //check if the amount is stationary or hand inputed
