@@ -160,20 +160,23 @@ class DonateForm extends Component {
     THE USER IS STORED ON STATE.
     TAKE WHAT YOU NEED IN ORDER 
     TO CONFIRM PAYMENT.*/
-
+    let { firstName, lastName, emailAddress, checked } = this.state;
     this.props.stripe
       .createToken({ name: "Name" })
       .then(res =>
         axios.post("/charge", {
           token: res.token.id,
-          amount: this.state.selected
+          amount: this.state.selected,
+          name: `${firstName} ${lastName}`,
+          email: emailAddress,
+          checked
         })
       )
       .catch(() => console.log("error"));
     // console.log(token);
   };
   render() {
-    console.log("HERERERERE", this.props);
+    console.log("HERERERERE", this.state.checked);
     return (
       <form
         className="donation-page"

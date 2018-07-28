@@ -13,7 +13,8 @@ const express = require("express"),
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 1814400000 //3 Weeks
+      // maxAge: 1814400000 //3 Weeks //I am leaving this blank so that
+      //I can store the users created customer id from stripe onto sessions
     }
   };
 
@@ -53,39 +54,100 @@ app.post("/api/addusercart", (req, res) => {
 });
 
 app.post("/charge", (req, res) => {
-  //make customer
-  //store customer id on sessions?
-  //make sure the customers description is the email and name
-  //email and description
-  //check if the amount is stationary or hand inputed
-  //check if its a monthly payment or one time
-  //make subscription with users returned customer id
-
-  // console.log(req.body);
-  // let updatedAmount = req.body.amount + "00";
-  // stripe.charges
-  //   .create({
-  //     amount: +updatedAmount,
-  //     currency: "usd",
-  //     description: "An Example Charge",
-  //     source: req.body.token
-  //   })
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err));
-  stripe.plans.create(
-    {
-      amount: 5000,
-      interval: "month",
-      product: {
-        name: "Gold special"
-      },
-      currency: "usd"
-    },
-    function(err, plan) {
-      if (err) console.log(err);
-      else if (plan) console.log(plan);
+  // check if its a monthly payment or one time
+  if (req.body.checked === "one-time") {
+    //should I check to see if the user is a customer?
+    //should i create a customer
+    let updatedAmount = req.body.amount + "00";
+    stripe.charges
+      .create({
+        amount: +updatedAmount,
+        currency: "usd",
+        description: `A one time payment for ${req.body.name}`,
+        source: req.body.token
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    return;
+  } else if (req.body.checked === "monthly") {
+    let plan = () => {
+      // check if the amount is stationary or hand imputed
+      if (req.body.amount === "25") {
+        return process.env.TWO_FIVE;
+      } else if (req.body.amount === "50") {
+        return process.env.FIVE_ZERO;
+      } else if (req.body.amount === "100") {
+        return process.env.ONE_HUNDRED;
+      } else if (req.body.amount === "200") {
+        return process.env.TWO_HUNDRED;
+      } else if (req.body.amount === "500") {
+        return process.env.FIVE_HUNDRED;
+      } else {
+        stripe.plans.create(
+          {
+            amount: +req.body.amount + "00",
+            interval: "month",
+            product: {
+              name: `${req.body.name}'s plan`
+            },
+            currency: "usd"
+          },
+          function(err, plan) {
+            // asynchronously called
+            return plan.product;
+          }
+        );
+      }
+    };
+    if (!req.session.customerid) {
+      //make new customer
+      stripe.customers.create(
+        {
+          description: req.body.name,
+          email: req.body.email,
+          source: req.body.token
+        },
+        function(err, customer) {
+          // asynchronously called
+          //the returned customer id is to be charged
+          //store the customer id on sessions
+          if (err) console.log("ERROR", err);
+          else if (customer) {
+            console.log(customer.id);
+            req.session.customerid = customer.id;
+            stripe.subscriptions.create(
+              {
+                customer: customer.id,
+                items: [
+                  {
+                    plan
+                  }
+                ]
+              }
+              // , function(err, subscription) {
+              //     // asynchronously called
+              //   }
+            );
+          }
+        }
+      );
+    } else {
+      stripe.subscriptions.create(
+        {
+          customer: req.session.customerid,
+          items: [
+            {
+              plan
+            }
+          ]
+        }
+        // , function(err, subscription) {
+        //     // asynchronously called
+        //   }
+      );
+      // charge the customerid
     }
-  );
+  }
 });
 
 app.get("/api/products", getProducts);
