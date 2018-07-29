@@ -54,24 +54,33 @@ app.post("/api/addusercart", (req, res) => {
 });
 
 app.post("/charge", (req, res) => {
-  // check if its a monthly payment or one time
+  // this checks to see if its a monthly payment or one time
   if (req.body.checked === "one-time") {
-    //should I check to see if the user is a customer?
-    //should i create a customer
+    //a customer is not needed for a one time purchase so we directly create the charge to the account
     let updatedAmount = req.body.amount + "00";
     stripe.charges
       .create({
         amount: +updatedAmount,
         currency: "usd",
         description: `A one time payment for ${req.body.name}`,
-        source: req.body.token
+        source: req.body.token,
+        receipt_email: req.body.email
       })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res =>
+        //send back to the front end to let know that everything is successfull
+        console.log(res)
+      )
+      .catch(err =>
+        //send back to the front end to let know that an error occured
+
+        console.log(err)
+      );
     return;
   } else if (req.body.checked === "monthly") {
-    let plan = () => {
-      // check if the amount is stationary or hand imputed
+    let planForSub = () => {
+      //this is just getting us the plan for the user
+      // check if the amount is the selected stationary or hand imputed
+      //if it is hand imputed then we create a plan for it
       if (req.body.amount === "25") {
         return process.env.TWO_FIVE;
       } else if (req.body.amount === "50") {
@@ -100,6 +109,8 @@ app.post("/charge", (req, res) => {
       }
     };
     if (!req.session.customerid) {
+      const newPlan = planForSub();
+      console.log("25", newPlan);
       //make new customer
       stripe.customers.create(
         {
@@ -118,11 +129,11 @@ app.post("/charge", (req, res) => {
             stripe.subscriptions.create(
               {
                 customer: customer.id,
-                items: [
-                  {
-                    plan
-                  }
-                ]
+                //
+                //
+                //
+                //NEEEDS TO BE FIXED
+                plan: newPlan
               }
               // , function(err, subscription) {
               //     // asynchronously called
@@ -135,11 +146,12 @@ app.post("/charge", (req, res) => {
       stripe.subscriptions.create(
         {
           customer: req.session.customerid,
-          items: [
-            {
-              plan
-            }
-          ]
+          description: req.body.name,
+          //
+          //
+          //
+          //NEEEDS TO BE FIXED
+          items: newPlan
         }
         // , function(err, subscription) {
         //     // asynchronously called
