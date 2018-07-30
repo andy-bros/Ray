@@ -14,10 +14,10 @@ const getMessages = function(e) {
     //
     //
     s3.listObjects({ Bucket: "raymp3s", Prefix: e }, function(err, tru) {
-      console.log("THIS IS THE S3 OJECTS");
+      // console.log("THIS IS THE S3 OJECTS");
       if (err) console.log(err);
       if (tru) {
-        console.log("AYYYEE");
+        // console.log("AYYYEE");
         r(tru.Contents);
       }
     });
@@ -31,9 +31,13 @@ const getMessageSermons = (req, res) => {
   //   ? res.status(200).json(messageSections)
   // : // console.log("lmaooo")
   if (req.query.section === "Courses" && coursesSections.length !== 0) {
+    console.log("Courses was sent");
     res.status(200).json(coursesSections);
+    return;
   } else if (req.query.section === "Messages" && messageSections.length !== 0) {
+    console.log("Messages was sent");
     res.status(200).json(messageSections);
+    return;
   }
 
   new Promise(resolve =>
@@ -46,28 +50,36 @@ const getMessageSermons = (req, res) => {
       function(err, res) {
         if (err) console.log(err);
         if (res) {
-          messageSections = res.CommonPrefixes;
-          console.log("====>", messageSections);
+          if (req.query.section === "Courses") {
+            coursesSections = res.CommonPrefixes;
+          } else if (req.query.section === "Messages") {
+            messageSections = res.CommonPrefixes;
+          }
+
+          // console.log("====>", messageSections);
           resolve(messageSections);
         }
       }
     )
   ).then(results => {
     let newMessages = Promise.all(
-      messageSections.map(async e => {
-        return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
-      })
+      (req.query.section === "Courses" ? coursesSections : messageSections).map(
+        async e => {
+          return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+        }
+      )
     );
-    newMessages.then(resultzz => {
-      if (req.query.section === "Courses") {
-        coursesSections = resultzz;
-      } else if (req.query.section === "Messages") {
-        messageSections = resultzz;
-      }
-      // console.log(messageSections);
-      res.status(200).json(resultzz);
-    });
-    console.log("me first");
+    newMessages
+      .then(resultzz => {
+        if (req.query.section === "Courses") {
+          coursesSections = resultzz;
+        } else if (req.query.section === "Messages") {
+          messageSections = resultzz;
+        }
+        // console.log(messageSections);
+        res.status(200).json(resultzz);
+      })
+      .catch(err => console.log("error on line 80", err));
   });
 };
 
