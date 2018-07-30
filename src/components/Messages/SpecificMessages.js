@@ -100,10 +100,19 @@ class SpecificMessages extends Component {
             </a>
           )}
 
-          <a href={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
+          {/* <audio src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
             <p>{date}</p>
             {str.slice(0, str.length - 4)}
-          </a>
+          </audio> */}
+          {/*do not touch this page i am working on it*/}
+          <audio controls>
+            <source
+              src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}
+              type="audio/mpeg"
+            />
+            {/* <p>{date}</p>
+            {str.slice(0, str.length - 4)} */}
+          </audio>
         </div>
       );
     });
