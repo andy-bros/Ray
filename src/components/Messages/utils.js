@@ -30,6 +30,7 @@ class Messages extends Component {
             to={`/${this.props.type[0].toLowerCase() +
               this.props.type.slice(1)}/${i}`}
           >
+            {/* test */}
             <h1>
               {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)}
             </h1>
