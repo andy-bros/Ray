@@ -41,6 +41,15 @@ nav {
     }
   }
 }
+
+footer {
+  @include dimensions(100vw, 30px, 0px);
+  @include flex(center, center, row);
+  font-size: 11px;
+  letter-spacing: 1px;
+  // position: fixed;
+  // bottom: 0px;
+}
 @keyframes handleClose {
   from {
     visibility: visible;
@@ -58,12 +67,4 @@ nav {
   to {
     left: 0px;
   }
-}
-footer {
-  @include dimensions(100vw, 80px, 0px);
-  @include flex(center, space-around, column);
-  flex-wrap: wrap;
-  display: absolute;
-  bottom: 0;
-  background: $dark-roast;
 }
