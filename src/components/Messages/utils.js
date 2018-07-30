@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import LoadingDots from "../animations/Loading";
 
 class Messages extends Component {
   state = {
@@ -16,13 +17,9 @@ class Messages extends Component {
   }
   render() {
     let { messages } = this.state;
+
     console.log("messages", messages);
     let mappedMessages = messages.map((e, i) => {
-      // console.log(
-      //   "TITLE",
-      //   e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
-      // );
-      // let title=e.Title.slice(this.props.type.length + 1)
       console.log(e);
       return (
         <div key={i}>
@@ -39,16 +36,22 @@ class Messages extends Component {
       );
     });
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column"
-        }}
-      >
-        {mappedMessages}
-      </div>
+      <Fragment>
+        {messages.length !== 0 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column"
+            }}
+          >
+            {mappedMessages}
+          </div>
+        ) : (
+          <LoadingDots />
+        )}
+      </Fragment>
     );
   }
 }

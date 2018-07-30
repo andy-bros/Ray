@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
+import LoadingDots from "../animations/Loading";
 
 class SpecificMessages extends Component {
   state = {
@@ -106,7 +107,11 @@ class SpecificMessages extends Component {
         </div>
       );
     });
-    return <div>{newMessages}</div>;
+    return (
+      <Fragment>
+        {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
+      </Fragment>
+    );
   }
 }
 export default SpecificMessages;
