@@ -11,16 +11,25 @@ const express = require("express"),
   sess = {
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-      // maxAge: 1814400000 //3 Weeks //I am leaving this blank so that
-      //I can store the users created customer id from stripe onto sessions
-    }
+    saveUninitialized: true
+    // cookie: {
+    //   // maxAge: 1814400000 //3 Weeks //I am leaving this blank so that
+    //   //I can store the users created customer id from stripe onto sessions
+    // }
   };
 
 app.use(express.json());
 app.use(cors());
-app.use(session(sess));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false
+    }
+  })
+);
 // if (app.get("env") === "production") {
 //   app.set("trust proxy", 1); // trust first proxy
 //   sess.cookie.secure = true; // serve secure cookies
@@ -67,50 +76,52 @@ app.post("/charge", (req, res) => {
         receipt_email: req.body.email
       })
       .then(res =>
-        //send back to the front end to let know that everything is successfull
+        //send back to the front end to let know that everything is successful
         console.log(res)
       )
       .catch(err =>
-        //send back to the front end to let know that an error occured
+        //send back to the front end to let know that an error occurred
 
         console.log(err)
       );
     return;
   } else if (req.body.checked === "monthly") {
+    let subPlan;
     let planForSub = () => {
       //this is just getting us the plan for the user
       // check if the amount is the selected stationary or hand imputed
       //if it is hand imputed then we create a plan for it
       if (req.body.amount === "25") {
-        return process.env.TWO_FIVE;
+        subPlan = process.env.TWO_FIVE;
       } else if (req.body.amount === "50") {
-        return process.env.FIVE_ZERO;
+        subPlan = process.env.FIVE_ZERO;
       } else if (req.body.amount === "100") {
-        return process.env.ONE_HUNDRED;
+        subPlan = process.env.ONE_HUNDRED;
       } else if (req.body.amount === "200") {
-        return process.env.TWO_HUNDRED;
+        subPlan = process.env.TWO_HUNDRED;
       } else if (req.body.amount === "500") {
-        return process.env.FIVE_HUNDRED;
+        subPlan = process.env.FIVE_HUNDRED;
       } else {
         stripe.plans.create(
           {
             amount: +req.body.amount + "00",
             interval: "month",
             product: {
-              name: `${req.body.name}'s plan`
+              name: `${req.body.name}'s ${req.body.amount} plan`
             },
             currency: "usd"
           },
           function(err, plan) {
             // asynchronously called
-            return plan.product;
+            console.log(plan.id);
+            subPlan = plan.id;
           }
         );
       }
     };
-    if (!req.session.customerid) {
-      const newPlan = planForSub();
-      console.log("25", newPlan);
+    if (!req.session.customer) {
+      console.log("customer is not present");
+      planForSub();
       //make new customer
       stripe.customers.create(
         {
@@ -118,22 +129,26 @@ app.post("/charge", (req, res) => {
           email: req.body.email,
           source: req.body.token
         },
-        function(err, customer) {
+        function(err, customers) {
           // asynchronously called
           //the returned customer id is to be charged
           //store the customer id on sessions
           if (err) console.log("ERROR", err);
-          else if (customer) {
-            console.log(customer.id);
-            req.session.customerid = customer.id;
+          else if (customers) {
+            console.log("CUSTOMER ID", customers.id);
+            //this is where the customer id needs to save to sessions
+            req.session.customer = customers.id;
             stripe.subscriptions.create(
               {
-                customer: customer.id,
+                customer: customers.id,
                 //
                 //
                 //
                 //NEEEDS TO BE FIXED
-                plan: newPlan
+
+                items: [{ plan: subPlan }]
+
+                // items: [{ plan: newPlan }]
               }
               // , function(err, subscription) {
               //     // asynchronously called
@@ -143,15 +158,16 @@ app.post("/charge", (req, res) => {
         }
       );
     } else {
+      console.log("customer is on sessions");
       stripe.subscriptions.create(
         {
-          customer: req.session.customerid,
+          customer: req.session.customer,
           description: req.body.name,
           //
           //
           //
           //NEEEDS TO BE FIXED
-          items: newPlan
+          items: [{ plan: subPlan }]
         }
         // , function(err, subscription) {
         //     // asynchronously called
