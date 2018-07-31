@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import LoadingDots from "../animations/Loading";
+import { Link } from "react-router-dom";
 
 class SpecificMessages extends Component {
   state = {
     messages: []
   };
   componentDidMount() {
+    console.log(this.props.match.params);
     let key = Object.keys(this.props.match.params)[0];
     key = key[0].toUpperCase() + key.slice(1);
     console.log(key);
@@ -50,7 +52,7 @@ class SpecificMessages extends Component {
     let { messages } = this.state;
     let newMessages = messages.map((e, i, a) => {
       console.log("eeee", a[i + 1]);
-      let notesFlag = true;
+      let notesFlag = false;
       let nextArr = [];
       let str = e.Key.split("/")[2];
       if (
@@ -83,41 +85,42 @@ class SpecificMessages extends Component {
         //box next to the current that links them to notes
         //
         //
-        <div
-          key={e.Key}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100vw",
-            height: "50px",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+        <Link
+          to={`/${Object.keys(this.props.match.params)[0]}/${
+            this.props.match.params[Object.keys(this.props.match.params)[0]]
+          }/${
+            // this.props.match.params[Object.keys(this.props.match.params)[0]]
+            i
+          }/?pdf=${notesFlag}`}
         >
-          {notesFlag && (
+          <div key={e.Key}>
+            {e.Key}
+            {/* {notesFlag && (
             <a href={`https://s3.amazonaws.com/raymp3s/${nextArr.Key}`}>
               click here for notes
             </a>
-          )}
+          )} */}
 
-          {/* <audio src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
+            {/* <audio src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
             <p>{date}</p>
             {str.slice(0, str.length - 4)}
           </audio> */}
-          {/*do not touch this page i am working on it*/}
-          <audio controls>
+            {/*do not touch this page i am working on it*/}
+            {/* <audio controls>
             <source
               src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}
               type="audio/mpeg"
-            />
+            /> */}
             {/* <p>{date}</p>
             {str.slice(0, str.length - 4)} */}
-          </audio>
-        </div>
+            {/* </audio> */}
+          </div>
+        </Link>
       );
     });
     return (
       <Fragment>
+        dogs
         {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
       </Fragment>
     );
