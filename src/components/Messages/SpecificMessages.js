@@ -34,20 +34,7 @@ class SpecificMessages extends Component {
       });
     });
   }
-  findMonth = num => {
-    if (num === "01") return "January";
-    else if (num === "02") return "February";
-    else if (num === "03") return "March";
-    else if (num === "04") return "April";
-    else if (num === "05") return "May";
-    else if (num === "06") return "June";
-    else if (num === "07") return "July";
-    else if (num === "08") return "August";
-    else if (num === "09") return "September";
-    else if (num === "10") return "October";
-    else if (num === "11") return "November";
-    else if (num === "12") return "December";
-  };
+
   render() {
     let { messages } = this.state;
     let newMessages = messages.map((e, i, a) => {
@@ -65,11 +52,11 @@ class SpecificMessages extends Component {
       } else {
         notesFlag = false;
       }
-      let date = `${this.findMonth(str.slice(7, 9))} ${str.slice(
-        9,
-        11
-      )}, ${str.slice(3, 7)}`;
-      console.log("THIS IS THE", date);
+      // let date = `${this.findMonth(str.slice(7, 9))} ${str.slice(
+      //   9,
+      //   11
+      // )}, ${str.slice(3, 7)}`;
+      // console.log("THIS IS THE", date);
       str = str
         .split("_")
         .splice(1)
@@ -94,7 +81,7 @@ class SpecificMessages extends Component {
           }/?pdf=${notesFlag}`}
         >
           <div key={e.Key}>
-            {e.Key}
+            {/* {e.Key} */}
             {/* {notesFlag && (
             <a href={`https://s3.amazonaws.com/raymp3s/${nextArr.Key}`}>
               click here for notes
@@ -111,8 +98,8 @@ class SpecificMessages extends Component {
               src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}
               type="audio/mpeg"
             /> */}
-            {/* <p>{date}</p>
-            {str.slice(0, str.length - 4)} */}
+            {/* <p>{date}</p> */}
+            {str.slice(0, str.length - 4)}
             {/* </audio> */}
           </div>
         </Link>
@@ -120,7 +107,6 @@ class SpecificMessages extends Component {
     });
     return (
       <Fragment>
-        dogs
         {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
       </Fragment>
     );
