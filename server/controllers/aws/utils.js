@@ -27,14 +27,11 @@ const getMessages = function(e) {
 let messageSections = [];
 let coursesSections = [];
 const getMessageSermons = (req, res) => {
-  // messageSections.length !== 0
-  //   ? res.status(200).json(messageSections)
-  // : // console.log("lmaooo")
-  if (req.query.section === "Courses" && coursesSections.length !== 0) {
+  if (req.query.section === "Courses" && coursesSections.length) {
     console.log("Courses was sent");
     res.status(200).json(coursesSections);
     return;
-  } else if (req.query.section === "Messages" && messageSections.length !== 0) {
+  } else if (req.query.section === "Messages" && messageSections.length) {
     console.log("Messages was sent");
     res.status(200).json(messageSections);
     return;
@@ -50,24 +47,23 @@ const getMessageSermons = (req, res) => {
       function(err, res) {
         if (err) console.log(err);
         if (res) {
-          if (req.query.section === "Courses") {
-            coursesSections = res.CommonPrefixes;
-          } else if (req.query.section === "Messages") {
-            messageSections = res.CommonPrefixes;
-          }
+          // if (req.query.section === "Courses") {
+          //   coursesSections = res.CommonPrefixes;
+          // } else if (req.query.section === "Messages") {
+          //   messageHolders = res.CommonPrefixes;
+          // }
 
           // console.log("====>", messageSections);
-          resolve(messageSections);
+          resolve(res.CommonPrefixes);
         }
       }
     )
   ).then(results => {
     let newMessages = Promise.all(
-      (req.query.section === "Courses" ? coursesSections : messageSections).map(
-        async e => {
-          return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
-        }
-      )
+      // (req.query.section === "Courses" ? coursesSections : messageSections)
+      results.map(async e => {
+        return { Title: e.Prefix, messages: await getMessages(e.Prefix) };
+      })
     );
     newMessages
       .then(resultzz => {

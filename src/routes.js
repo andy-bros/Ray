@@ -9,6 +9,7 @@ import Home from "./components/Home/Home";
 import Courses from "./components/Messages/Courses";
 import SpecificMessages from "./components/Messages/SpecificMessages";
 import { Elements } from "react-stripe-elements";
+import EachIndividualMessage from "./components/Messages/IndividualMess";
 
 export default (
   /*
@@ -26,7 +27,14 @@ export default (
     <Route path="/donations" component={() => <h1>Donations Page</h1>} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/donate" component={DonateForm} />
-    <Route path="/messages/:messages" component={SpecificMessages} />
+    <Route
+      exact
+      path="/messages/:messages/:id"
+      component={EachIndividualMessage}
+    />
+    <Route path="/courses/:courses/:id" component={EachIndividualMessage} />
+    <Route path="/messages/:messages/" component={SpecificMessages} />
+
     <Route path="/courses/:courses" component={SpecificMessages} />
     <Route path="/messages" component={Messages} />
     <Route path="/courses" component={Courses} />
