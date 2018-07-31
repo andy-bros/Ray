@@ -1,0 +1,28 @@
+.footer-container {
+  @include flex(space-around, center, column);
+  height: 450px;
+  background: $grease;
+  color: whitesmoke;
+  font-size: 20px;
+  line-height: 22px;
+  .information,
+  .social-media,
+  h6 {
+    width: calc(100% - 50px);
+  }
+  h4 {
+    margin-bottom: 8px;
+  }
+  .information {
+    @include flex(space-around, flex-start, column);
+    @include dimensions(calc(100% - 50px), 350px, 0);
+    max-width: 600px;
+  }
+  .social-media {
+    @include flex(space-around, center, row);
+  }
+  h6 {
+    text-align: center;
+    font-size: 10px;
+  }
+}

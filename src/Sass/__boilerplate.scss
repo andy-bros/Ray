@@ -13,7 +13,18 @@
     box-shadow: $active-box-shadow;
   }
 }
-
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 22px;
+}
+p {
+  font-size: 14px;
+}
 button,
 input {
   cursor: pointer;
@@ -45,4 +56,9 @@ h2 {
   // background-image: url("https://kimscrane.com/shop/5764-large_default/mulberry-paper-white-with-silver-specks.jpg");
   // background-size: 15%;
   // background-repeat: repeat;
+}
+.bottom-border {
+  width: 100%;
+  padding-bottom: 2px;
+  border-bottom: 1px solid $charcoal;
 }
