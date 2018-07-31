@@ -1,11 +1,9 @@
 import React from "react";
 
 export default function Footer({ mappedLinks }) {
-  console.log(mappedLinks);
   return (
     <footer>
-      <div>{mappedLinks}</div>
-      <div />
+      <h6>Designed and Developed By Jacob and Joseph Anderson</h6>
     </footer>
   );
 }

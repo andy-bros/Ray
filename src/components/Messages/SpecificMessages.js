@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
+import LoadingDots from "../animations/Loading";
+import { Link } from "react-router-dom";
 
 class SpecificMessages extends Component {
   state = {
     messages: []
   };
   componentDidMount() {
+    console.log(this.props.match.params);
     let key = Object.keys(this.props.match.params)[0];
     key = key[0].toUpperCase() + key.slice(1);
     console.log(key);
@@ -31,25 +34,12 @@ class SpecificMessages extends Component {
       });
     });
   }
-  findMonth = num => {
-    if (num === "01") return "January";
-    else if (num === "02") return "February";
-    else if (num === "03") return "March";
-    else if (num === "04") return "April";
-    else if (num === "05") return "May";
-    else if (num === "06") return "June";
-    else if (num === "07") return "July";
-    else if (num === "08") return "August";
-    else if (num === "09") return "September";
-    else if (num === "10") return "October";
-    else if (num === "11") return "November";
-    else if (num === "12") return "December";
-  };
+
   render() {
     let { messages } = this.state;
     let newMessages = messages.map((e, i, a) => {
       console.log("eeee", a[i + 1]);
-      let notesFlag = true;
+      let notesFlag = false;
       let nextArr = [];
       let str = e.Key.split("/")[2];
       if (
@@ -62,11 +52,11 @@ class SpecificMessages extends Component {
       } else {
         notesFlag = false;
       }
-      let date = `${this.findMonth(str.slice(7, 9))} ${str.slice(
-        9,
-        11
-      )}, ${str.slice(3, 7)}`;
-      console.log("THIS IS THE", date);
+      // let date = `${this.findMonth(str.slice(7, 9))} ${str.slice(
+      //   9,
+      //   11
+      // )}, ${str.slice(3, 7)}`;
+      // console.log("THIS IS THE", date);
       str = str
         .split("_")
         .splice(1)
@@ -82,31 +72,44 @@ class SpecificMessages extends Component {
         //box next to the current that links them to notes
         //
         //
-        <div
-          key={e.Key}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100vw",
-            height: "50px",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+        <Link
+          to={`/${Object.keys(this.props.match.params)[0]}/${
+            this.props.match.params[Object.keys(this.props.match.params)[0]]
+          }/${
+            // this.props.match.params[Object.keys(this.props.match.params)[0]]
+            i
+          }/?pdf=${notesFlag}`}
         >
-          {notesFlag && (
+          <div key={e.Key}>
+            {/* {e.Key} */}
+            {/* {notesFlag && (
             <a href={`https://s3.amazonaws.com/raymp3s/${nextArr.Key}`}>
               click here for notes
             </a>
-          )}
+          )} */}
 
-          <a href={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
+            {/* <audio src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
             <p>{date}</p>
             {str.slice(0, str.length - 4)}
-          </a>
-        </div>
+          </audio> */}
+            {/*do not touch this page i am working on it*/}
+            {/* <audio controls>
+            <source
+              src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}
+              type="audio/mpeg"
+            /> */}
+            {/* <p>{date}</p> */}
+            {str.slice(0, str.length - 4)}
+            {/* </audio> */}
+          </div>
+        </Link>
       );
     });
-    return <div>{newMessages}</div>;
+    return (
+      <Fragment>
+        {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
+      </Fragment>
+    );
   }
 }
 export default SpecificMessages;

@@ -1,4 +1,6 @@
 const getProducts = (req, res) => {
+  console.log("hit");
+  // console.log(req.app.get);
   req.app
     .get("db")
     .getallproducts()

@@ -4,11 +4,13 @@ nav {
     border-bottom: 1px solid grey;
     margin: 0 auto;
     @include dimensions(100vw, 60px, 0px);
-    @include flex(flex-end, center, row);
+    @include flex(center, center, row);
+    width: 100%;
     position: fixed;
     top: 0;
     background: $stripe-blue;
     .mapped-links {
+      // width: 30%;
       @media (max-width: 500px) {
         display: none;
       }
@@ -38,6 +40,15 @@ nav {
     }
   }
 }
+
+footer {
+  @include dimensions(100vw, 30px, 0px);
+  @include flex(center, center, row);
+  font-size: 11px;
+  letter-spacing: 1px;
+  // position: fixed;
+  // bottom: 0px;
+}
 @keyframes handleClose {
   from {
     visibility: visible;
@@ -55,12 +66,4 @@ nav {
   to {
     left: 0px;
   }
-}
-footer {
-  @include dimensions(100vw, 80px, 0px);
-  @include flex(center, space-around, column);
-  flex-wrap: wrap;
-  display: absolute;
-  bottom: 0;
-  background: $dark-roast;
 }
