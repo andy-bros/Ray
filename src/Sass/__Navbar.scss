@@ -34,7 +34,6 @@ nav {
     }
     &.closed {
       visibility: hidden;
-      display: block;
       animation: handleClose 0.3s;
     }
   }

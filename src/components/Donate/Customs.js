@@ -61,7 +61,7 @@ export function DonateBtn() {
 export function Card({ text, size, img }) {
   return (
     <div className="pic-and-card">
-      <img className="picture-container" src={img} width="400px" />
+      <img className="picture-container" src={img} width="300px" />
       <section className="card-container">{text}</section>,
     </div>
   );
