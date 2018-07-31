@@ -48,10 +48,10 @@ class EachIndividualMessage extends Component {
                   key[0].toLocaleLowerCase() + key.slice(1)
                 ]
               ].messages[id].Key,
-        date: `${this.findMonth(str.slice(7, 9))} ${str.slice(
-          9,
-          11
-        )}, ${str.slice(3, 7)}`,
+        // date: `${this.findMonth(str.slice(7, 9))} ${str.slice(
+        //   9,
+        //   11
+        // )}, ${str.slice(3, 7)}`,
         pdf: `${res.data[
           this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
         ].messages
