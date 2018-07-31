@@ -162,7 +162,7 @@ class DonateForm extends Component {
     TO CONFIRM PAYMENT.*/
     let { firstName, lastName, emailAddress, checked } = this.state;
     this.props.stripe
-      .createToken({ name: "Name" })
+      .createToken({ name: `${firstName} ${lastName}` })
       .then(res =>
         axios.post("/charge", {
           token: res.token.id,
