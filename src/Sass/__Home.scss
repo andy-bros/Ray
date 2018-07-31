@@ -37,7 +37,7 @@
 }
 @media (min-width: 600px) {
   .home-page {
-    min-height: 45vh;
+    min-height: 60vh;
   }
   .content-container {
     @include flex(space-around, flex-start, row);
