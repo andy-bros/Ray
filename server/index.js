@@ -50,16 +50,16 @@ app.get("/api/getusercart", (req, res) => {
   //   res.status(200).json(req.session.cookie.cart);
   // }
 });
-app.post("/api/addusercart", (req, res) => {
-  if (req.session.cart) {
-    console.log("if");
-    req.session.cart.push(req.body.items);
-    res.status(200).json(req.session.cart);
-  } else {
-    console.log("else if");
-    req.session.cart = [req.body.items];
-    res.status(200).json(req.session.cart);
+//TOP LEVEL MIDDLEWARE THAT CREATES CART
+app.use((req, res, next) => {
+  if (!req.session.cart) {
+    req.session.cart = [];
   }
+  next();
+});
+app.post("/api/addusercart", (req, res) => {
+  req.session.cart.push(req.body.items);
+  res.status(200).json(req.session.cart);
 });
 
 app.post("/charge", (req, res) => {
