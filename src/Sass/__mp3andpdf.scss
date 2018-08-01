@@ -20,37 +20,77 @@
   }
 }
 .message-titles {
+  background: whitesmoke;
+  margin: 130px 0 10px 0;
   min-height: 93vh;
   @include flex(space-around, center, row);
 }
 .ea-message-title {
+  // visibility: hidden;
   font-family: Raleway;
   letter-spacing: 2.5px;
   text-align: center;
   font-size: 17px;
-  background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/Website-Banners.jpg");
+  // background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/Website-Banners.jpg");
   @include flex(center, center, row);
   background-repeat: no-repeat;
   min-width: 320px;
   width: 400px;
   height: 150px;
   border-radius: 10px;
-  background: #888;
-  margin: 10px 0 0 0;
+  background: #333;
+  margin: 10px 10px 0 10px;
   &:hover {
-    box-shadow: black 2px 2px 2px;
+    animation: boxShadowHover 0.5s both;
+    h1 {
+      animation: h1colorchange 0.5s both;
+    }
   }
   h1 {
-    color: white;
+    width: 80%;
+    line-height: 32px;
+    color: rgba(245, 245, 245, 0.81);
     text-decoration: none;
   }
 }
 .each-individual-message-holder {
+  margin-top: 123px;
   min-height: 93vh;
-  @include flex(space-around, space-around, row);
+  @include flex(space-around, center, column);
+  &__h1 {
+    font-size: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 6px;
+  }
+  h1 {
+    font-family: Raleway;
+  }
+  &__notitle {
+    margin: 10px 0 10px 0;
+    width: 100%;
+    @include flex(space-around, center, row);
+  }
   .each-individual-message-title {
     @include flex(center, center, column);
     color: black;
     height: 80px;
+  }
+}
+@keyframes h1colorchange {
+  from {
+    color: rgba(245, 245, 245, 0.81);
+  }
+  to {
+    color: white;
+  }
+}
+@keyframes boxShadowHover {
+  from {
+    background: #333;
+    box-shadow: 0;
+  }
+  to {
+    background: #555;
+    box-shadow: 14px 14px 10px -2px rgba(0, 0, 0, 0.58);
   }
 }

@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 class SpecificMessages extends Component {
   state = {
-    messages: []
+    messages: [],
+    title: ""
   };
   componentDidMount() {
     console.log(this.props.match.params);
@@ -16,9 +17,35 @@ class SpecificMessages extends Component {
       console.log(
         res.data[
           this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
-        ].messages
+        ]
       );
       this.setState({
+        title:
+          key === "Courses"
+            ? res.data[
+                this.props.match.params[
+                  key[0].toLocaleLowerCase() + key.slice(1)
+                ]
+              ].Title.slice(
+                8,
+                res.data[
+                  this.props.match.params[
+                    key[0].toLocaleLowerCase() + key.slice(1)
+                  ]
+                ].Title.length - 1
+              )
+            : res.data[
+                this.props.match.params[
+                  key[0].toLocaleLowerCase() + key.slice(1)
+                ]
+              ].Title.slice(
+                9,
+                res.data[
+                  this.props.match.params[
+                    key[0].toLocaleLowerCase() + key.slice(1)
+                  ]
+                ].Title.length - 1
+              ),
         messages:
           key === "Courses"
             ? res.data[
@@ -36,7 +63,7 @@ class SpecificMessages extends Component {
   }
 
   render() {
-    let { messages } = this.state;
+    let { messages, title } = this.state;
     let newMessages = messages.map((e, i, a) => {
       console.log("eeee", a[i + 1]);
       let notesFlag = false;
@@ -82,18 +109,26 @@ class SpecificMessages extends Component {
             i
           }/?pdf=${notesFlag}`}
         >
-          <div className="each-individual-message-title">
-            <h2> {str.slice(0, str.length - 4)}</h2>
+          {/* <div className="each-individual-message-title"> */}
+          <div className="ea-message-title">
+            <h1> {str.slice(0, str.length - 4)}</h1>
           </div>
         </Link>
       );
     });
     return (
-      <div
-        className="each-individual-message-holder
-      "
-      >
-        {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
+      <div className="each-individual-message-holder">
+        <h1 className="each-individual-message-holder__h1">
+          {title.split("_").join(" ")}
+        </h1>
+
+        {messages.length !== 0 ? (
+          <div className="each-individual-message-holder__notitle">
+            {newMessages}
+          </div>
+        ) : (
+          <LoadingDots />
+        )}
       </div>
     );
   }
