@@ -80,17 +80,16 @@
   @extend %box-shadow;
 }
 .card-container {
-  @include dimensions(95vw, 250px, 7px);
+  @include dimensions(95vw, auto, 7px);
   @include flex(center, center, row);
   max-width: 450px;
   line-height: 20px;
-  padding: 0 10%;
+  padding: 20px 2%;
   @media (min-width: 400px) {
     height: 200px;
   }
 }
-.picture-container {
-}
+
 .card-info {
   @include borderfy(black);
   @include dimensions(90vw, 45px, 6px);
@@ -98,10 +97,11 @@
   @include marginCenter;
 }
 .pic-and-card {
-  margin: 20px;
+  // margin: 20px;
   @include flex(space-around, center, row);
+  // min-height: 250px;
+
   @media (max-width: 918px) {
-    flex-direction: column;
-    min-height: 250px;
+    // min-height: 250px;
   }
 }
