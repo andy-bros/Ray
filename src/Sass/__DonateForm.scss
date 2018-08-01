@@ -73,6 +73,7 @@
 }
 .donation-page {
   @include flex(center, space-around, column);
+  min-height: 900px;
 }
 .card-container,
 .picture-container {
@@ -101,6 +102,6 @@
   @include flex(space-around, center, row);
   @media (max-width: 918px) {
     flex-direction: column;
-    min-height: 500px;
+    min-height: 250px;
   }
 }

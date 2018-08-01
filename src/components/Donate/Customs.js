@@ -15,11 +15,12 @@ export function RadioBtn({ value, label, handleChange, checked }) {
   );
 }
 export function InputCredentials({ title, handleChange, name, currentValue }) {
+  console.log(currentValue);
   return (
     <div>
       <h3>
         {title.label}:<span
-          require={currentValue || title.notRequired ? "false" : "true"}
+          require={/*currentValue || */ title.notRequired ? "false" : "true"}
         >
           *
         </span>
@@ -52,8 +53,8 @@ export function SelectBox({ selection, handleChange }) {
     </select>
   );
 }
-export function SubmitButton() {
-  return <input type="submit" value="Submit" className="btn-submit" />;
+export function SubmitButton({ text }) {
+  return <input type="submit" value={text} className="btn-submit" />;
 }
 export function DonateBtn() {
   return <button className="btn-donate">Donate</button>;
@@ -61,8 +62,10 @@ export function DonateBtn() {
 export function Card({ text, size, img }) {
   return (
     <div className="pic-and-card">
-      <img className="picture-container" src={img} width="300px" />
-      <section className="card-container">{text}</section>,
+      {img && (
+        <img className="picture-container" src={img} width="300px" alt="pic" />
+      )}
+      <section className="card-container">{text}</section>
     </div>
   );
 }
