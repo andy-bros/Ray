@@ -61,6 +61,7 @@ class GiftAmount extends Component {
                 value={this.props.selected}
                 name="selected"
                 id="money-input"
+                type="number"
                 placeholder="amount"
                 onChange={event =>
                   this.props.handleChange({ event, value: event.target.value })
@@ -185,7 +186,7 @@ export class DonateForm extends Component {
           this.submitForm();
         }}
       >
-        <Card text={assets.cardText} img={assets.donationPic} />
+        <Card text={assets.cardText} />
 
         <GiftAmount
           handleChange={this.handleChange}

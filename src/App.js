@@ -4,6 +4,8 @@ import routes from "./routes";
 import { TopNavbar, SideNavbar } from "./components/Navbar/Navbars";
 import { StripeProvider } from "react-stripe-elements";
 import Footer from "./components/Navbar/Footer";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 class App extends Component {
   constructor() {
@@ -32,22 +34,24 @@ class App extends Component {
       );
     });
     return (
-      <Router>
-        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
-          <Fragment>
-            <TopNavbar
-              {...this.state}
-              mappedLinks={mappedLinks}
-              handleNav={this.handleNav}
-            />
-            <SideNavbar {...this.state} mappedLinks={mappedLinks} />
-            <section id="routes" onClick={() => this.handleNav(false)}>
-              {routes}
-            </section>
-            <Footer mappedLinks={mappedLinks} />
-          </Fragment>
-        </StripeProvider>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+            <Fragment>
+              <TopNavbar
+                {...this.state}
+                mappedLinks={mappedLinks}
+                handleNav={this.handleNav}
+              />
+              <SideNavbar {...this.state} mappedLinks={mappedLinks} />
+              <section id="routes" onClick={() => this.handleNav(false)}>
+                {routes}
+              </section>
+              <Footer mappedLinks={mappedLinks} />
+            </Fragment>
+          </StripeProvider>
+        </Router>
+      </Provider>
     );
   }
 }

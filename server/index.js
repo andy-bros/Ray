@@ -61,6 +61,12 @@ app.post("/api/addusercart", (req, res) => {
   req.session.cart.push(req.body.items);
   res.status(200).json(req.session.cart);
 });
+app.get("/api/get-cart", (req, res) => {
+  res.status(200).send(req.session.cart);
+});
+app.delete("/api/delete-from-cart/:id", (req, res) => {
+  //dont touch this jake
+});
 
 app.post("/charge", (req, res) => {
   // this checks to see if its a monthly payment or one time
