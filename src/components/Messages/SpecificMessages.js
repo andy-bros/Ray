@@ -72,7 +72,9 @@ class SpecificMessages extends Component {
         //box next to the current that links them to notes
         //
         //
+        // <div key={e.Key} className="each-individual-message-title">
         <Link
+          key={e.Key}
           to={`/${Object.keys(this.props.match.params)[0]}/${
             this.props.match.params[Object.keys(this.props.match.params)[0]]
           }/${
@@ -80,35 +82,19 @@ class SpecificMessages extends Component {
             i
           }/?pdf=${notesFlag}`}
         >
-          <div key={e.Key}>
-            {/* {e.Key} */}
-            {/* {notesFlag && (
-            <a href={`https://s3.amazonaws.com/raymp3s/${nextArr.Key}`}>
-              click here for notes
-            </a>
-          )} */}
-
-            {/* <audio src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}>
-            <p>{date}</p>
-            {str.slice(0, str.length - 4)}
-          </audio> */}
-            {/*do not touch this page i am working on it*/}
-            {/* <audio controls>
-            <source
-              src={`https://s3.amazonaws.com/raymp3s/${e.Key}`}
-              type="audio/mpeg"
-            /> */}
-            {/* <p>{date}</p> */}
-            {str.slice(0, str.length - 4)}
-            {/* </audio> */}
+          <div className="each-individual-message-title">
+            <h2> {str.slice(0, str.length - 4)}</h2>
           </div>
         </Link>
       );
     });
     return (
-      <Fragment>
+      <div
+        className="each-individual-message-holder
+      "
+      >
         {messages.length !== 0 ? <div>{newMessages}</div> : <LoadingDots />}
-      </Fragment>
+      </div>
     );
   }
 }

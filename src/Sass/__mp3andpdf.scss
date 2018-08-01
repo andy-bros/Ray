@@ -18,3 +18,29 @@
     color: #999;
   }
 }
+.message-titles {
+  min-height: 90vh;
+  @include flex(space-around, center, column);
+}
+.ea-message-title {
+  @include flex(center, center, row);
+  width: 100vw;
+  height: 100px;
+  background: #888;
+  margin: 10px 0 0 0;
+  &:hover {
+    box-shadow: black 2px 2px 2px;
+  }
+  h1 {
+    color: white;
+    text-decoration: none;
+  }
+}
+.each-individual-message-holder {
+  min-height: 90vh;
+  @include flex(space-around, center, column);
+  .each-individual-message-title {
+    color: black;
+    height: 80px;
+  }
+}
