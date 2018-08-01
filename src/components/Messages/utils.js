@@ -22,32 +22,23 @@ class Messages extends Component {
     let mappedMessages = messages.map((e, i) => {
       console.log(e);
       return (
-        <div key={i}>
-          <Link
-            to={`/${this.props.type[0].toLowerCase() +
-              this.props.type.slice(1)}/${i}`}
-          >
-            {/* test */}
+        <Link
+          key={i}
+          to={`/${this.props.type[0].toLowerCase() +
+            this.props.type.slice(1)}/${i}`}
+        >
+          <div className="ea-message-title">
             <h1>
               {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)}
             </h1>
-          </Link>
-        </div>
+          </div>
+        </Link>
       );
     });
     return (
       <Fragment>
         {messages.length !== 0 ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column"
-            }}
-          >
-            {mappedMessages}
-          </div>
+          <div className="message-titles">{mappedMessages}</div>
         ) : (
           <LoadingDots />
         )}

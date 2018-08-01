@@ -141,10 +141,6 @@ app.post("/charge", (req, res) => {
             stripe.subscriptions.create(
               {
                 customer: customers.id,
-                //
-                //
-                //
-                //NEEEDS TO BE FIXED
 
                 items: [{ plan: subPlan }]
 
@@ -163,10 +159,7 @@ app.post("/charge", (req, res) => {
         {
           customer: req.session.customer,
           description: req.body.name,
-          //
-          //
-          //
-          //NEEEDS TO BE FIXED
+
           items: [{ plan: subPlan }]
         }
         // , function(err, subscription) {
