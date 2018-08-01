@@ -8,7 +8,8 @@ nav {
     width: 100%;
     position: fixed;
     top: 0;
-    background: $stripe-blue;
+    color: white;
+    background: $stripe-green;
     .mapped-links {
       // width: 30%
       @include flex(center, center, row);
@@ -17,6 +18,9 @@ nav {
         // width: auto;
         // text-align: center;
         // padding: 5px 10px;
+      }
+      .link-tag:hover {
+        color: $lt-stripe-green;
       }
       @media screen and (max-width: 500px) {
         display: none;
