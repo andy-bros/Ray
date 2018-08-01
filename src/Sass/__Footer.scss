@@ -11,8 +11,15 @@
   h6 {
     width: calc(100% - 50px);
   }
+  .footer-title {
+    font-size: 1.5rem;
+    width: 553px;
+  }
   h4 {
     margin-bottom: 8px;
+    width: max-content;
+    padding-bottom: 5px;
+    border-bottom: .8px solid $stripe-green;
   }
   .information {
     @include flex(space-around, flex-start, column);

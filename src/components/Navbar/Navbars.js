@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Menu from './../animations/Menu';
 import { DonateBtn } from './../Donate/Customs';
 import { Link } from 'react-router-dom';
-const logo = require('../../assets/RMBlue.svg');
+import logo from '../../assets/RMBlack.svg';
 
 export class TopNavbar extends Component {
   constructor() {
@@ -24,6 +24,13 @@ export class TopNavbar extends Component {
           width="50"
           height="50"
         />
+        {/* <img
+          className="logo"
+          src={logo}
+          width="50"
+          height="50"
+          background-color="#fff"
+        /> */}
         <div className="mapped-links">{mappedLinks}</div>
 
         <Menu key="menu" opened={opened} handleNav={handleNav} />
