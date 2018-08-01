@@ -40,6 +40,24 @@ nav {
     }
   }
 }
+.cart-notification {
+  @include dimensions(12px, 12px, 100px);
+  @include flex(space-around, center, row);
+  background: $notification;
+  position: relative;
+  top: -6px;
+  right: 5px;
+  font-size: 10px;
+  color: white;
+}
+.cart {
+  &:active {
+    opacity: 0.8;
+  }
+  &:hover {
+    transform: scale(1.2);
+  }
+}
 
 footer {
   @include dimensions(100vw, 30px, 0px);

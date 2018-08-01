@@ -4,8 +4,9 @@
   margin: 0 auto;
   background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/New-Website-Banners4-1024x369.png");
   background-size: cover;
-  // background-position: 21% 100%;
   background-position: 21% 10%;
+  // background-attachment: fixed;
+  background-attachment: scroll;
 }
 @media (min-width: 743px) {
   .home-page {
