@@ -3,6 +3,7 @@ import data from "./../../assets/data";
 
 export default class Home extends Component {
   render() {
+    console.log(this.props);
     return (
       <main className="home-container">
         <div className="home-page" />

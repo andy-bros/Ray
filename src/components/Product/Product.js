@@ -23,8 +23,10 @@ class Product extends React.Component {
       .post("/api/addusercart", { items: e })
       .then(res => console.log(res))
       .catch(() => console.log("error"));
+    this.props.notification.method(1);
   };
   render() {
+    console.log("Render props: ", this.props);
     let { messages } = this.state;
     let newMessages = messages.map(e => {
       return (

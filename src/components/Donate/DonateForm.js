@@ -78,20 +78,10 @@ class GiftAmount extends Component {
 //////////////////////
 //___CREDENTIALS___///
 //////////////////////
-class Credentials extends Component {
-  constructor() {
-    super();
+export class Credentials extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      inputFields: [
-        { label: "First Name" },
-        { label: "Last Name" },
-        { label: "Email Address" },
-        { label: "Street Address 1" },
-        { label: "Street Address 2", notRequired: true },
-        { label: "Phone Number", notRequired: true },
-        { label: "City" },
-        { label: "Zip Code" }
-      ],
       states: ["Alabama", "Alaska"]
     };
   }
@@ -102,8 +92,9 @@ class Credentials extends Component {
   };
 
   render() {
-    const { handleChange, values } = this.props;
-    let mappedInputs = this.state.inputFields.map((e, i) => {
+    const { handleChange, values, inputFields, selectBox } = this.props;
+    console.log(selectBox);
+    let mappedInputs = inputFields.map((e, i) => {
       let camelCase = this.toCamelCase(e);
       return (
         <InputCredentials
@@ -120,10 +111,12 @@ class Credentials extends Component {
         <h2 className="bottom-border title">Billing Information</h2>
         <div className="credentials-input">
           {mappedInputs}
-          <SelectBox
-            selection={states}
-            handleChange={this.props.handleChange}
-          />
+          {selectBox && (
+            <SelectBox
+              selection={states}
+              handleChange={this.props.handleChange}
+            />
+          )}
         </div>
       </div>
     );
@@ -132,20 +125,20 @@ class Credentials extends Component {
 //////////////////////
 //___DONATE_FORM___///
 //////////////////////
-class DonateForm extends Component {
+export class DonateForm extends Component {
   constructor() {
     super();
     this.state = {
       firstName: "",
       lastName: "",
       emailAddress: "",
-      streetAddress1: "",
-      streetAddress2: "",
-      city: "",
-      state: "",
-      zipCode: "",
       selected: "",
-      checked: "one-time"
+      checked: "one-time",
+      inputFields: [
+        { label: "First Name" },
+        { label: "Last Name" },
+        { label: "Email Address" }
+      ]
     };
   }
   handleChange = ({ event, value }) => {
@@ -155,7 +148,7 @@ class DonateForm extends Component {
     });
   };
   submitForm = () => {
-    // console.log("SUBMITTING FORM...", this.state);
+    console.log("SUBMITTING FORM...", this.state);
     /*ALL THE INFO YOU NEED FROM 
     THE USER IS STORED ON STATE.
     TAKE WHAT YOU NEED IN ORDER 
@@ -200,7 +193,11 @@ class DonateForm extends Component {
           <CardElement />
           {/* </Elements> */}
         </div>
-        <Credentials values={this.state} handleChange={this.handleChange} />
+        <Credentials
+          values={this.state}
+          handleChange={this.handleChange}
+          inputFields={this.state.inputFields}
+        />
         <SubmitButton />
         <br />
       </form>
