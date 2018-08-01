@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Lato";
+@import "http://fonts.googleapis.com/css?family=Raleway";
 .ind-audio {
 }
 .pdf-design {
@@ -19,13 +20,21 @@
   }
 }
 .message-titles {
-  min-height: 90vh;
-  @include flex(space-around, center, column);
+  min-height: 93vh;
+  @include flex(space-around, center, row);
 }
 .ea-message-title {
+  font-family: Raleway;
+  letter-spacing: 2.5px;
+  text-align: center;
+  font-size: 17px;
+  background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/Website-Banners.jpg");
   @include flex(center, center, row);
-  width: 100vw;
-  height: 100px;
+  background-repeat: no-repeat;
+  min-width: 320px;
+  width: 400px;
+  height: 150px;
+  border-radius: 10px;
   background: #888;
   margin: 10px 0 0 0;
   &:hover {
@@ -37,9 +46,10 @@
   }
 }
 .each-individual-message-holder {
-  min-height: 90vh;
-  @include flex(space-around, center, column);
+  min-height: 93vh;
+  @include flex(space-around, space-around, row);
   .each-individual-message-title {
+    @include flex(center, center, column);
     color: black;
     height: 80px;
   }

@@ -15,9 +15,12 @@
     "query-string": "^6.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-stripe-elements": "^2.0.1",
+    "redux": "^4.0.0",
+    "redux-promise-middleware": "^5.1.1",
     "stripe": "^6.2.1"
   },
   "proxy": "http://localhost:9001",
