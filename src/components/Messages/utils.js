@@ -17,7 +17,7 @@ class Messages extends Component {
   }
   render() {
     let { messages } = this.state;
-
+    let { type } = this.props;
     console.log("messages", messages);
     let mappedMessages = messages.map((e, i) => {
       console.log(e);
@@ -29,7 +29,9 @@ class Messages extends Component {
         >
           <div className="ea-message-title">
             <h1>
-              {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)}
+              {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
+                .split("_")
+                .join(" ")}
             </h1>
           </div>
         </Link>
