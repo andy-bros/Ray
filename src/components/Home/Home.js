@@ -6,7 +6,13 @@ export default class Home extends Component {
     console.log(this.props);
     return (
       <main className="home-container">
-        <div className="home-page" />
+        <div className="home-page">
+            <div className = 'splash-text'>
+            <h1>Pastor Ray McCollum</h1>
+            
+            </div>
+        
+        </div>
         <section className="about-section">
           <content className="content-container">
             <img

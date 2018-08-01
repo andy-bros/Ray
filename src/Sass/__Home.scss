@@ -1,18 +1,38 @@
 .home-page {
   // @include flex(space-around, center, column);
   min-height: 28vh;
+  height: 100vh;
   margin: 0 auto;
-  background-image: url("http://www.ccnashville.com/hp_wordpress/wp-content/uploads/2014/10/New-Website-Banners4-1024x369.png");
+  color: white;
+  background-image: url('./assets/pastor-banner.png');
   background-size: cover;
   background-position: 21% 10%;
   // background-attachment: fixed;
   background-attachment: scroll;
+}
+
+.splash-text {
+  display: block;
+  position: absolute;
+  right: 6rem;
+  top: 12rem;
+  padding: 1em;
+  width: 800px;
+  height: 500px;
+  border: 5px solid grey;
+  margin: 0 auto;
+  font-size: 4rem;
 }
 @media (min-width: 743px) {
   .home-page {
     min-height: 56vh;
   }
 }
+
+.about-section {
+  padding: 3rem;
+}
+
 .content-container {
   @include flex(space-around, center, column);
   padding: 15px 10px 10px 10px;
