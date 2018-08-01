@@ -49,8 +49,9 @@ class Checkout extends Component {
           inputFields={this.state.inputFields}
           handleChange={this.handleChange}
           selectBox={true}
+          purpose="Shipping"
         />
-        <SubmitButton />
+        <SubmitButton text="Submit Order" />
       </form>
     );
   }

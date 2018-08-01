@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Menu from "./../animations/Menu";
 import { DonateBtn } from "./../Donate/Customs";
+import { Link } from "react-router-dom";
 
 export class TopNavbar extends Component {
   constructor() {
@@ -24,7 +25,12 @@ export class TopNavbar extends Component {
         />
         <div className="mapped-links">{mappedLinks.slice(2, 4)}</div>
         <Menu key="menu" opened={opened} handleNav={handleNav} />
-        <i className="fas fa-shopping-cart cart" />
+        <Link to="/checkout">
+          <i
+            className="fas fa-shopping-cart cart"
+            onClick={() => handleNav()}
+          />
+        </Link>
         {this.state.length && (
           <span className="cart-notification">{this.state.cartLength}</span>
         )}
