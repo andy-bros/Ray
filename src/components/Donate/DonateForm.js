@@ -92,8 +92,13 @@ export class Credentials extends Component {
   };
 
   render() {
-    const { handleChange, values, inputFields, selectBox } = this.props;
-    console.log(selectBox);
+    const {
+      handleChange,
+      values,
+      inputFields,
+      selectBox,
+      purpose
+    } = this.props;
     let mappedInputs = inputFields.map((e, i) => {
       let camelCase = this.toCamelCase(e);
       return (
@@ -108,7 +113,9 @@ export class Credentials extends Component {
     });
     return (
       <div className="credentials-container">
-        <h2 className="bottom-border title">Billing Information</h2>
+        {purpose && (
+          <h2 className="bottom-border title">{purpose} Information</h2>
+        )}
         <div className="credentials-input">
           {mappedInputs}
           {selectBox && (
@@ -198,7 +205,7 @@ export class DonateForm extends Component {
           handleChange={this.handleChange}
           inputFields={this.state.inputFields}
         />
-        <SubmitButton />
+        <SubmitButton text="Confirm Donation" />
         <br />
       </form>
     );
