@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import Menu from "./../animations/Menu";
-import { DonateBtn } from "./../Donate/Customs";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import Menu from './../animations/Menu';
+import { DonateBtn } from './../Donate/Customs';
+import { Link } from 'react-router-dom';
+const logo = require('../../assets/RMBlue.svg');
 
 export class TopNavbar extends Component {
   constructor() {
@@ -17,13 +18,14 @@ export class TopNavbar extends Component {
     let { handleNav, opened, mappedLinks } = this.props;
     return (
       <nav className="top">
-        <div className="mapped-links">{mappedLinks.slice(0, 2)}</div>
         <img
+          className="logo"
           src="https://cdn.dribbble.com/users/557720/screenshots/3167269/monogram_am.jpg"
           width="50"
           height="50"
         />
-        <div className="mapped-links">{mappedLinks.slice(2, 4)}</div>
+        <div className="mapped-links">{mappedLinks}</div>
+
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         <Link to="/checkout">
           <i
@@ -40,7 +42,7 @@ export class TopNavbar extends Component {
 }
 export function SideNavbar({ opened, mappedLinks }) {
   return (
-    <nav className={opened ? "side-navbar opened" : "side-navbar closed"}>
+    <nav className={opened ? 'side-navbar opened' : 'side-navbar closed'}>
       {mappedLinks}
     </nav>
   );

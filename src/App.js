@@ -14,11 +14,11 @@ class App extends Component {
       opened: false,
       navLinks: [
         // { nav: "HOME", to: "/" },
-        { nav: "DONATE", to: "/donate" },
-        { nav: "PRODUCTS", to: "/products" },
-        { nav: "COURSES", to: "/courses" },
+        { nav: 'PRODUCTS', to: '/products' },
+        { nav: 'COURSES', to: '/courses' },
         // { nav: "CHECKOUT", to: "/checkout" },
-        { nav: "MESSAGES", to: "/messages" }
+        { nav: 'MESSAGES', to: '/messages' },
+        { nav: 'DONATE', to: '/donate' }
       ]
     };
   }
@@ -28,8 +28,13 @@ class App extends Component {
   render() {
     let mappedLinks = this.state.navLinks.map((e, i) => {
       return (
-        <Link key={e.to} to={e.to} onClick={() => this.handleNav(false)}>
-          {e.nav}
+        <Link
+          className="link-tag"
+          key={e.to}
+          to={e.to}
+          onClick={() => this.handleNav(false)}
+        >
+          <div className="nav-item">{e.nav}</div>
         </Link>
       );
     });

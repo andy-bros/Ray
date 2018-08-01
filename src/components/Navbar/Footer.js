@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer({ mappedLinks }) {
+export default function Footer() {
   return (
     <footer className="footer-container">
       <section className="information">
@@ -15,7 +15,7 @@ export default function Footer({ mappedLinks }) {
         </span>
         <span>
           <h4>Service Hours</h4>
-          <p>Saturday night’s from 5:00-6:30 PM</p>
+          <p>Saturday nights from 5:00-6:30 PM</p>
         </span>
         <span>
           <h4>Contact</h4>

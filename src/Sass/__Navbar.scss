@@ -1,17 +1,24 @@
 nav {
   z-index: 100;
   &.top {
-    border-bottom: 1px solid grey;
-    margin: 0 auto;
+    // margin: 0 auto;
     @include dimensions(100vw, 60px, 0px);
-    @include flex(center, center, row);
+    @include flex(space-around, center, row);
+    padding: 2rem;
     width: 100%;
     position: fixed;
     top: 0;
     background: $stripe-blue;
     .mapped-links {
-      // width: 30%;
-      @media (max-width: 500px) {
+      // width: 30%
+      @include flex(center, center, row);
+      .link-tag {
+        margin: 0 6rem;
+        // width: auto;
+        // text-align: center;
+        // padding: 5px 10px;
+      }
+      @media screen and (max-width: 500px) {
         display: none;
       }
     }
@@ -22,7 +29,6 @@ nav {
   }
   &.side-navbar {
     width: 100vw;
-
     background: $charcoal;
     opacity: 0.99;
     height: calc(100vh - 60px);
