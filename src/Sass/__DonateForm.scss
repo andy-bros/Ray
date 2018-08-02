@@ -1,5 +1,6 @@
 .bottom-border {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px #333 solid;
+  // font-family: Roboto, sans-serif;
   &.title {
     @include dimensions(90vw, 35px, 0px);
     max-width: 500px;

@@ -70,7 +70,7 @@ class EachIndividualMessage extends Component {
   }
   render() {
     let { pdf, message, pdfQuery, date, messageName } = this.state;
-
+    console.log(message);
     return (
       //if query pdf = true return this
       //make sure you always return an mp3 audio tape though
@@ -92,11 +92,22 @@ class EachIndividualMessage extends Component {
         )}
 
         {pdfQuery === "true" && (
-          <embed
+          <object
             className="pdf-design"
-            src={`https://s3.amazonaws.com/raymp3s/${pdf}`}
-            type="application/pdf"
-          />
+            data={`https://docs.google.com/gview?embedded=true&url=https://s3.amazonaws.com/raymp3s/${pdf}`}
+          >
+            <p>
+              Your web browser does not have a PDF plugin. Instead you can
+              <a href={`https://s3.amazonaws.com/raymp3s/${pdf}`}>
+                click here to download and view the PDF file.
+              </a>
+            </p>
+          </object>
+          // <embed
+          //   className="pdf-design"
+          //   src={`https://s3.amazonaws.com/raymp3s/${pdf}`}
+          //   type="application/pdf"
+          // />
         )}
       </div>
     );
