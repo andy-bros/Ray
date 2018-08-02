@@ -10,6 +10,32 @@
   background-attachment: scroll;
 }
 
+.home-page {
+  height: 50vh;
+
+  .splash-text {
+    display: block;
+    padding: 2rem 1rem;
+    width: 70%;
+    height: auto;
+    float: right;
+
+    .main-title {
+      width: max-content;
+      margin-bottom: 2rem;
+      padding-bottom: 2px;
+      border-bottom: 0.8px solid $stripe-green;
+      font-size: 1.1rem;
+    }
+
+    .sub-heading {
+      line-height: 2rem;
+      font-size: .9rem;
+    }
+  }
+}
+
+////////////////////////////////
 @media (min-width: 743px) {
   .home-page {
     min-height: 56vh;
