@@ -12,7 +12,7 @@
   &__third {
     width: 40px;
     height: 40px;
-    background: rgb(0, 132, 255);
+    background: $stripe-green;
     border-radius: 50%;
   }
   &__first {
@@ -64,7 +64,7 @@
 @keyframes loadingDots {
   0% {
     margin-bottom: 0;
-    background: rgb(0, 132, 255);
+    background: $stripe-green;
   }
   50% {
     margin-bottom: 50px;
