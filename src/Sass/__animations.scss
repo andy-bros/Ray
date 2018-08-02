@@ -42,7 +42,7 @@
   margin-right: 10px;
   .menu-slice {
     @include dimensions(33px, 4px, 0px);
-    background: $charcoal;
+    background: $grease;
     &.top-opened,
     &.bottom-opened,
     &.top-closed,
@@ -59,9 +59,6 @@
     &.bottom-closed {
       transform: translateY(0px);
     }
-  }
-  @media (min-width: 500px) {
-    visibility: hidden;
   }
 }
 @keyframes loadingDots {
