@@ -1,43 +1,32 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { addToCart } from "./../../redux/cartReducer";
 
 class Product extends React.Component {
   state = {
     messages: []
   };
-  componentDidMount() {
-    axios
-      .get("/api/products")
-      .then(res => {
-        console.log(res.data);
-        this.setState({ messages: res.data });
-      })
-      .catch(err => console.log(err));
-    // axios
-    //   .get("api/products")
-    //   .then(res => console.log(res))
-    //   .catch(() => console.log("error"));
+  async componentDidMount() {
+    const response = await axios.get("/api/products").catch(console.error);
+    this.setState({ messages: response.data });
   }
-  addToCart = e => {
-    axios
-      .post("/api/addusercart", { items: e })
-      .then(res => console.log(res))
-      .catch(() => console.log("error"));
-    this.props.notification.method(1);
-  };
   render() {
-    console.log("Render props: ", this.props);
+    console.log(this.props.cart);
     let { messages } = this.state;
     let newMessages = messages.map(e => {
       return (
         <div key={e.product_id}>
           <h2>{e.product_name}</h2>
           <h4>{e.product_desciption}</h4>
-          <button onClick={() => this.addToCart(e)}>Add To Cart</button>
+          <button onClick={() => this.props.addToCart(e)}>Add To Cart</button>
         </div>
       );
     });
     return <div>{newMessages}</div>;
   }
 }
-export default Product;
+export default connect(
+  state => state.cartReducer,
+  { addToCart }
+)(Product);

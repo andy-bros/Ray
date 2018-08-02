@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="footer-container">
       <section className="information">
-        <h4 className="bottom-border">FIND US</h4>
+        <h4 className="bottom-border">GET IN TOUCH</h4>
 
         <span>
           <h4>Address</h4>

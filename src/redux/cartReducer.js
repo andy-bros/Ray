@@ -1,12 +1,10 @@
 import axios from "axios";
 const initialState = {
-  cartAmount: 0,
   cart: []
 };
-
 const GET_CART = "GET_CART";
 const ADD_TO_CART = "ADD_TO_CART";
-const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const DELETE_FROM_CART = "DELETE_FROM_CART";
 
 export function getCart() {
   return {
@@ -14,23 +12,24 @@ export function getCart() {
     payload: axios.get("/api/get-cart")
   };
 }
-export function addToCart(body) {
+export function addToCart(item) {
   return {
     type: ADD_TO_CART,
-    payload: axios.post("/api/addusercart", body)
+    payload: axios.post("/api/add-to-cart", { item })
   };
 }
-export function removeFromCart(cart) {
+export function deleteFromCart(id) {
   return {
-    type: REMOVE_FROM_CART,
-    payload: cart.remove
+    type: DELETE_FROM_CART,
+    payload: axios.delete("/")
   };
 }
+
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
-    case `${GET_CART}_FULFILLED`:
     case `${ADD_TO_CART}_FULFILLED`:
-    case `${REMOVE_FROM_CART}_FULFILLED`:
+    case `${DELETE_FROM_CART}_FULFILLED`:
+    case `${GET_CART}_FULFILLED`:
       return { ...state, cart: action.payload.data };
     default:
       return state;

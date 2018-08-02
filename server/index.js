@@ -7,16 +7,7 @@ const express = require("express"),
   massive = require("massive"),
   { getProducts } = require("./controllers/databae/base"),
   session = require("express-session"),
-  stripe = require("stripe")(process.env.STRIPE_KEY),
-  sess = {
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-    // cookie: {
-    //   // maxAge: 1814400000 //3 Weeks //I am leaving this blank so that
-    //   //I can store the users created customer id from stripe onto sessions
-    // }
-  };
+  stripe = require("stripe")(process.env.STRIPE_KEY);
 
 app.use(express.json());
 app.use(cors());
@@ -37,35 +28,28 @@ app.use(
 massive(process.env.DB_CONNECTION)
   .then(db => app.set("db", db))
   .catch(() => console.log("error"));
-
-app.get("/api/getusercart", (req, res) => {
-  // console.log(req.session.cookie);
-  // if (!req.session.cookie.cart) {
-  //   console.log(req.session.cookie);
-  //   req.session.cookie.cart = ["dogs"];
-  //   res.status(200).json(req.session);
-  // } else {
-  //   console.log("lol");
-  //   req.session.cookie.cart.push("pups");
-  //   res.status(200).json(req.session.cookie.cart);
-  // }
-});
-//TOP LEVEL MIDDLEWARE THAT CREATES CART
-app.use((req, res, next) => {
+app.use((req, _, next) => {
   if (!req.session.cart) {
     req.session.cart = [];
   }
   next();
 });
-app.post("/api/addusercart", (req, res) => {
-  req.session.cart.push(req.body.items);
-  res.status(200).json(req.session.cart);
+app.get("/api/get-cart", ({ session: { cart } }, res) => {
+  res.status(200).send(cart);
 });
-app.get("/api/get-cart", (req, res) => {
-  res.status(200).send(req.session.cart);
+app.post("/api/add-to-cart", (req, res) => {
+  const { item } = req.body;
+  const { cart } = req.session;
+  const index = cart.findIndex(e => e.product_id == item.product_id);
+  if (!cart[index]) {
+    cart.push(item);
+  } else {
+    cart[index].quantity ? cart[index].quantity++ : (cart[index].quantity = 2);
+  }
+  res.status(200).send(cart);
 });
 app.delete("/api/delete-from-cart/:id", (req, res) => {
-  //dont touch this jake
+  res.status(200).send(req.session.cart);
 });
 
 app.post("/charge", (req, res) => {
