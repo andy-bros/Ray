@@ -1,10 +1,14 @@
 @import "https://fonts.googleapis.com/css?family=Lato";
 @import "http://fonts.googleapis.com/css?family=Raleway";
 .ind-audio {
+  height: 52vh;
+  @include flex(center, center, column);
+  margin: 124px 0 0 0;
 }
 .pdf-design {
+  min-width: 320px;
   width: 100vw;
-  height: 400px;
+  height: 610px;
 }
 .cont {
   font-family: "Lato";
@@ -61,6 +65,7 @@
     font-size: 30px;
     border-bottom: 1px solid black;
     padding-bottom: 6px;
+    text-align: center;
   }
   h1 {
     font-family: Raleway;

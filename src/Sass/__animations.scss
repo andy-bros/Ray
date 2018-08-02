@@ -5,14 +5,14 @@
 .dots {
   @include flex(space-around, center, row);
   height: 90vh;
-  width: 400px;
+  width: 320px;
   margin: auto;
   &__first,
   &__second,
   &__third {
-    width: 50px;
-    height: 50px;
-    background: blue;
+    width: 40px;
+    height: 40px;
+    background: rgb(0, 132, 255);
     border-radius: 50%;
   }
   &__first {
@@ -64,11 +64,14 @@
 @keyframes loadingDots {
   0% {
     margin-bottom: 0;
+    background: rgb(0, 132, 255);
   }
   50% {
     margin-bottom: 50px;
+    background: #6bcc93;
   }
   100% {
     margin-bottom: 0;
+    // background: #6bcc93;
   }
 }
