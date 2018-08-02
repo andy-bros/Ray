@@ -195,7 +195,6 @@ export class DonateForm extends Component {
         />
 
         <h2 className="bottom-border title">Payment Information</h2>
-        <Card text={"Please fill out your credit card information"} />
         <div className="card-info sexy-input" style={{ padding: "12px" }}>
           {/* <Elements> */}
           <CardElement />

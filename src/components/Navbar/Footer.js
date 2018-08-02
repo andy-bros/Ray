@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export default function Footer() {
   return (
     <footer className="footer-container">
       <section className="information">
-        <h4 className="footer-title">FIND US</h4>
+        <h4 className="bottom-border">GET IN TOUCH</h4>
 
         <span>
           <h4 className="footer-headings">Address</h4>

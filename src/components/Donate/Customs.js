@@ -15,7 +15,6 @@ export function RadioBtn({ value, label, handleChange, checked }) {
   );
 }
 export function InputCredentials({ title, handleChange, name, currentValue }) {
-  console.log(currentValue);
   return (
     <div>
       <h3>
@@ -62,9 +61,6 @@ export function DonateBtn() {
 export function Card({ text, size, img }) {
   return (
     <div className="pic-and-card">
-      {img && (
-        <img className="picture-container" src={img} width="300px" alt="pic" />
-      )}
       <section className="card-container">{text}</section>
     </div>
   );
