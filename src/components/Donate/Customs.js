@@ -52,8 +52,12 @@ export function SelectBox({ selection, handleChange }) {
     </select>
   );
 }
-export function SubmitButton({ text }) {
-  return <input type="submit" value={text} className="btn-submit" />;
+export function SubmitButton({ text, submitForm }) {
+  return (
+    <button className="btn-submit" onClick={e => submitForm()}>
+      {text}
+    </button>
+  );
 }
 export function DonateBtn() {
   return <button className="btn-donate">Donate</button>;

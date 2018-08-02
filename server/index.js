@@ -49,6 +49,22 @@ app.post("/api/add-to-cart", (req, res) => {
   res.status(200).send(cart);
 });
 app.delete("/api/delete-from-cart/:id", (req, res) => {
+  const i = req.session.cart.findIndex(e => e.product_id == req.params.id);
+  req.session.cart.splice(i, 1);
+  res.status(200).send(req.session.cart);
+});
+app.put("/api/update-cart", (req, res) => {
+  //THIS DOESNT WORK
+  // let { cart } = req.session;
+  // cart = req.body.newCart;
+  // res.status(200).send(cart);
+  //THIS WORKS
+  req.session.cart = req.body.newCart;
+  res.status(200).send(req.session.cart);
+});
+app.delete("/api/empty-cart", (req, res) => {
+  req.session.cart = []; //DONT KILL SESSION. JUST EMPTY CART;
+  console.log(req.session.cart);
   res.status(200).send(req.session.cart);
 });
 
