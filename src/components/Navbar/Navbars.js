@@ -3,8 +3,10 @@ import Menu from "./../animations/Menu";
 import { DonateBtn } from "./../Donate/Customs";
 import { Link } from "react-router-dom";
 import logo from "../../assets/RMBlack.svg";
+import { getCart } from "./../../redux/cartReducer";
+import { connect } from "react-redux";
 
-export class TopNavbar extends Component {
+class TopNavTake2 extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,8 +16,19 @@ export class TopNavbar extends Component {
   updateCart() {
     this.setState({ cartLength: this.cartLength + 1 });
   }
+  componentDidMount() {
+    this.props.getCart();
+  }
   render() {
-    let { handleNav, opened, mappedLinks } = this.props;
+    let { handleNav, opened, mappedLinks, cart } = this.props;
+    let mappedQuantity = cart.map(e => {
+      if (e.quantity) {
+        return e.quantity;
+      } else return 1;
+    });
+    if (mappedQuantity.length) {
+      mappedQuantity = mappedQuantity.reduce((p, c) => p + c);
+    }
     return (
       <nav className="top">
         {/* <img
@@ -41,14 +54,19 @@ export class TopNavbar extends Component {
             className="fas fa-shopping-cart cart"
             onClick={() => handleNav()}
           />
+          {cart.length ? (
+            <span className="cart-notification">{mappedQuantity}</span>
+          ) : null}
         </Link>
-        {this.state.length && (
-          <span className="cart-notification">{this.state.cartLength}</span>
-        )}
       </nav>
     );
   }
 }
+export const TopNavbar = connect(
+  state => state.cartReducer,
+  { getCart }
+)(TopNavTake2);
+
 export function SideNavbar({ opened, mappedLinks }) {
   return (
     <nav className={opened ? "side-navbar opened" : "side-navbar closed"}>

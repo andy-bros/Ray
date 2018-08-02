@@ -1,0 +1,22 @@
+.cart-info {
+  @include dimensions(100vw, 45vh, 0px);
+  max-width: 700px;
+  @include flex(space-around, center, column);
+  @include borderfy(salmon);
+  margin: 50px auto;
+  .product-container {
+    @include borderfy(green);
+    @include dimensions(95%, 150px, 0px);
+    @include flex(center, stretch, row);
+    .split-info {
+      @include dimensions(50%, 100%, 0px);
+      @include borderfy(black);
+      &.right {
+        @include flex(space-around, center, column);
+      }
+      &.left {
+        @include flex(center, flex-start, row);
+      }
+    }
+  }
+}
