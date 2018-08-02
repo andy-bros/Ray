@@ -8,8 +8,8 @@ export default class Home extends Component {
       <main className="home-container">
         <div className="home-page">
             <div className = 'splash-text'>
-            <h1>Pastor Ray McCollum</h1>
-            <h2 className = 'sub-heading'>When the going gets tough... the tough talk to Pastor Ray.</h2>
+            <h1 className = 'main-title'>Pastor Ray McCollum</h1>
+            <h2 className = 'sub-heading'>"Rejoice in the LORD always."<br/> -Philippians 4:4 </h2>
             </div>
         
         </div>

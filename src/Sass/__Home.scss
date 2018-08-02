@@ -10,34 +10,62 @@
   background-attachment: scroll;
 }
 
-@media (min-width: 743px) {
+.home-page {
+  height: 50vh;
+
+  .splash-text {
+    display: block;
+    padding: 2rem 1rem;
+    width: 70%;
+    height: auto;
+    float: right;
+
+    .main-title {
+      width: max-content;
+      margin-bottom: 2rem;
+      padding-bottom: 2px;
+      border-bottom: 0.8px solid $stripe-green;
+      font-size: 1.1rem;
+    }
+
+    .sub-heading {
+      line-height: 2rem;
+      font-size: .9rem;
+    }
+  }
+}
+
+////////////////////////////////
+  @media screen and (min-width: 600px) {
+    .home-page {
+      min-height: 60vh;
+    }
+    .content-container {
+      @include flex(space-around, flex-start, row);
+    }
+    .description {
+      width: 400px;
+    }
+  }
+
+@media screen and (min-width: 743px) {
   .home-page {
     min-height: 56vh;
     height: 100vh;
 
     .splash-text {
-      display: block;
-      position: absolute;
-      right: 6rem;
-      top: 12rem;
-      padding: 1em;
-      width: 800px;
-      height: 500px;
-      // border: 5px solid grey;
-      margin: 0 auto;
-      font-size: 4rem;
-      // color: $lt-stripe-green;
-
-      h1 {
+      margin-top: 11rem;
+      text-align: center;
+      .main-title {
         max-width: 616px;
         margin-bottom: 2rem;
         padding-bottom: 2px;
         border-bottom: 0.8px solid $stripe-green;
+        font-size: 3rem;
       }
       .sub-heading {
-        font-family: 'Merriweather Sans';
-        font-size: 2rem;
         line-height: 3rem;
+        font-size: 2rem;
       }
     }
   }
@@ -65,19 +93,46 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media screen and (min-width: 1000px) {
   .content-container {
     @include flex(space-around, flex-start, row);
+  }
+
+  .home-page {
+    min-height: 56vh;
+    height: 100vh;
+
+    .splash-text {
+      padding: 2rem;
+      float: right;
+
+      .main-title {
+        max-width: 616px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        padding-bottom: 2px;
+        border-bottom: 0.8px solid $stripe-green;
+        font-size: 3.5rem;
+      }
+      .sub-heading {
+        line-height: 3rem;
+        font-size: 2rem;
+        margin: 0 auto;
+      }
+    }
   }
 }
-@media (min-width: 600px) {
-  .home-page {
-    min-height: 60vh;
-  }
-  .content-container {
-    @include flex(space-around, flex-start, row);
-  }
-  .description {
-    width: 400px;
-  }
+
+@media screen and (min-width: 1240px){
+ .splash-text{
+ 
+ .main-title{
+   width: max-content;
+ }
+ .sub-heading{
+   width: max-content;
+ }
+ 
+ }
+ 
 }
