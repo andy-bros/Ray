@@ -51,7 +51,7 @@ class GiftAmount extends Component {
     ));
     return (
       <div>
-        <h2 className="bottom-border title">AMOUNT</h2>
+        <h2 className="bottom-border title">Amount</h2>
         <div className="gift-form">
           <ul className="donation-amount">{mappedAmounts}</ul>
           <section className="frequency-amount">
@@ -187,7 +187,7 @@ export class DonateForm extends Component {
           checked={this.state.checked}
         />
         <h2 className="bottom-border title">Payment Information</h2>
-        <div className="card-info sexy-input" style={{ padding: '12px' }}>
+        <div className="card-info sexy-input">
           {/* <Elements> */}
           <CardElement />
           {/* </Elements> */}
