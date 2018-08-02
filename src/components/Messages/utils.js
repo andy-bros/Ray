@@ -20,6 +20,8 @@ class Messages extends Component {
     let { type } = this.props;
     console.log("messages", messages);
     let mappedMessages = messages.map((e, i) => {
+      let visibility = "hidden";
+      setTimeout(() => (visibility = "visible"), i);
       console.log(e);
       return (
         <Link
@@ -27,7 +29,7 @@ class Messages extends Component {
           to={`/${this.props.type[0].toLowerCase() +
             this.props.type.slice(1)}/${i}`}
         >
-          <div className="ea-message-title">
+          <div className="ea-message-title" style={{ visibility: {} }}>
             <h1>
               {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
                 .split("_")
