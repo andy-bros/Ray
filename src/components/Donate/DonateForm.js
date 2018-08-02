@@ -173,19 +173,13 @@ export class DonateForm extends Component {
           checked
         })
       )
-      .catch(() => console.log("error"));
+      .catch(console.error);
     // console.log(token);
   };
   render() {
     console.log("HERERERERE", this.state.checked);
     return (
-      <form
-        className="donation-page"
-        onSubmit={e => {
-          e.preventDefault();
-          this.submitForm();
-        }}
-      >
+      <div className="donation-page">
         <Card text={assets.cardText} />
 
         <GiftAmount
@@ -205,9 +199,9 @@ export class DonateForm extends Component {
           handleChange={this.handleChange}
           inputFields={this.state.inputFields}
         />
-        <SubmitButton text="Confirm Donation" />
+        <SubmitButton text="Confirm Donation" submitForm={this.submitForm} />
         <br />
-      </form>
+      </div>
     );
   }
 }
