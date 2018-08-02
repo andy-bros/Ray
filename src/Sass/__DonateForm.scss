@@ -1,6 +1,5 @@
 .bottom-border {
-  border-bottom: 1px grey solid;
-  // font-family: Roboto, sans-serif;
+  border-bottom: 1px solid grey;
   &.title {
     @include dimensions(90vw, 35px, 0px);
     max-width: 500px;
@@ -14,6 +13,15 @@
   margin: 10px auto;
   max-width: 500px;
 }
+.donation-input {
+  padding-left: 1rem;
+  border-radius: 5px;
+}
+.section-titles {
+  margin: 0 auto;
+  padding: 2rem;
+  border-bottom: .8px solid $stripe-green;
+}
 
 .btn {
   &-primary,
@@ -23,9 +31,9 @@
   }
   &-submit {
     @include dimensions(90vw, 38px, 8px);
-    background: $google-red;
+    background: $stripe-green;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 1rem auto;
   }
   &-selected {
     background: $stripe-blue;
@@ -53,12 +61,14 @@
   }
 }
 .ctrl-inputs {
+
   @include dimensions(90vw, 40px, 0px);
   @include flex(space-around, center, row);
   &.dollar-amount {
     input {
       @include dimensions(80%, 50px, 0px);
-      @include borderfy($stripe-blue);
+      @include borderfy($stripe-green);
+      border-radius: 5px;
       font-size: 20px;
       font-weight: 300;
     }
@@ -85,6 +95,7 @@
   max-width: 450px;
   line-height: 20px;
   padding: 20px 2%;
+  margin: 0 1rem;
   @media (min-width: 400px) {
     height: 200px;
   }
@@ -96,6 +107,7 @@
   max-width: 850px;
   @include marginCenter;
 }
+
 .pic-and-card {
   margin: 30px 0px;
   @include flex(space-around, center, row);
