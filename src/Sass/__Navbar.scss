@@ -10,6 +10,7 @@ nav {
     top: 0;
     color: white;
     background: $stripe-green;
+    opacity: 0.95;
     .mapped-links {
       // width: 30%
       @include flex(center, center, row);
@@ -54,13 +55,16 @@ nav {
   @include dimensions(12px, 12px, 100px);
   @include flex(space-around, center, row);
   background: $notification;
-  position: relative;
-  top: -6px;
-  right: 5px;
-  font-size: 25px;
-  color: $grease;
+  position: fixed;
+  top: 16px;
+  right: 26px;
+  text-align: center;
+  padding: 7px;
 }
 .cart {
+  font-size: 25px;
+  margin-left: 0.8rem;
+  color: $grease;
   &:active {
     transform: scale(0.85);
   }
