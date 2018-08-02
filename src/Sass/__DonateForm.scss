@@ -1,5 +1,5 @@
 .bottom-border {
-  border-bottom: 1px grey solid;
+  border-bottom: 1px #333 solid;
   // font-family: Roboto, sans-serif;
   &.title {
     @include dimensions(90vw, 35px, 0px);
@@ -14,6 +14,17 @@
   margin: 10px auto;
   max-width: 500px;
 }
+.donation-input {
+  padding-left: 1rem;
+  border-radius: 3px;
+}
+.section-titles {
+  margin: 0 auto;
+  padding: 2rem;
+  border-bottom: .8px solid $stripe-green;
+  font-size: 1.8rem;
+}
+
 
 .btn {
   &-primary,
@@ -22,16 +33,16 @@
     @extend %btnDefault;
   }
   &-submit {
-    @include dimensions(90vw, 38px, 8px);
-    background: $google-red;
+    @include dimensions(90vw, 38px, 3px);
+    background: $stripe-green;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 1rem auto;
   }
   &-selected {
-    background: $stripe-blue;
+    background: $stripe-green;
   }
   &-donate {
-    @include dimensions(68px, 38px, 5px);
+    @include dimensions(68px, 38px, 3px);
     font-size: 15px;
     font-weight: 400;
     border: 2px solid $google-red;
@@ -53,12 +64,14 @@
   }
 }
 .ctrl-inputs {
+
   @include dimensions(90vw, 40px, 0px);
   @include flex(space-around, center, row);
   &.dollar-amount {
     input {
       @include dimensions(80%, 50px, 0px);
-      @include borderfy($stripe-blue);
+      @include borderfy($stripe-green);
+      border-radius: 5px;
       font-size: 20px;
       font-weight: 300;
     }
@@ -66,7 +79,7 @@
 }
 .credentials-container {
   .credentials-input {
-    @include dimensions(90vw, auto, 10px);
+    @include dimensions(90vw, auto, 3px);
     @include marginCenter;
     max-width: 850px;
   }
@@ -75,18 +88,23 @@
   @include flex(center, space-around, column);
   min-height: 900px;
 }
+// information card on donate page is right here, inheriting the box shadow from the boilerplate
 .card-container,
 .picture-container {
   @extend %box-shadow;
+
 }
 .card-container {
   @include dimensions(95vw, auto, 7px);
   @include flex(center, center, row);
-  max-width: 450px;
+  max-width: 500px;
   line-height: 20px;
-  padding: 20px 2%;
-  @media (min-width: 400px) {
-    height: 200px;
+  padding: 3rem;
+  margin: 0 1rem;
+  .hands-icon {
+    font-size: 4rem;
+    margin: 2rem;
+    color: $stripe-green;
   }
 }
 
@@ -95,7 +113,10 @@
   @include dimensions(90vw, 45px, 6px);
   max-width: 850px;
   @include marginCenter;
+  padding: 12px;
+  margin-bottom: 1rem;
 }
+
 .pic-and-card {
   margin: 30px 0px;
   @include flex(space-around, center, row);

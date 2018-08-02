@@ -6,7 +6,6 @@ class App extends Component {
   render() {
     {
       /*
-      
 The App component is the application’s root. 
 The JSX template in its render function is 
 enclosed in a StripeProvider, which initializes

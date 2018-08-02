@@ -65,7 +65,9 @@ export function DonateBtn() {
 export function Card({ text, size, img }) {
   return (
     <div className="pic-and-card">
-      <section className="card-container">{text}</section>
+      <section className="card-container">
+      <i class="fas fa-hands-helping hands-icon"></i>
+      {text}</section>
     </div>
   );
 }
