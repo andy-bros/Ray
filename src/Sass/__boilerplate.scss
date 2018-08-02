@@ -44,6 +44,7 @@ span {
   @include dimensions(100%, 45px, 6px);
   font-size: 20px;
   margin: 10px 0;
+  padding-left: 1rem;
 }
 .flex-column {
   @include flex(space-around, center, column);
@@ -52,13 +53,20 @@ span {
   margin-top: 60px;
   background: $white-blue;
   // background-image: url("https://kimscrane.com/shop/5764-large_default/mulberry-paper-white-with-silver-specks.jpg");
-  // background-size: 15%;
-  // background-repeat: repeat;
 }
 .bottom-border {
   width: 100%;
   padding-bottom: 2px;
   border-bottom: 1px solid $charcoal;
+}
+
+//FOR each section, messages, courses, donate etc.
+.section-titles {
+  margin: 0 auto;
+  padding: 2rem 0 1rem 0;
+  border-bottom: .8px solid $stripe-green;
+  font-size: 1.8rem;
+  width: max-content;
 }
 
 // removes the number increment buttons from the input for a cleaner look
