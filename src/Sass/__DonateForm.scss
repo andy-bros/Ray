@@ -1,5 +1,5 @@
 .bottom-border {
-  border-bottom: 1px grey solid;
+  border-bottom: 1px #333 solid;
   // font-family: Roboto, sans-serif;
   &.title {
     @include dimensions(90vw, 35px, 0px);
@@ -95,6 +95,7 @@
   @include dimensions(90vw, 45px, 6px);
   max-width: 850px;
   @include marginCenter;
+  margin-bottom: 10px;
 }
 .pic-and-card {
   margin: 30px 0px;
