@@ -1,13 +1,14 @@
 .cart-info {
-  @include dimensions(100vw, 45vh, 0px);
+  @include dimensions(100vw, auto, 0px);
   max-width: 700px;
   @include flex(space-around, center, column);
   @include borderfy(salmon);
   margin: 50px auto;
   .product-container {
     @include borderfy(green);
-    @include dimensions(95%, 150px, 0px);
+    @include dimensions(95%, 200px, 0px);
     @include flex(center, stretch, row);
+    margin: 20px 0;
     .split-info {
       @include dimensions(50%, 100%, 0px);
       @include borderfy(black);
@@ -19,4 +20,9 @@
       }
     }
   }
+}
+
+.empty-cart {
+  @include dimensions(100vw, 30vh, 0px);
+  @include flex(space-around, center, column);
 }

@@ -19,7 +19,13 @@ export default function Footer() {
         </span>
         <span>
           <h4 className="footer-headings">Contact</h4>
-          <p>info@ccnashville.com</p>
+          <a
+            className="report-bug"
+            href={`mailto:info@ccnashville.com
+            ?subject=Greetings%20Pastor%20Ray&body=Lets%20grab%20a%20coffee!`}
+          >
+            info@ccnashville.com
+          </a>
         </span>
       </section>
       <section className="social-media" />

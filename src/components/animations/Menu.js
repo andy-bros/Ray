@@ -4,7 +4,11 @@ export default function Menu({ handleNav, opened }) {
   return (
     <button className="menu-container" onClick={() => handleNav(!opened)}>
       <div
-        className={opened ? "menu-slice top-opened" : "menu-slice top-closed"}
+        className={
+          opened === true
+            ? "menu-slice top-opened"
+            : "menu-slice menu-slice top-closed"
+        }
       />
       <div className="menu-slice" />
       <div

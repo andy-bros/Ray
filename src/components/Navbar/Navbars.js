@@ -31,15 +31,6 @@ class TopNavTake2 extends Component {
     }
     return (
       <nav className="top">
-        {/* <img
-          className="logo"
-          src={logo}
-          width="50"
-          height="50"
-          background-color="#fff"
-        /> */}
-        {/* <div className="mapped-links">{mappedLinks}</div> */}
-
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         <Link to="/">
           <img
@@ -47,6 +38,7 @@ class TopNavTake2 extends Component {
             src="https://cdn.dribbble.com/users/557720/screenshots/3167269/monogram_am.jpg"
             width="50"
             height="50"
+            onClick={() => handleNav(false)}
           />
         </Link>
         <Link to="/checkout">
@@ -69,7 +61,15 @@ export const TopNavbar = connect(
 
 export function SideNavbar({ opened, mappedLinks }) {
   return (
-    <nav className={opened ? "side-navbar opened" : "side-navbar closed"}>
+    <nav
+      className={
+        opened === true
+          ? "side-navbar opened"
+          : opened === false
+            ? "side-navbar closed"
+            : "side-navbar hidden"
+      }
+    >
       {mappedLinks}
     </nav>
   );
