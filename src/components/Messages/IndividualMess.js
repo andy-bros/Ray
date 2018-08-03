@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import AudioTag from "./AudioTag/AudioTag";
 
 class EachIndividualMessage extends Component {
   state = { message: "", pdf: "", pdfQuery: false, date: "", messageName: "" };
@@ -78,17 +79,26 @@ class EachIndividualMessage extends Component {
       <div>
         {message && (
           <article className="ind-audio">
-            <div className="cont">
-              <h3>{messageName}</h3>
-              <time>{date}</time>
-            </div>
-            <audio className="audio" controls="controls">
-              <source
-                src={`https://s3.amazonaws.com/raymp3s/${this.state.message}`}
-                type="audio/mpeg"
-              />
-            </audio>
+           <div className="cont">
+               <h3>{messageName}</h3>
+               <time>{date}</time>
+             </div>
+            <AudioTag
+              source={`https://s3.amazonaws.com/raymp3s/${this.state.message}`}
+            />
           </article>
+          // <article className="ind-audio">
+          //   <div className="cont">
+          //     <h3>{messageName}</h3>
+          //     <time>{date}</time>
+          //   </div>
+          //   <audio className="audio" controls="controls">
+          //     <source
+          //       src={`https://s3.amazonaws.com/raymp3s/${this.state.message}`}
+          //       type="audio/mpeg"
+          //     />
+          //   </audio>
+          // </article>
         )}
 
         {pdfQuery === "true" && (
