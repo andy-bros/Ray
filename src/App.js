@@ -11,14 +11,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      opened: false,
+      opened: null,
       navLinks: [
         // { nav: "HOME", to: "/" },
-        { nav: 'PRODUCTS', to: '/products' },
-        { nav: 'COURSES', to: '/courses' },
+        { nav: "PRODUCTS", to: "/products" },
+        { nav: "COURSES", to: "/courses" },
         // { nav: "CHECKOUT", to: "/checkout" },
-        { nav: 'MESSAGES', to: '/messages' },
-        { nav: 'DONATE', to: '/donate' }
+        { nav: "MESSAGES", to: "/messages" },
+        { nav: "DONATE", to: "/donate" }
       ]
     };
   }
