@@ -21,7 +21,15 @@
     }
   }
 }
-
+.quantity {
+  @include flex(space-around, center, row);
+  @include dimensions(100px, 50px, 0px);
+  .quantity-input {
+    width: 26px;
+    background: transparent;
+    border: none;
+  }
+}
 .empty-cart {
   @include dimensions(100vw, 30vh, 0px);
   @include flex(space-around, center, column);

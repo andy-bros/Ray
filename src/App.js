@@ -49,9 +49,7 @@ class App extends Component {
                 handleNav={this.handleNav}
               />
               <SideNavbar {...this.state} mappedLinks={mappedLinks} />
-              <section id="routes" onClick={() => this.handleNav(false)}>
-                {routes}
-              </section>
+              <section id="routes">{routes}</section>
               <Footer mappedLinks={mappedLinks} />
             </Fragment>
           </StripeProvider>

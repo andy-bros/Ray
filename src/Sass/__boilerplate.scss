@@ -14,6 +14,7 @@
     box-shadow: $active-box-shadow;
   }
 }
+
 // p,
 // h1,
 // h2,
@@ -76,4 +77,10 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.text-center {
+  text-align: center;
+}
+.heavy {
+  font-weight: 700;
 }

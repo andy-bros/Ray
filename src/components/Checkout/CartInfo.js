@@ -12,18 +12,28 @@ import cdImg from "./../../assets/raynewImageCd.jpeg";
 export class CartInfo extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      edits: [],
+      allFalse: []
+    };
   }
   componentDidMount() {
-    this.props.getCart();
+    this.setState({ edits: this.props.cart.map(e => false) });
   }
-  handleQuantity = (id, val) => {
-    let { cart } = this.props;
-    const i = cart.findIndex(e => e.product_id == id);
-    cart[i].quantity = val;
-  };
   dispatchUpdate = () => {
     this.props.updateCart(this.props.cart);
+    this.setState({ edits: this.props.cart.map(e => false) });
+  };
+  changeQuantity = (operation, id) => {
+    const index = this.props.cart.findIndex(e => e.product_id === id);
+    let edits = this.state.edits;
+    edits[index] = true;
+    if (operation === "add") {
+      +this.props.cart[index].quantity++;
+    } else {
+      +this.props.cart[index].quantity--;
+    }
+    this.setState({ edits: edits });
   };
   render() {
     const cart = this.props.cart.map((e, i) => {
@@ -34,21 +44,26 @@ export class CartInfo extends Component {
           </section>
           <section className="split-info right">
             <h5>{e.product_name}</h5>
-            <input
-              type="number"
-              min="1"
-              max="5"
-              defaultValue={e.quantity || 1}
-              name={e.product_name}
-              onChange={event =>
-                this.handleQuantity(e.product_id, event.target.value)
-              }
-            />
-            <span className="quantity-converter">
-              quantity: {e.quantity || 1}
-            </span>
-            <button onClick={this.dispatchUpdate}>UPDATE</button>
-            <button onClick={() => this.props.deleteFromCart(e.product_id)}>
+            <div className="quantity">
+              <button
+                className="btn-operations"
+                onClick={() => this.changeQuantity("add", e.product_id)}
+              >
+                <span>+</span>
+              </button>
+              <h6 className="quantity-input text-center">{+e.quantity || 1}</h6>
+              <button
+                className="btn-operations"
+                onClick={() => this.changeQuantity("minus", e.product_id)}
+              >
+                <span>-</span>
+              </button>
+            </div>
+            <h6>FREE</h6>
+            <button
+              className="btn-condition warning"
+              onClick={() => this.props.deleteFromCart(e.product_id)}
+            >
               REMOVE
             </button>
           </section>
@@ -59,6 +74,14 @@ export class CartInfo extends Component {
       <div className="cart-info">
         <h2 className="section-titles">Cart</h2>
         {cart}
+        {this.state.edits.includes(true) && (
+          <button
+            className="btn-condition lead"
+            onClick={() => this.dispatchUpdate()}
+          >
+            UPDATE
+          </button>
+        )}
       </div>
     );
   }
