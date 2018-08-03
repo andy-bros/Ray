@@ -26,22 +26,24 @@
 p {
   font-size: 14px;
 }
-button,
-input {
+button {
   cursor: pointer;
 }
-
+input {
+  cursor: text;
+}
 span {
-  &[require='true'] {
+  &[require="true"] {
     color: red;
   }
-  &[require='false'] {
+  &[require="false"] {
     display: none;
   }
 }
 
 .sexy-input {
   @include dimensions(100%, 45px, 6px);
+  cursor: text;
   font-size: 20px;
   margin: 10px 0;
   padding-left: 1rem;
@@ -70,8 +72,8 @@ span {
 }
 
 // removes the number increment buttons from the input for a cleaner look
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

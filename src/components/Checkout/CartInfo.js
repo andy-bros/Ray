@@ -57,7 +57,7 @@ export class CartInfo extends Component {
     });
     return (
       <div className="cart-info">
-        <h1>Cart</h1>
+        <h2 className="section-titles">Cart</h2>
         {cart}
       </div>
     );
