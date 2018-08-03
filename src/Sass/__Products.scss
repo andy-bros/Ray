@@ -1,0 +1,15 @@
+.products-container {
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.product-in-store {
+  @include flex(space-around, center, column);
+  @include dimensions(310px, 550px, 0px);
+  margin: 0 auto 40px auto;
+}
+@media (min-width: 768px) {
+  .products-container {
+    @include flex(space-around, center, row);
+  }
+}

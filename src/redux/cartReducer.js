@@ -27,7 +27,6 @@ export function deleteFromCart(id) {
   };
 }
 export function updateCart(newCart) {
-  console.log("fuck");
   return {
     type: UPDATE_CART,
     payload: axios.put("/api/update-cart", { newCart })

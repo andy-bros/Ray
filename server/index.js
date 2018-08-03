@@ -42,15 +42,16 @@ app.post("/api/add-to-cart", (req, res) => {
   const { cart } = req.session;
   const index = cart.findIndex(e => e.product_id == item.product_id);
   if (!cart[index]) {
-    cart.push(item);
+    cart.push({ ...item, quantity: 1 });
   } else {
-    cart[index].quantity ? cart[index].quantity++ : (cart[index].quantity = 2);
+    cart[index].quantity++;
   }
   res.status(200).send(cart);
 });
 app.delete("/api/delete-from-cart/:id", (req, res) => {
   const i = req.session.cart.findIndex(e => e.product_id == req.params.id);
   req.session.cart.splice(i, 1);
+  console.log(req.session.cart);
   res.status(200).send(req.session.cart);
 });
 app.put("/api/update-cart", (req, res) => {
