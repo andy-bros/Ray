@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Products from "./components/Product/Product";
+import Products from "./components/Products/Products";
+import Product from "./components/Products/Product";
 import DonateForm from "./components/Donate/DonateForm";
 import Checkout from "./components/Checkout/Checkout";
 import Messages from "./components/Messages/Messages";
@@ -16,6 +17,7 @@ export default (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/products" component={Products} />
+    <Route path="/products/:product" component={Product} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/donate" component={DonateForm} />
     <Route
