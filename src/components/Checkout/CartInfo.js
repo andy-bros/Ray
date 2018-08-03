@@ -25,13 +25,18 @@ export class CartInfo extends Component {
     this.setState({ edits: this.props.cart.map(e => false) });
   };
   changeQuantity = (operation, id) => {
-    const index = this.props.cart.findIndex(e => e.product_id === id);
+    let { cart } = this.props;
+    const index = cart.findIndex(e => e.product_id === id);
     let edits = this.state.edits;
     edits[index] = true;
     if (operation === "add") {
-      +this.props.cart[index].quantity++;
+      if (+cart[index].quantity < 10) {
+        +cart[index].quantity++;
+      }
     } else {
-      +this.props.cart[index].quantity--;
+      if (cart[index].quantity !== 1) {
+        +cart[index].quantity--;
+      }
     }
     this.setState({ edits: edits });
   };
@@ -52,6 +57,7 @@ export class CartInfo extends Component {
                 <span>+</span>
               </button>
               <h6 className="quantity-input text-center">{+e.quantity || 1}</h6>
+
               <button
                 className="btn-operations"
                 onClick={() => this.changeQuantity("minus", e.product_id)}
