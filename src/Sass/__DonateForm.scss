@@ -21,10 +21,9 @@
 .section-titles {
   margin: 0 auto;
   padding: 2rem;
-  border-bottom: .8px solid $stripe-green;
+  border-bottom: 0.8px solid $stripe-green;
   font-size: 1.8rem;
 }
-
 
 .btn {
   &-primary,
@@ -64,7 +63,6 @@
   }
 }
 .ctrl-inputs {
-
   @include dimensions(90vw, 40px, 0px);
   @include flex(space-around, center, row);
   &.dollar-amount {
@@ -78,6 +76,7 @@
   }
 }
 .credentials-container {
+  cursor: text;
   .credentials-input {
     @include dimensions(90vw, auto, 3px);
     @include marginCenter;
@@ -92,7 +91,6 @@
 .card-container,
 .picture-container {
   @extend %box-shadow;
-
 }
 .card-container {
   @include dimensions(95vw, auto, 7px);

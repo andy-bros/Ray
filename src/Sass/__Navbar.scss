@@ -56,10 +56,11 @@ nav {
   @include flex(space-around, center, row);
   background: $notification;
   position: fixed;
-  top: 16px;
-  right: 26px;
+  top: 12px;
+  right: 23px;
   text-align: center;
-  padding: 7px;
+  padding: 9px;
+  font-size: 14px;
 }
 .cart {
   font-size: 25px;

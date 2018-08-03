@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Credentials } from "./../Donate/DonateForm";
 import { SubmitButton } from "./../Donate/Customs";
 import { connect } from "react-redux";
@@ -8,7 +8,8 @@ import {
   deleteFromCart,
   emptyCart
 } from "./../../redux/cartReducer";
-import CartInfo from "./../Checkout/CartInfo";
+import CartInfo from "./CartInfo";
+import EmptyCartInfo from "./EmptyCartInfo";
 class Checkout extends Component {
   constructor() {
     super();
@@ -49,18 +50,25 @@ class Checkout extends Component {
     this.props.getCart();
   }
   render() {
+    let { cart } = this.props;
     return (
-      <div className="donation-page">
-        <CartInfo />
-        <Credentials
-          values={this.state}
-          inputFields={this.state.inputFields}
-          handleChange={this.handleChange}
-          selectBox={true}
-          purpose="Shipping"
-        />
-        <SubmitButton text="Submit Order" submitForm={this.submitForm} />
-      </div>
+      <Fragment>
+        {cart.length ? (
+          <div className="donation-page">
+            <CartInfo />
+            <Credentials
+              values={this.state}
+              inputFields={this.state.inputFields}
+              handleChange={this.handleChange}
+              selectBox={true}
+              purpose="Shipping"
+            />
+            <SubmitButton text="Submit Order" submitForm={this.submitForm} />
+          </div>
+        ) : (
+          <EmptyCartInfo />
+        )}
+      </Fragment>
     );
   }
 }
