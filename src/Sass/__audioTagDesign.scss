@@ -1,0 +1,51 @@
+body {
+  /* background: #101010; */
+}
+#wrappers {
+  width: 320px;
+  margin: 10px auto;
+}
+nav {
+  background: #999;
+  width: 320px;
+  padding-bottom: 3px;
+}
+#defaultBar {
+  width: 320px;
+  position: relative;
+  background: $grease;
+  height: 10px;
+}
+#progressBar {
+  position: absolute;
+  height: 10px;
+  background: $stripe-green;
+  width: 0px;
+}
+#playButton {
+  border: 0;
+  /*background is the same color as navigation*/
+  background: #999;
+  border: none;
+  height: 32px;
+  width: 32px;
+  background-image: url(./components/Messages/AudioTag/images/play-solid.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#muteButton {
+  border: 0;
+  /*background is the same color as navigation*/
+  background: #999;
+  border: none;
+  height: 32px;
+  width: 32px;
+  background-image: url(./components/Messages/AudioTag/images/volume-up-solid.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#muteButton:active,
+#playButton:active {
+  position: relative;
+  top: 2px;
+}
