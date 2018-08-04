@@ -11,6 +11,7 @@ const express = require("express"),
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static(`${__dirname}/../build`));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -181,6 +182,11 @@ app.post("/charge", (req, res) => {
 app.get("/api/products", getProducts);
 
 app.get("/api/getmessages", getMessageSermons);
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`"${PORT} Shelby Drive look alive, look alive."
