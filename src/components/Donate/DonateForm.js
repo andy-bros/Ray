@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   RadioBtn,
   InputCredentials,
   SelectBox,
   SubmitButton,
   Card
-} from './Customs';
-import { states } from './data';
-import assets from './../../assets/data';
-import { CardElement, Elements, injectStripe } from 'react-stripe-elements';
-import axios from 'axios';
+} from "./Customs";
+import { states } from "./data";
+import assets from "./../../assets/data";
+import { CardElement, Elements, injectStripe } from "react-stripe-elements";
+import axios from "axios";
 //////////////////////
 //___GIFT_AMOUNT___///
 //////////////////////
@@ -17,19 +17,20 @@ class GiftAmount extends Component {
   constructor() {
     super();
     this.state = {
-      defaultAmounts: ['25', '50', '100', '200', '500'],
+      defaultAmounts: ["25", "50", "100", "200", "500"],
       frequency: [
-        { value: 'one-time', label: 'One Time' },
-        { value: 'monthly', label: 'Monthly' }
+        { value: "one-time", label: "One Time" },
+        { value: "monthly", label: "Monthly" }
       ],
-      currentBtn: ''
+      currentBtn: ""
     };
   }
+
   render() {
     let mappedAmounts = this.state.defaultAmounts.map((el, i) => (
       <button
         key={i}
-        className={this.props.selected == el ? 'btn-selected' : 'btn-primary'}
+        className={this.props.selected == el ? "btn-selected" : "btn-primary"}
         name="selected"
         onClick={event => {
           this.setState({ currentBtn: el });
@@ -49,6 +50,7 @@ class GiftAmount extends Component {
         checked={this.props.checked}
       />
     ));
+
     return (
       <div>
         <h2 className="bottom-border title">Amount</h2>
@@ -57,7 +59,8 @@ class GiftAmount extends Component {
           <section className="frequency-amount">
             <div className="ctrl-inputs dollar-amount">
               <span>$</span>
-              <input className = 'donation-input'
+              <input
+                className="donation-input"
                 value={this.props.selected}
                 name="selected"
                 id="money-input"
@@ -83,13 +86,13 @@ export class Credentials extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      states: ['Alabama', 'Alaska']
+      states: ["Alabama", "Alaska"]
     };
   }
   toCamelCase = ({ label }) => {
-    let word = label.split(' ');
+    let word = label.split(" ");
     word[0] = word[0].toLowerCase();
-    return word.join('');
+    return word.join("");
   };
 
   render() {
@@ -137,35 +140,36 @@ export class DonateForm extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
-      emailAddress: '',
-      selected: '',
-      checked: 'one-time',
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      selected: "",
+      checked: "one-time",
       inputFields: [
-        { label: 'First Name' },
-        { label: 'Last Name' },
-        { label: 'Email Address' }
+        { label: "First Name" },
+        { label: "Last Name" },
+        { label: "Email Address" }
       ]
     };
   }
   handleChange = ({ event, value }) => {
-    [event.target.name][0] !== 'checked' && event.preventDefault();
+    [event.target.name][0] !== "checked" && event.preventDefault();
     this.setState({
       [event.target.name]: value
     });
   };
   submitForm = () => {
-    console.log('SUBMITTING FORM...', this.state);
+    console.log("SUBMITTING FORM...", this.state);
     /*ALL THE INFO YOU NEED FROM 
     THE USER IS STORED ON STATE.
     TAKE WHAT YOU NEED IN ORDER 
     TO CONFIRM PAYMENT.*/
     let { firstName, lastName, emailAddress, checked } = this.state;
+
     this.props.stripe
       .createToken({ name: `${firstName} ${lastName}` })
       .then(res =>
-        axios.post('/charge', {
+        axios.post("/charge", {
           token: res.token.id,
           amount: this.state.selected,
           name: `${firstName} ${lastName}`,
@@ -179,7 +183,7 @@ export class DonateForm extends Component {
   render() {
     return (
       <div className="donation-page">
-        <h2 className = 'section-titles'>DONATE</h2>
+        <h2 className="section-titles">DONATE</h2>
         <Card text={assets.cardText} />
         <GiftAmount
           handleChange={this.handleChange}

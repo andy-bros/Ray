@@ -74,6 +74,7 @@ app.post("/charge", (req, res) => {
   // this checks to see if its a monthly payment or one time
   if (req.body.checked === "one-time") {
     //a customer is not needed for a one time purchase so we directly create the charge to the account
+
     let updatedAmount = req.body.amount + "00";
     stripe.charges
       .create({
