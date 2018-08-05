@@ -31,6 +31,19 @@
   }
 }
 .empty-cart {
-  @include dimensions(100vw, 30vh, 0px);
-  @include flex(space-around, center, column);
+  @include dimensions(100vw, calc(100vh - 450px - 64px), 0px);
+  @include flex(center, center, column);
+  text-align: center;
+  .center-container {
+    @include flex(space-around, center, column);
+    @include dimensions(90%, 80%, 0px);
+    h2 {
+      border: none;
+    }
+    .btn-condition {
+      width: 150px;
+      color: black;
+      font-size: 0.9rem;
+    }
+  }
 }

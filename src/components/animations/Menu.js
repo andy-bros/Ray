@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Menu({ handleNav, opened }) {
   return (
-    <button className="menu-container" onClick={() => handleNav(!opened)}>
+    <div className="menu-container" onClick={() => handleNav(!opened)}>
       <div
         className={
           opened === true
@@ -16,6 +16,6 @@ export default function Menu({ handleNav, opened }) {
           opened ? "menu-slice bottom-opened" : "menu-slice bottom-closed"
         }
       />
-    </button>
+    </div>
   );
 }
