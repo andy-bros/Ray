@@ -11,7 +11,9 @@ var transporter = nodemailer.createTransport(
 const emailRay = (req, res) => {
   console.log(req.body);
   const items = req.session.cart.map((e, i, a) => {
-    return `${e.product_name}: x${e.quantity}`;
+    return `
+    ${e.product_name}: x${e.quantity}
+    `;
   });
 
   const {
@@ -19,7 +21,7 @@ const emailRay = (req, res) => {
     phoneNumber,
     firstName,
     lastName,
-    streetAddress1,
+    streetAddress,
     streetAddress2,
     city,
     state,
@@ -33,14 +35,13 @@ const emailRay = (req, res) => {
       text: `
       Customer:
       ${firstName} ${lastName},
-      ${streetAddress1} ${streetAddress2},
+      ${streetAddress} ${streetAddress2},
       ${city}, ${state} ${zipCode}
       email: ${emailAddress}
-      phone-number:${phoneNumber}
+      phone-number: ${phoneNumber}
 
       Request:
-        ${items[0]}
-        ${items[1] || ""}
+        ${items}
       `
     })
     .then(response => {
