@@ -4,6 +4,7 @@ nav {
     // margin: 0 auto;
     @include dimensions(100vw, 60px, 0px);
     @include flex(space-between, center, row);
+    flex-wrap: nowrap;
     padding: 2rem;
     width: 100%;
     position: fixed;
@@ -58,6 +59,7 @@ nav {
 .cart-notification {
   @include dimensions(12px, 12px, 100px);
   @include flex(space-around, center, row);
+  flex-wrap: nowrap;
   background: $notification;
   position: fixed;
   top: 12px;
@@ -77,7 +79,16 @@ nav {
     opacity: 0.7;
   }
 }
-
+.nav-item {
+  @include flex(center, center, column);
+  @include dimensions(100vw, calc(25vh - 16px), 0px);
+  &:hover {
+    color: $stripe-green;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
 footer {
   @include dimensions(100vw, 30px, 0px);
   @include flex(center, center, row);

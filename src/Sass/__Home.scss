@@ -3,7 +3,7 @@
   min-height: 28vh;
   margin: 0 auto;
   color: white;
-  background-image: url('./assets/pastor-banner.png');
+  background-image: url("./assets/pastor-banner.png");
   background-size: cover;
   background-position: 21% 10%;
   // background-attachment: fixed;
@@ -30,23 +30,23 @@
 
     .sub-heading {
       line-height: 2rem;
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   }
 }
 
 ////////////////////////////////
-  @media screen and (min-width: 600px) {
-    .home-page {
-      min-height: 60vh;
-    }
-    .content-container {
-      @include flex(space-around, flex-start, row);
-    }
-    .description {
-      width: 400px;
-    }
+@media screen and (min-width: 600px) {
+  .home-page {
+    min-height: 60vh;
   }
+  .content-container {
+    @include flex(space-around, flex-start, row);
+  }
+  .description {
+    width: 400px;
+  }
+}
 
 @media screen and (min-width: 743px) {
   .home-page {
@@ -72,7 +72,12 @@
 }
 
 .about-section {
-  padding: 3rem;
+  padding: 3rem 0;
+}
+@media (min-width: 430px) {
+  .about-section {
+    padding: 3rem;
+  }
 }
 
 .content-container {
@@ -123,16 +128,13 @@
   }
 }
 
-@media screen and (min-width: 1240px){
- .splash-text{
- 
- .main-title{
-   width: max-content;
- }
- .sub-heading{
-   width: max-content;
- }
- 
- }
- 
+@media screen and (min-width: 1240px) {
+  .splash-text {
+    .main-title {
+      width: max-content;
+    }
+    .sub-heading {
+      width: max-content;
+    }
+  }
 }
