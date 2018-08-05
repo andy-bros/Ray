@@ -30,8 +30,11 @@
     border: none;
   }
 }
-.empty-cart {
+
+.empty-cart,
+.component404 {
   @include dimensions(100vw, calc(100vh - 450px - 64px), 0px);
+  min-height: 500px;
   @include flex(center, center, column);
   text-align: center;
   .center-container {
@@ -45,5 +48,13 @@
       color: black;
       font-size: 0.9rem;
     }
+  }
+}
+.component404 {
+  h2 {
+    padding: 0;
+  }
+  button {
+    width: 240px;
   }
 }
