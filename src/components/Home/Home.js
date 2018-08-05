@@ -7,11 +7,12 @@ export default class Home extends Component {
     return (
       <main className="home-container">
         <div className="home-page">
-            <div className = 'splash-text'>
-            <h1 className = 'main-title'>Pastor Ray McCollum</h1>
-            <h2 className = 'sub-heading'>"Rejoice in the LORD always."<br/> -Philippians 4:4 </h2>
-            </div>
-        
+          <div className="splash-text">
+            <h1 className="main-title">Pastor Ray McCollum</h1>
+            <h2 className="sub-heading">
+              "Rejoice in the LORD always."<br /> -Philippians 4:4{" "}
+            </h2>
+          </div>
         </div>
         <section className="about-section">
           <content className="content-container">

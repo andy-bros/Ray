@@ -49,7 +49,9 @@ class App extends Component {
                 handleNav={this.handleNav}
               />
               <SideNavbar {...this.state} mappedLinks={mappedLinks} />
-              <section id="routes">{routes}</section>
+              <section id="routes" onLoad={() => window.scroll(0, 0)}>
+                {routes}
+              </section>
               <Footer mappedLinks={mappedLinks} />
             </Fragment>
           </StripeProvider>
