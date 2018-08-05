@@ -10,6 +10,7 @@ import {
 } from "./../../redux/cartReducer";
 import CartInfo from "./CartInfo";
 import EmptyCartInfo from "./EmptyCartInfo";
+import axios from "axios";
 class Checkout extends Component {
   constructor() {
     super();
@@ -22,6 +23,7 @@ class Checkout extends Component {
       city: "",
       state: "",
       zipCode: "",
+      phoneNumber: "",
       inputFields: [
         { label: "First Name" },
         { label: "Last Name" },
@@ -35,6 +37,7 @@ class Checkout extends Component {
     };
   }
   handleChange = ({ event, value }) => {
+    console.log(this.state);
     [event.target.name][0] !== "checked" && event.preventDefault();
     console.log(value);
     this.setState({
@@ -43,6 +46,7 @@ class Checkout extends Component {
   };
   submitForm = event => {
     console.log("submitting...", this.state);
+    axios.post("/api/send-email", { ...this.state });
     this.props.emptyCart();
     this.props.history.push("/");
   };
