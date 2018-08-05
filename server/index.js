@@ -7,7 +7,8 @@ const express = require("express"),
   massive = require("massive"),
   { getProducts } = require("./controllers/databae/base"),
   session = require("express-session"),
-  stripe = require("stripe")(process.env.STRIPE_KEY);
+  ses = require(`${__dirname}/controllers/aws/ses`);
+stripe = require("stripe")(process.env.STRIPE_KEY);
 
 app.use(express.json());
 app.use(cors());
@@ -47,6 +48,11 @@ app.post("/api/add-to-cart", (req, res) => {
   } else {
     cart[index].quantity++;
   }
+  // console.log(req.session.cart);
+  let email = req.session.cart.map((e, i) => {
+    return { item: e.product_name, quantity: e.quantity };
+  });
+  console.log(email);
   res.status(200).send(cart);
 });
 app.delete("/api/delete-from-cart/:id", (req, res) => {
@@ -183,6 +189,8 @@ app.post("/charge", (req, res) => {
 app.get("/api/products", getProducts);
 
 app.get("/api/getmessages", getMessageSermons);
+
+app.post("/api/send-email", ses.emailRay);
 
 const path = require("path");
 app.get("*", (req, res) => {

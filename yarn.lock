@@ -341,6 +341,20 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
+aws-sdk@^2.2.36:
+  version "2.286.2"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.286.2.tgz#0f35a1b3158049c015161ed83872a38305a7908a"
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.8"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.1.0"
+    xml2js "0.4.19"
+
 aws-sdk@^2.275.1:
   version "2.275.1"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.275.1.tgz#a5dce9695a705d66a3fa822f4c23d810be90569a"
@@ -4985,6 +4999,16 @@ node-sass@^4.9.2:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+nodemailer-ses-transport@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/nodemailer-ses-transport/-/nodemailer-ses-transport-1.5.1.tgz#dc0598c1bf53e8652e632e8f31692ce022d7dea9"
+  dependencies:
+    aws-sdk "^2.2.36"
+
+nodemailer@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.7.tgz#b68de7f36d65618bdeeeb76234e3547d51266373"
 
 "nopt@2 || 3":
   version "3.0.6"
