@@ -9,9 +9,13 @@ class Products extends React.Component {
   state = {
     messages: []
   };
-  async componentDidMount() {
-    const response = await axios.get("/api/products").catch(console.error);
-    this.setState({ messages: response.data });
+  componentDidMount() {
+    axios
+      .get("/api/products")
+      .then(response => {
+        this.setState({ messages: response.data });
+      })
+      .catch(console.error);
   }
   addToCartFn(e) {
     console.log(e.quantity);

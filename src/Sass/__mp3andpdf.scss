@@ -1,5 +1,5 @@
-@import 'https://fonts.googleapis.com/css?family=Lato';
-@import 'http://fonts.googleapis.com/css?family=Raleway';
+@import "https://fonts.googleapis.com/css?family=Lato";
+@import "http://fonts.googleapis.com/css?family=Raleway";
 .ind-audio {
   height: 52vh;
   @include flex(center, center, column);
@@ -10,7 +10,7 @@
   height: 610px;
 }
 .cont {
-  font-family: 'Lato';
+  font-family: "Lato";
   text-align: center;
   margin-bottom: 2rem;
   h3 {
@@ -27,7 +27,6 @@
   background: whitesmoke;
   margin: 0 auto;
   width: 90%;
-  border: 5px solid orange;
   @include flex(space-around, center, row);
   flex: 0 1 auto;
 }

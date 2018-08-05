@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export default function EmptyCartInfo() {
   return (
     <div className="empty-cart">
-      <div>
-        <h2>There is nothing to see here yet</h2>
+      <div className="center-container">
+        <h2 className="section-titles">Your cart is empty.</h2>
         <Link to="/products">
-          <h2>Shop now</h2>
+          <button className="btn-condition lead">Shop now</button>
         </Link>
       </div>
     </div>
