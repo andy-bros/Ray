@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addToCart } from "./../../redux/cartReducer";
 import bookImg from "./../../assets/rayNewBookImage.jpeg";
 import cdImg from "./../../assets/raynewImageCd.jpeg";
+import { Link } from "react-router-dom";
 
 class Products extends React.Component {
   state = {
@@ -18,20 +19,19 @@ class Products extends React.Component {
       .catch(console.error);
   }
   addToCartFn(e) {
-    console.log(e.quantity);
-    console.log(this.props.cart);
     let product = this.props.cart.find(
       item => item.product_id === e.product_id
     );
     if (!product || product.quantity < 10) this.props.addToCart(e);
   }
   render() {
-    console.log(this.props.cart);
     let { messages } = this.state;
     let newMessages = messages.map(e => {
       return (
         <div key={e.product_id} className="product-in-store">
-          <img src={e.product_id == 1 ? cdImg : bookImg} height="390px" />
+          <Link to={`/products/${e.product_id}`}>
+            <img src={e.product_id == 1 ? cdImg : bookImg} height="390px" />
+          </Link>
           <h2 className="text-center heavy">{e.product_name}</h2>
           <h4>FREE</h4>
           <button className="btn-primary" onClick={() => this.addToCartFn(e)}>

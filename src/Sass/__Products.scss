@@ -8,8 +8,25 @@
   @include dimensions(310px, 550px, 0px);
   margin: 0 auto 40px auto;
 }
+.each-product {
+  @include flex(space-around, center, column);
+  @include dimensions(95vw, 1600px, 0px);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+
+  p {
+    line-height: 26px;
+  }
+  .section-titles {
+    width: 250px;
+    text-align: center;
+  }
+}
 @media (min-width: 768px) {
   .products-container {
     @include flex(space-around, center, row);
+  }
+  .each-product {
   }
 }

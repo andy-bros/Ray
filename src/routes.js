@@ -9,6 +9,7 @@ import Home from "./components/Home/Home";
 import Courses from "./components/Messages/Courses";
 import SpecificMessages from "./components/Messages/SpecificMessages";
 import EachIndividualMessage from "./components/Messages/IndividualMess";
+import Component404 from "./components/404/Component404";
 
 export default (
   /*
@@ -16,8 +17,8 @@ export default (
    */
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route path="/products/:id" component={Product} />
     <Route path="/products" component={Products} />
-    <Route path="/products/:product" component={Product} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/donate" component={DonateForm} />
     <Route
@@ -31,5 +32,11 @@ export default (
     <Route path="/courses/:courses" component={SpecificMessages} />
     <Route path="/messages" component={Messages} />
     <Route path="/courses" component={Courses} />
+    <Route
+      path="*"
+      render={() => (
+        <Component404 path="/" title="404 PAGE NOT FOUND" button="SAFETY" />
+      )}
+    />
   </Switch>
 );
