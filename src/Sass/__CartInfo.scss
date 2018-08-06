@@ -1,12 +1,12 @@
 .cart-info {
-  @include dimensions(100vw, auto, 0px);
+  @include dimensions(95vw, auto, 0px);
   max-width: 1100px;
   @include flex(space-around, center, column);
   // @include borderfy(salmon);
   margin: 50px auto;
   .cart-list {
     visibility: hidden;
-    margin-top: 30px;
+    margin: 20px 0;
     @include dimensions(95%, auto, 0px);
     @include flex(space-between, center, row);
     max-width: 700px;
@@ -14,7 +14,7 @@
       @include dimensions(60%, 100%, 0px);
       @include flex(space-around, center, row);
       width: 38%;
-      margin-right: 15%;
+      margin-right: 16%;
     }
   }
 
