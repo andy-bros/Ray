@@ -10,7 +10,7 @@
 }
 .each-product {
   @include flex(space-around, center, column);
-  @include dimensions(95vw, 1600px, 0px);
+  @include dimensions(95vw, 1200px, 0px);
   max-width: 600px;
   margin: 0 auto;
   padding: 10px;

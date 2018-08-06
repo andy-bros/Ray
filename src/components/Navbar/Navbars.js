@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Menu from "./../animations/Menu";
 import { DonateBtn } from "./../Donate/Customs";
 import { Link } from "react-router-dom";
-import logo from "../../assets/RMBlack.svg";
+import logo from "./RMGrey.jpg";
 import { getCart } from "./../../redux/cartReducer";
 import { connect } from "react-redux";
 
@@ -33,18 +33,19 @@ class TopNavTake2 extends Component {
       <nav className="top">
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         <Link to="/">
-          <img
+          {/* <img
             className="logo"
             src="https://cdn.dribbble.com/users/557720/screenshots/3167269/monogram_am.jpg"
             width="50"
             height="50"
             onClick={() => handleNav(false)}
-          />
+          /> */}
+          <img src={logo} width="75px" />
         </Link>
         <Link to="/checkout">
           <i
             className="fas fa-shopping-cart cart"
-            onClick={() => handleNav()}
+            onClick={() => handleNav(false)}
           />
           {cart.length ? (
             <span className="cart-notification">{mappedQuantity}</span>
@@ -60,6 +61,7 @@ export const TopNavbar = connect(
 )(TopNavTake2);
 
 export function SideNavbar({ opened, mappedLinks }) {
+  console.log(opened, opened === false);
   return (
     <nav
       className={
