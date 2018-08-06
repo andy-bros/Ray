@@ -45,10 +45,10 @@ export class CartInfo extends Component {
       return (
         <div key={i} className="product-container">
           <section className="split-info left">
-            <img src={e.product_id == 2 ? cdImg : bookImg} height="100px" />
+            <img src={e.product_id == 2 ? cdImg : bookImg} height="75px" />
           </section>
           <section className="split-info right">
-            <h5>{e.product_name}</h5>
+            <h5 className="product-name">{e.product_name}</h5>
             <div className="quantity">
               <button
                 className="btn-operations"
@@ -79,7 +79,14 @@ export class CartInfo extends Component {
     return (
       <div className="cart-info">
         <h2 className="section-titles">Cart</h2>
-        {cart}
+        <header className="cart-list">
+          <p>ITEM</p>
+          <aside>
+            <p>QUANTITY</p>
+            <p>PRICE</p>
+          </aside>
+        </header>
+        <div className="cart-border">{cart}</div>
         {this.state.edits.includes(true) && (
           <button
             className="btn-condition lead"
