@@ -30,11 +30,13 @@
   max-width: 600px;
   margin: 1rem auto;
 }
+
 .btn {
   &-primary,
   &-submit,
   &-selected {
     @extend %btnDefault;
+    border: none;
     &:active {
       background: $stripe-green;
       opacity: 0.5;
