@@ -33,14 +33,7 @@ class TopNavTake2 extends Component {
       <nav className="top">
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         <Link to="/">
-          {/* <img
-            className="logo"
-            src="https://cdn.dribbble.com/users/557720/screenshots/3167269/monogram_am.jpg"
-            width="50"
-            height="50"
-            onClick={() => handleNav(false)}
-          /> */}
-          <img src={logo} width="75px" />
+          <img src={logo} width="75px" onClick={() => handleNav(false)} />
         </Link>
         <Link to="/checkout">
           <i
