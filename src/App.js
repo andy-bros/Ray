@@ -38,21 +38,18 @@ class App extends Component {
         </Link>
       );
     });
+    console.log(this.state.opened);
     return (
       <Provider store={store}>
         <Router>
           <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
             <Fragment>
-              <TopNavbar
-                {...this.state}
-                mappedLinks={mappedLinks}
-                handleNav={this.handleNav}
-              />
+              <TopNavbar {...this.state} handleNav={this.handleNav} />
               <SideNavbar {...this.state} mappedLinks={mappedLinks} />
               <section id="routes" onLoad={() => window.scroll(0, 0)}>
                 {routes}
               </section>
-              <Footer mappedLinks={mappedLinks} />
+              <Footer />
             </Fragment>
           </StripeProvider>
         </Router>
