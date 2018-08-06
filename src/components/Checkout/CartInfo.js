@@ -40,6 +40,7 @@ export class CartInfo extends Component {
     }
     this.setState({ edits: edits });
   };
+  removeItem = id => {};
   render() {
     const cart = this.props.cart.map((e, i) => {
       return (
