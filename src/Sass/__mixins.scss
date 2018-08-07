@@ -16,3 +16,20 @@
 @mixin marginCenter {
   margin: 0 auto;
 }
+
+@mixin pseudo($color) {
+  &:hover {
+    color: $color;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+%pseudoNavs {
+  &:active {
+    transform: scale(0.95);
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}

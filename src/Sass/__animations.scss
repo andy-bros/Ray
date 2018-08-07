@@ -60,6 +60,17 @@
     }
   }
 }
+.navlinks-spread {
+  display: none;
+}
+@media (min-width: 900px) {
+  .menu-container {
+    visibility: hidden;
+  }
+  .navlinks-spread {
+    display: flex;
+  }
+}
 @keyframes loadingDots {
   0% {
     margin-bottom: 0;

@@ -20,7 +20,7 @@ class TopNavTake2 extends Component {
     this.props.getCart();
   }
   render() {
-    let { handleNav, opened, mappedLinks, cart } = this.props;
+    let { handleNav, opened, cart, navLinks } = this.props;
     let mappedQuantity = cart.map(e => {
       if (e.quantity) {
         return e.quantity;
@@ -29,12 +29,26 @@ class TopNavTake2 extends Component {
     if (mappedQuantity.length) {
       mappedQuantity = mappedQuantity.reduce((p, c) => p + c);
     }
+    const navigationTop = navLinks.map((e, i) => {
+      return (
+        <Link
+          className="navlinks-spread"
+          key={e.to}
+          to={e.to}
+          onClick={() => this.handleNav(false)}
+        >
+          <div className="nav-item-spread">{e.nav}</div>
+        </Link>
+      );
+    });
     return (
       <nav className="top">
         <Menu key="menu" opened={opened} handleNav={handleNav} />
+        {navigationTop.slice(0, 2)}
         <Link to="/">
           <img src={logo} width="75px" onClick={() => handleNav(false)} />
         </Link>
+        {navigationTop.slice(2)}
         <Link to="/checkout">
           <i
             className="fas fa-shopping-cart cart"

@@ -48,6 +48,9 @@ class App extends Component {
               <SideNavbar {...this.state} mappedLinks={mappedLinks} />
               <section id="routes" onLoad={() => window.scroll(0, 0)}>
                 {routes}
+                <Link to="donate">
+                  <i class="fas fa-donate donate-link" />
+                </Link>
               </section>
               <Footer />
             </Fragment>

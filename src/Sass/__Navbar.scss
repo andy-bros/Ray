@@ -68,27 +68,23 @@ nav {
   padding: 9px;
   font-size: 14px;
 }
-.cart {
+.cart,
+.donate-link {
   font-size: 25px;
   margin-left: 0.8rem;
   color: $grease;
-  &:active {
-    transform: scale(0.85);
-  }
-  &:hover {
-    opacity: 0.7;
-  }
+  @extend %pseudoNavs;
 }
 .nav-item {
   @include flex(center, center, column);
   @include dimensions(100vw, calc(25vh - 16px), 0px);
-  &:hover {
-    color: $stripe-green;
+  &-spread {
+    color: black;
+    @extend %pseudoNavs;
   }
-  &:active {
-    opacity: 0.8;
-  }
+  @include pseudo($stripe-green);
 }
+
 footer {
   @include dimensions(100vw, 30px, 0px);
   @include flex(center, center, row);
