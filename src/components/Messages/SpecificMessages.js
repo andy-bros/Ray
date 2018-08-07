@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import LoadingDots from "../animations/Loading";
 import { Link } from "react-router-dom";
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
 
 class SpecificMessages extends Component {
   state = {
@@ -63,7 +64,7 @@ class SpecificMessages extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props);
+    console.log("PROPS", this.props.location.pathname.split("/")[1]);
     let { messages, title } = this.state;
     let newMessages = messages.map((e, i, a) => {
       console.log("eeee", a[i + 1]);
@@ -178,6 +179,12 @@ class SpecificMessages extends Component {
     });
     return (
       <div className="each-individual-message-holder">
+        <BreadCrumb
+          crumbs={[
+            this.props.location.pathname.split("/")[1].toUpperCase(),
+            title.split("_").join(" ")
+          ]}
+        />
         <h1 className="each-individual-message-holder__h1">
           {title.split("_").join(" ")}
         </h1>

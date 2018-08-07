@@ -2,9 +2,17 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import AudioTag from "./AudioTag/AudioTag";
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
 
 class EachIndividualMessage extends Component {
-  state = { message: "", pdf: "", pdfQuery: false, date: "", messageName: "" };
+  state = {
+    message: "",
+    pdf: "",
+    pdfQuery: false,
+    date: "",
+    messageName: "",
+    lastCrumbTitle: ""
+  };
   findMonth = num => {
     if (num === "01") return "January";
     else if (num === "02") return "February";
@@ -26,6 +34,10 @@ class EachIndividualMessage extends Component {
     key = key[0].toUpperCase() + key.slice(1);
     console.log(key);
     axios.get(`/api/getmessages?section=${key}`).then(res => {
+      console.log(res.data);
+      let lastCrumbTitle = res.data[
+        this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
+      ].Title.split("/")[1];
       let message =
         key === "Courses"
           ? res.data[
@@ -50,6 +62,7 @@ class EachIndividualMessage extends Component {
       console.log(date);
       this.setState({
         pdfQuery: queryString.parse(window.location.search).pdf,
+        lastCrumbTitle,
         message,
         date,
         messageName,
@@ -71,13 +84,40 @@ class EachIndividualMessage extends Component {
     });
   }
   render() {
-    let { pdf, message, pdfQuery, date, messageName } = this.state;
-    console.log(message);
+    let {
+      pdf,
+      message,
+      pdfQuery,
+      date,
+      messageName,
+      lastCrumbTitle
+    } = this.state;
+    console.log(
+      this.props.location.pathname
+        .split("/")
+        .filter(v => v !== "")
+        .slice(0, 2)
+        .join("/")
+    );
     return (
       //if query pdf = true return this
       //make sure you always return an mp3 audio tape though
       //this is where the pdf and mp3 will display on the screen
       <div>
+        <BreadCrumb
+          crumbs={[
+            this.props.location.pathname.split("/")[1].toUpperCase(),
+            {
+              title: lastCrumbTitle,
+              path: this.props.location.pathname
+                .split("/")
+                .filter(v => v !== "")
+                .slice(0, 2)
+                .join("/")
+            },
+            messageName
+          ]}
+        />
         {message && (
           <article className="ind-audio">
             <div className="cont">
