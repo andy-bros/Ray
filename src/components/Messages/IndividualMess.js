@@ -42,6 +42,7 @@ class EachIndividualMessage extends Component {
       // } ${preMessageName[3].slice(0, preMessageName[3].length - 4)}`;
 
       preMessageName = preMessageName.join(" ");
+      console.log(preMessageName);
       let messageName = preMessageName.slice(0, preMessageName.length - 4);
       let date = `${this.findMonth(
         messageDate.slice(7, 9)
@@ -79,10 +80,10 @@ class EachIndividualMessage extends Component {
       <div>
         {message && (
           <article className="ind-audio">
-           <div className="cont">
-               <h3>{messageName}</h3>
-               <time>{date}</time>
-             </div>
+            <div className="cont">
+              <h3>{messageName}</h3>
+              <time>{date}</time>
+            </div>
             <AudioTag
               source={`https://s3.amazonaws.com/raymp3s/${this.state.message}`}
             />

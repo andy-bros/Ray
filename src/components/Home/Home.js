@@ -8,9 +8,10 @@ export default class Home extends Component {
       <main className="home-container">
         <div className="home-page">
           <div className="splash-text">
-            <h1 className="main-title">Pastor Ray McCollum</h1>
+            <h1 className="main-title">PastorRay.com</h1>
             <h2 className="sub-heading">
-              "Rejoice in the LORD always."<br /> -Philippians 4:4{" "}
+              "The Lord has given me the tongue of a disciple that I may know
+              how to sustain the weary one with a word"<br /> -Isaiah 50:4{" "}
             </h2>
           </div>
         </div>
@@ -38,7 +39,7 @@ export default class Home extends Component {
               <p>
                 Ray came to Christ in 1971, and entered the ministry at age 43,
                 after 25 years in the business world. Ray and his wife Elizabeth
-                have been married 48 years and have 2 children and 7
+                have been married 52 years and have 2 children and 7
                 grandchildren.
               </p>
             </figcaption>

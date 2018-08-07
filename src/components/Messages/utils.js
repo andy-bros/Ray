@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LoadingDots from "../animations/Loading";
-
 class Messages extends Component {
   state = {
     messages: [],
@@ -18,7 +17,7 @@ class Messages extends Component {
   render() {
     let { messages } = this.state;
     let { type } = this.props;
-    console.log("messages", messages);
+
     let mappedMessages = messages.map((e, i) => {
       let visibility = "hidden";
       setTimeout(() => (visibility = "visible"), i);

@@ -65,7 +65,7 @@ class GiftAmount extends Component {
                 name="selected"
                 id="money-input"
                 type="number"
-                placeholder="amount"
+                placeholder="Other Amount"
                 onChange={event =>
                   this.props.handleChange({ event, value: event.target.value })
                 }
