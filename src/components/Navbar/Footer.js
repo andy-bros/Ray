@@ -9,8 +9,8 @@ export default function Footer() {
         <span>
           <h4 className="footer-headings">Address</h4>
           <p>
-            Meets at Oak Hill Assembly of God 5200 Franklin Pike Nashville, TN
-            37220
+            Celebration Church meets at Oak Hill Assembly of God 5200 Franklin
+            Pike Nashville, TN 37220
           </p>
         </span>
         <span>
@@ -24,7 +24,7 @@ export default function Footer() {
             href={`mailto:info@ccnashville.com
             ?subject=Greetings%20Pastor%20Ray&body=Lets%20grab%20a%20coffee!`}
           >
-            info@ccnashville.com
+            Ray@PastorRay.com
           </a>
         </span>
       </section>
