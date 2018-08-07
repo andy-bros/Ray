@@ -1,0 +1,10 @@
+.breadcrumb-nav {
+  //   width: 320px;
+  height: 50px;
+  background: lightblue;
+  @include flex(space-around, center, row);
+  width: 320px;
+  position: absolute;
+  top: 82px;
+  left: 0;
+}

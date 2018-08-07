@@ -10,8 +10,9 @@ export default class Home extends Component {
           <div className="splash-text">
             <h1 className="main-title">PastorRay.com</h1>
             <h2 className="sub-heading">
-              "The Lord has given me the tongue of a disciple that I may know
-              how to sustain the weary one with a word"<br /> -Isaiah 50:4{" "}
+              "The Lord has given me the tongue of a disciple<br /> that I may
+              know how to sustain the weary one with<br /> a word"<br /> -Isaiah
+              50:4{" "}
             </h2>
           </div>
         </div>
