@@ -53,17 +53,17 @@ export class CartInfo extends Component {
             <div className="quantity">
               <button
                 className="btn-operations"
-                onClick={() => this.changeQuantity("add", e.product_id)}
+                onClick={() => this.changeQuantity("minus", e.product_id)}
               >
-                <span>+</span>
+                <span>-</span>
               </button>
               <h6 className="quantity-input text-center">{+e.quantity || 1}</h6>
 
               <button
                 className="btn-operations"
-                onClick={() => this.changeQuantity("minus", e.product_id)}
+                onClick={() => this.changeQuantity("add", e.product_id)}
               >
-                <span>-</span>
+                <span>+</span>
               </button>
             </div>
             <h6>FREE</h6>
