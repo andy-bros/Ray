@@ -3,8 +3,9 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { addToCart } from "./../../redux/cartReducer";
 import bookImg from "./../../assets/rayNewBookImage.jpeg";
-import cdImg from "./../../assets/raynewImageCd.jpeg";
+import cdImg from "./../../assets/rayCdsImage.JPG";
 import { Link } from "react-router-dom";
+import Loading from "../animations/Loading";
 
 class Products extends React.Component {
   state = {
@@ -43,7 +44,11 @@ class Products extends React.Component {
     return (
       <div>
         <h2 className="section-titles">PRODUCTS</h2>
-        <div className="products-container">{newMessages}</div>
+        {!messages.length ? (
+          <Loading />
+        ) : (
+          <div className="products-container">{newMessages}</div>
+        )}
       </div>
     );
   }

@@ -8,17 +8,20 @@ class BreadCrumb extends Component {
     console.log("CRUMBS", this.props.crumbs);
     let newCrumbs = this.props.crumbs.map((e, i, a) => {
       if (i === a.length - 1) {
-        return <h5>{e}</h5>;
+        return <pre className="current-crumb prev-tab-no-home"> {e} </pre>;
       } else if (i === 0) {
         return (
           <Link to={`/${e.toLowerCase()}`} key={e}>
-            <h5 className="previous-crumb-tab">{e}</h5>
+            <pre className="previous-crumb-tab prev-tab-no-home"> {e} > </pre>
           </Link>
         );
       } else {
         return (
           <Link to={`/${e.path}`} key={e}>
-            <h5 className="previous-crumb-tab">{e.title}</h5>
+            <pre className="previous-crumb-tab prev-tab-no-home">
+              {" "}
+              {e.title} >{" "}
+            </pre>
           </Link>
         );
       }
@@ -26,7 +29,7 @@ class BreadCrumb extends Component {
     return (
       <div className="breadcrumb-nav">
         <Link to="/">
-          <h5 className="previous-crumb-tab">HOME</h5>
+          <pre className="previous-crumb-tab">HOME > </pre>
         </Link>
         {newCrumbs}
       </div>
