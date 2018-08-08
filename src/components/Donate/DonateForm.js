@@ -10,6 +10,7 @@ import { states } from "./data";
 import assets from "./../../assets/data";
 import { CardElement, Elements, injectStripe } from "react-stripe-elements";
 import axios from "axios";
+import swal from "sweetalert2";
 //////////////////////
 //___GIFT_AMOUNT___///
 //////////////////////
@@ -168,16 +169,27 @@ export class DonateForm extends Component {
 
     this.props.stripe
       .createToken({ name: `${firstName} ${lastName}` })
-      .then(res =>
+      .then(res => {
         axios.post("/charge", {
           token: res.token.id,
           amount: this.state.selected,
           name: `${firstName} ${lastName}`,
           email: emailAddress,
           checked
-        })
-      )
-      .catch(console.error);
+        });
+        swal({
+          type: "success",
+          title: `Thank you ${this.state.firstName} for your donation!`,
+          text: "Check your email for a receipt."
+        });
+      })
+      .catch(() => {
+        swal({
+          type: "error",
+          title: "Invalid credentials",
+          text: "Check inputs again."
+        });
+      });
     // console.log(token);
   };
   render() {

@@ -28,7 +28,6 @@ class App extends Component {
     }
   };
   render() {
-    console.log(this.state.opened);
     let mappedLinks = this.state.navLinks.map((e, i) => {
       return (
         <Link
