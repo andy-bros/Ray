@@ -81,7 +81,7 @@ app.post("/charge", (req, res) => {
   if (req.body.checked === "one-time") {
     //a customer is not needed for a one time purchase so we directly create the charge to the account
 
-    let updatedAmount = req.body.amount + "00";
+    let updatedAmount = req.body.amount.split(".")[0] + "00";
     stripe.charges
       .create({
         amount: +updatedAmount,

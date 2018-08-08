@@ -2,14 +2,21 @@
   //   width: 320px;
   height: 50px;
   @include flex(space-around, center, row);
-  width: 320px;
+  // width: 320px;
   position: absolute;
   top: 82px;
   left: 0;
 }
 .previous-crumb-tab {
   font-weight: 700;
-  color: blue;
+  color: $stripe-green;
+  text-shadow: 0.4px 0.4px black;
+}
+.current-crumb {
+  margin-left: 10px;
+}
+.prev-tab-no-home {
+  margin-left: 10px;
 }
 @media (max-width: 900px) {
   .breadcrumb-nav {
