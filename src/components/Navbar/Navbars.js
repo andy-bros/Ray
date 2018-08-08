@@ -35,7 +35,7 @@ class TopNavTake2 extends Component {
           className="navlinks-spread"
           key={e.to}
           to={e.to}
-          onClick={() => this.props.handleNav(false)}
+          onClick={() => handleNav(false)}
         >
           <div className="nav-item-spread">{e.nav}</div>
         </Link>
@@ -68,7 +68,6 @@ export const TopNavbar = connect(
 )(TopNavTake2);
 
 export function SideNavbar({ opened, mappedLinks }) {
-  console.log(opened, opened === false);
   return (
     <nav
       className={
