@@ -12,13 +12,13 @@ class BreadCrumb extends Component {
       } else if (i === 0) {
         return (
           <Link to={`/${e.toLowerCase()}`} key={e}>
-            <h5>{e}</h5>
+            <h5 className="previous-crumb-tab">{e}</h5>
           </Link>
         );
       } else {
         return (
           <Link to={`/${e.path}`} key={e}>
-            <h5>{e.title}</h5>
+            <h5 className="previous-crumb-tab">{e.title}</h5>
           </Link>
         );
       }
@@ -26,7 +26,7 @@ class BreadCrumb extends Component {
     return (
       <div className="breadcrumb-nav">
         <Link to="/">
-          <h5>HOME</h5>
+          <h5 className="previous-crumb-tab">HOME</h5>
         </Link>
         {newCrumbs}
       </div>
