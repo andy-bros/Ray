@@ -3,6 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import LoadingDots from "../animations/Loading";
 import BreadCrumbNav from "../BreadCrumb/BreadCrumb";
+
+const imagesArr = [
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-Recapturing-Authentic-Apostolic-Christianity-banner-768x277.png",
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-Shadows-of-the-Cross-banner-.png",
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-The-Bait-of-Satan.png",
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-The-Battle-of-the-Mind-banner-.png",
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-The-Discipleship-of-Abraham-Banner-1-768x277.png",
+  "https://s3.amazonaws.com/raymp3s/Images/RaySermonOnTheMound.png",
+  "https://s3.amazonaws.com/raymp3s/Images/Ray-The-Word-Became-Flesh-banner.png",
+  "https://s3.amazonaws.com/raymp3s/Images/RAY-WarOfTheWorld.jpg"
+];
 class Messages extends Component {
   state = {
     messages: [],
@@ -29,12 +40,25 @@ class Messages extends Component {
           to={`/${this.props.type[0].toLowerCase() +
             this.props.type.slice(1)}/${i}`}
         >
-          <div className="ea-message-title" style={{ visibility: {} }}>
-            <h1>
-              {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
-                .split("_")
-                .join(" ")}
-            </h1>
+          <div
+            className="ea-message-title"
+            style={
+              this.props.type === "Courses"
+                ? {
+                    backgroundImage: `url(${imagesArr[i]})`,
+                    backgroundSize: "280px 150px",
+                    backgroundRepeat: "no-repeat"
+                  }
+                : {}
+            }
+          >
+            {this.props.type !== "Courses" && (
+              <h1>
+                {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
+                  .split("_")
+                  .join(" ")}
+              </h1>
+            )}
           </div>
         </Link>
       );
