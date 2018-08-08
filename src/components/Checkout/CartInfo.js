@@ -14,7 +14,8 @@ export class CartInfo extends Component {
     super();
     this.state = {
       edits: [],
-      allFalse: []
+      allFalse: [],
+      animate: false
     };
   }
   componentDidMount() {
@@ -40,8 +41,12 @@ export class CartInfo extends Component {
     }
     this.setState({ edits: edits });
   };
-  removeItem = id => {};
+  removeItem = id => {
+    this.setState({ animate: true });
+    this.props.deleteFromCart(id);
+  };
   render() {
+    console.log(this.state.animate);
     const cart = this.props.cart.map((e, i) => {
       return (
         <div key={i} className="product-container">
@@ -68,8 +73,12 @@ export class CartInfo extends Component {
             </div>
             <h6>FREE</h6>
             <button
-              className="btn-condition warning"
-              onClick={() => this.props.deleteFromCart(e.product_id)}
+              className={
+                this.state.animate
+                  ? "btn-condition warning animate-removal"
+                  : "btn-condition warning"
+              }
+              onClick={() => this.removeItem(e.product_id)}
             >
               REMOVE
             </button>

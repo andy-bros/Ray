@@ -68,13 +68,13 @@ nav {
   padding: 9px;
   font-size: 14px;
 }
-.cart,
-.donate-link {
+.cart {
   font-size: 25px;
   margin-left: 0.8rem;
   color: $grease;
   @extend %pseudoNavs;
 }
+
 .nav-item {
   @include flex(center, center, column);
   @include dimensions(100vw, calc(25vh - 16px), 0px);

@@ -11,6 +11,7 @@ import {
 import CartInfo from "./CartInfo";
 import EmptyCartInfo from "./EmptyCartInfo";
 import axios from "axios";
+import swal from "sweetalert2";
 class Checkout extends Component {
   constructor() {
     super();
@@ -46,9 +47,16 @@ class Checkout extends Component {
   };
   submitForm = event => {
     console.log("submitting...", this.state);
-    axios.post("/api/send-email", { ...this.state });
-    this.props.emptyCart();
-    this.props.history.push("/");
+
+    swal({
+      type: "success",
+      title: "Your order has been placed.",
+      text: "Check the email you provided for a confirmation receipt."
+    }).then(() => {
+      axios.post("/api/send-email", { ...this.state });
+      this.props.emptyCart();
+      this.props.history.push("/");
+    });
   };
   componentDidMount() {
     this.props.getCart();
