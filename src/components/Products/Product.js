@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { addToCart } from "./../../redux/cartReducer";
 import bookImg from "./../../assets/rayNewBookImage.jpeg";
-import cdImg from "./../../assets/raynewImageCd.jpeg";
+import cdImg from "./../../assets/rayCdsImage.JPG";
 import Component404 from "./../404/Component404";
 
 class Product extends React.Component {

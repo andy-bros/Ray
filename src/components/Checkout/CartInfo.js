@@ -7,7 +7,8 @@ import {
   emptyCart
 } from "./../../redux/cartReducer";
 import bookImg from "./../../assets/rayNewBookImage.jpeg";
-import cdImg from "./../../assets/raynewImageCd.jpeg";
+// import cdImg from "./../../assets/raynewImageCd.jpeg";
+import cdImg from "./../../assets/rayCdsImage.JPG";
 
 export class CartInfo extends Component {
   constructor() {

@@ -46,8 +46,8 @@ class TopNavTake2 extends Component {
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         {navigationTop.slice(0, 2)}
         <Link to="/">
-          {/* <h1 style={{ fontFamily: "Neo Sans" }}>PR</h1> */}
-          <img src={logo} width="75px" onClick={() => handleNav(false)} />
+          <h1 className="logo-font">PR</h1>
+          {/* <img src={logo} width="75px" onClick={() => handleNav(false)} /> */}
         </Link>
         {navigationTop.slice(2)}
         <Link to="/checkout">
