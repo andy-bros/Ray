@@ -11,7 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      opened: null,
+      opened: 0,
       navLinks: [
         // { nav: "HOME", to: "/" },
         { nav: "PRODUCTS", to: "/products" },
@@ -23,9 +23,12 @@ class App extends Component {
     };
   }
   handleNav = val => {
-    this.setState({ opened: val });
+    if (this.state.opened != val) {
+      this.setState({ opened: val });
+    }
   };
   render() {
+    console.log(this.state.opened);
     let mappedLinks = this.state.navLinks.map((e, i) => {
       return (
         <Link
@@ -38,7 +41,6 @@ class App extends Component {
         </Link>
       );
     });
-    console.log(this.state.opened);
     return (
       <Provider store={store}>
         <Router>
@@ -49,7 +51,7 @@ class App extends Component {
               <section id="routes" onLoad={() => window.scroll(0, 0)}>
                 {routes}
                 <Link to="donate">
-                  <i class="fas fa-donate donate-link" />
+                  <i className="fas fa-donate donate-link" />
                 </Link>
               </section>
               <Footer />
