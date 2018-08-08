@@ -35,7 +35,7 @@ class TopNavTake2 extends Component {
           className="navlinks-spread"
           key={e.to}
           to={e.to}
-          onClick={() => this.handleNav(false)}
+          onClick={() => this.props.handleNav(false)}
         >
           <div className="nav-item-spread">{e.nav}</div>
         </Link>

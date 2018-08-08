@@ -91,6 +91,18 @@
     }
   }
 }
+.animate-removal {
+  animation: dismissalLeft, 1s;
+}
+@keyframes dismissalLeft {
+  from {
+    position: relative;
+    left: 0;
+  }
+  to {
+    left: -100vw;
+  }
+}
 .component404 {
   h2 {
     padding: 0;
