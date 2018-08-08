@@ -10,9 +10,12 @@ export default class Home extends Component {
           <div className="splash-text">
             <h1 className="main-title">PastorRay.com</h1>
             <h2 className="sub-heading">
-              "The Lord has given me the tongue of a disciple<br /> that I may
+              Welcome to our donation supported website offering teaching<br />
+              materials to the Body of Christ designed to bless the family of<br />
+              God and advance His Kingdom
+              {/* "The Lord has given me the tongue of a disciple<br /> that I may
               know how to sustain the weary one with<br /> a word"<br /> -Isaiah
-              50:4{" "}
+              50:4{" "} */}
             </h2>
           </div>
         </div>
@@ -27,21 +30,18 @@ export default class Home extends Component {
               <h2>ABOUT PASTOR RAY</h2>
               <p>
                 Pastor Ray McCollum has been in pastoral ministry in Middle
-                Tennessee for the past 35 years and is the founder of Bethel
-                World Outreach Center in Brentwood, TN, established in 1984.
+                Tennessee since 1983
               </p>
               <p>
                 He is widely known for his Bible-teaching ministry and gift of
                 revelation, which flows out of a “prophetic view” of the Bible,
                 where the “big picture” of scripture is used to explain and
                 interpret the details. His book, “The Power Of God-Given
-                Imagination” was published by Whitaker House last year.
+                Imagination” was published by Whitaker House.
               </p>
               <p>
-                Ray came to Christ in 1971, and entered the ministry at age 43,
-                after 25 years in the business world. Ray and his wife Elizabeth
-                have been married 52 years and have 2 children and 7
-                grandchildren.
+                Pastor Ray is pleased to offer the teaching materials on this
+                website on a donation basis. We trust you will be blessed!
               </p>
             </figcaption>
           </content>
