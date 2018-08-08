@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LoadingDots from "../animations/Loading";
-
+import BreadCrumbNav from "../BreadCrumb/BreadCrumb";
 class Messages extends Component {
   state = {
     messages: [],
@@ -18,7 +18,7 @@ class Messages extends Component {
   render() {
     let { messages } = this.state;
     let { type } = this.props;
-    console.log("messages", messages);
+    // console.log("CRUMBS", this.props.crumbs);
     let mappedMessages = messages.map((e, i) => {
       let visibility = "hidden";
       setTimeout(() => (visibility = "visible"), i);
@@ -41,6 +41,7 @@ class Messages extends Component {
     });
     return (
       <Fragment>
+        <BreadCrumbNav crumbs={this.props.crumbs} />
         {messages.length !== 0 ? (
           <div className="message-titles">{mappedMessages}</div>
         ) : (
