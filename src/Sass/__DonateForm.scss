@@ -25,7 +25,7 @@
   font-size: 1.8rem;
 }
 %submitStyle {
-  @include dimensions(90vw, 38px, 3px);
+  @include dimensions(55%, 38px, 3px);
   background: $stripe-green;
   max-width: 600px;
   margin: 1rem auto;
@@ -79,7 +79,7 @@
     }
     &.lead {
       background: $stripe-green;
-      width: 90%;
+      width: 55%;
       max-width: 400px;
       margin-top: 25px;
     }
@@ -157,7 +157,9 @@
   }
 }
 .donate-link {
-  font-size: 70px;
+  @extend %pseudoNavs;
+
+  font-size: 45px;
   color: $stripe-green;
   position: fixed;
   bottom: 25px;

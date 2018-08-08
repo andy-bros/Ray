@@ -35,7 +35,7 @@ class TopNavTake2 extends Component {
           className="navlinks-spread"
           key={e.to}
           to={e.to}
-          onClick={() => this.handleNav(false)}
+          onClick={() => this.props.handleNav(false)}
         >
           <div className="nav-item-spread">{e.nav}</div>
         </Link>
@@ -46,6 +46,7 @@ class TopNavTake2 extends Component {
         <Menu key="menu" opened={opened} handleNav={handleNav} />
         {navigationTop.slice(0, 2)}
         <Link to="/">
+          {/* <h1 style={{ fontFamily: "Neo Sans" }}>PR</h1> */}
           <img src={logo} width="75px" onClick={() => handleNav(false)} />
         </Link>
         {navigationTop.slice(2)}

@@ -35,7 +35,11 @@ export default (
     <Route
       path="*"
       render={() => (
-        <Component404 path="/" title="404 PAGE NOT FOUND" button="SAFETY" />
+        <Component404
+          pathRedirect="/"
+          title="404 PAGE NOT FOUND"
+          button="SAFETY"
+        />
       )}
     />
   </Switch>
