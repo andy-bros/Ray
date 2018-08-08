@@ -4,28 +4,32 @@ export default function Footer() {
   return (
     <footer className="footer-container">
       <section className="information">
-        <h4 className="bottom-border">GET IN TOUCH</h4>
+        <h4 className="bottom-border">CONTACT US</h4>
+        <span>
+          <h4 className="footer-headings">Email</h4>
 
-        <span>
-          <h4 className="footer-headings">Address</h4>
-          <p>
-            Celebration Church meets at Oak Hill Assembly of God 5200 Franklin
-            Pike Nashville, TN 37220
-          </p>
-        </span>
-        <span>
-          <h4 className="footer-headings">Service Hours</h4>
-          <p>Saturday nights from 5:00-6:30 PM</p>
-        </span>
-        <span>
-          <h4 className="footer-headings">Contact</h4>
           <a
             className="report-bug"
-            href={`mailto:info@ccnashville.com
+            href={`mailto:Ray@PastorRay.com
             ?subject=Greetings%20Pastor%20Ray&body=Lets%20grab%20a%20coffee!`}
           >
-            Ray@PastorRay.com
+            <p>Ray@PastorRay.com</p>
           </a>
+        </span>
+        <span>
+          <h4 className="footer-headings">Mailing Address</h4>
+          <p>330 Franklin Road Suite 135A-408 Brentwood,TN 37027</p>
+        </span>
+        <span>
+          <h4 className="footer-headings">Phone</h4>
+          <p>(615)477-2912</p>
+        </span>
+        <span>
+          <h4 className="footer-headings">Services</h4>
+          <p>
+            Celebration Church meets Saturdays at 5pm at Oak Hill Assembly of
+            God, 5200 Franklin Pike, Nashville, TN 37220
+          </p>
         </span>
       </section>
       <section className="social-media" />
