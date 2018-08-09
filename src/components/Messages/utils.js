@@ -51,9 +51,9 @@ class Messages extends Component {
                     backgroundSize: "280px 150px",
                     backgroundRepeat: "no-repeat"
                   }
-                : this.props.type === "Courses" && {backgroundImage: `url(${imagesArr[i]})`,
+                : this.props.type === "Courses"? {backgroundImage: `url(${imagesArr[i]})`,
                 backgroundSize: "280px 150px",
-                backgroundRepeat: "no-repeat"}
+                backgroundRepeat: "no-repeat"}:{}
             }
           >
           
