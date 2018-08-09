@@ -11,7 +11,7 @@ class MobileApp extends Component{
           <h2 className="native-title">MOBILE APP</h2>
           <h4>Sermons, Bible, Calendar, Resources, and More</h4>
           </div>
-          <iframe src="https://www.youtube.com/embed/RsiYpXkwqDE" />
+          <iframe allowTransparency="true" background="transparent" src="https://www.youtube.com/embed/RsiYpXkwqDE" />
           <div className="mobile-app-details-holder">
           <NativeDetails title="IT'S EASY" paragraph="There are several, easy to use menu buttons at the bottom of the app that make navigating a breeze.   Whether your’e looking for the most current sermon or interested in an upcoming church event, the mobile app makes it easy to find what you’re looking for with the click of a button!" />
           <NativeDetails title="IT'S USEFUL" paragraph="Aside from the powerful messages preached each week, the mobile app allows you to download sermons and sermon notes, read Pastor Ray’s blog posts, information on our church missions, church events, and more.  We send a push notification (text) once a new sermon has been posted to keep you in the know" />
