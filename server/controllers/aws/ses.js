@@ -1,12 +1,16 @@
 var nodemailer = require("nodemailer");
 var ses = require("nodemailer-ses-transport");
 
-var transporter = nodemailer.createTransport(
-  ses({
-    accessKeyId: process.env.AWSAccessKeyId,
-    secretAccessKey: process.env.AWSSecretKey
-  })
-);
+// var transporter = nodemailer.createTransport(
+//   ses({
+//     accessKeyId: process.env.AWSAccessKeyId,
+//     secretAccessKey: process.env.AWSSecretKey
+//   })
+// );
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_PASS }
+});
 
 const emailRay = (req, res) => {
   console.log(req.body);
