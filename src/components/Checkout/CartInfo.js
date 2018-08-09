@@ -9,6 +9,7 @@ import {
 import bookImg from "./../../assets/rayNewBookImage.jpeg";
 // import cdImg from "./../../assets/raynewImageCd.jpeg";
 import cdImg from "./../../assets/rayCdsImage.JPG";
+import {Link} from'react-router-dom';
 
 export class CartInfo extends Component {
   constructor() {
@@ -106,6 +107,9 @@ export class CartInfo extends Component {
             UPDATE
           </button>
         )}
+<Link to="/products">
+        <h4>CONTINUE SHOPPING</h4>
+        </Link>
       </div>
     );
   }

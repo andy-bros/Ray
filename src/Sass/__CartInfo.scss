@@ -1,3 +1,17 @@
+.donation-alert-holder{
+  max-width: 500px;
+  min-width: 320px;
+  padding: 0 50px;
+  background:rgba(204,0,0,.5);
+  height: 200px;
+  @include flex(center,center,row);
+  margin:auto ;
+  line-height: 20px;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  text-align: center
+
+}
 .cart-info {
   @include dimensions(95vw, auto, 0px);
   max-width: 1100px;

@@ -15,7 +15,7 @@ class App extends Component {
       navLinks: [
         // { nav: "HOME", to: "/" },
         { nav: "PRODUCTS", to: "/products" },
-        { nav: "SERMON SERIES", to: "/courses" },
+        { nav: "COURSES", to: "/courses" },
         // { nav: "CHECKOUT", to: "/checkout" },
         { nav: "INDIVIDUAL MESSAGES", to: "/messages" },
         { nav: "DONATE", to: "/donate" }
