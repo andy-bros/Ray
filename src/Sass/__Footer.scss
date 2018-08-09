@@ -19,11 +19,11 @@
     margin-bottom: 8px;
     width: max-content;
     padding-bottom: 5px;
-    border-bottom: .8px solid $stripe-green;
+    border-bottom: 0.8px solid $stripe-green;
   }
   .information {
     @include flex(space-around, flex-start, column);
-    @include dimensions(calc(100% - 50px), 350px, 0);
+    @include dimensions(calc(100% - 50px), 400px, 0);
     max-width: 600px;
   }
   .social-media {

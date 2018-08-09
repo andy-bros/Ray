@@ -14,7 +14,7 @@ nav {
     @include dimensions(100vw, 60px, 0px);
     @include flex(space-between, center, row);
     flex-wrap: nowrap;
-    padding: 2rem;
+    padding: 2rem 2rem 2rem 7.5rem;
     width: 100%;
     position: fixed;
     top: 0;
@@ -63,6 +63,11 @@ nav {
     &.hidden {
       right: 100vw;
     }
+  }
+}
+@media (max-width: 899px) {
+  nav.top {
+    padding-left: 2rem;
   }
 }
 .cart-notification {

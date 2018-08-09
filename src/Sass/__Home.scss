@@ -2,56 +2,78 @@ iframe {
   width: 80vw;
   height: 450px;
 }
-#native-app-holder{
-  @include flex(center,center,column);
-  
+#native-app-holder {
+  @include flex(center, center, column);
 }
-.bouncing-arrow{
-  margin-bottom:100px;
+.bouncing-arrow {
+  visibility: hidden;
 }
-.native-title{
-  color:$stripe-green;
+@media (min-width: 743px) {
+  .bouncing-arrow {
+    visibility: visible;
+    color: $stripe-green;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 26px);
+    font-size: 50px;
+    z-index: 2;
+    animation: bounce 2s infinite;
+    &.background {
+      visibility: visible;
+      background: white;
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      left: calc(50% - 24px);
+      bottom: 1px;
+      border-radius: 100%;
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+  }
+}
+
+.native-title {
+  color: $stripe-green;
   border-bottom: 2px solid black;
   padding-bottom: 5px;
   text-align: center;
   font-weight: 900;
-  font-size:40px;
+  font-size: 40px;
   // color: #222;
   letter-spacing: 5px;
 }
-.native-header-holder{
+.native-header-holder {
   height: 100px;
-@include flex(space-around,center,column)
-margin-bottom: 50px;
-h4{
-  letter-spacing:3px;
-  text-align:center;
+  @include flex(space-around, center, column);
+  margin-bottom: 50px;
+  h4 {
+    letter-spacing: 3px;
+    text-align: center;
+  }
 }
-}
-.native-icon-holder{
+.native-icon-holder {
   margin: 80px 0;
   width: 320px;
-@include flex(space-between,center,row)
+  @include flex(space-between, center, row);
 }
-.mobile-app-details-holder{
+.mobile-app-details-holder {
   width: 100vw;
-  @include flex(space-around,center,row);
-  
+  @include flex(space-around, center, row);
 }
-.ea-mobile-app-detail{
+.ea-mobile-app-detail {
   width: 320px;
   height: 250px;
   text-align: center;
   line-height: 25px;
-  @include flex(center,center,column)
-
-  h2{
+  @include flex(center, center, column);
+  h2 {
     letter-spacing: 2px;
-    color:$stripe-green;
+    color: $stripe-green;
     font-weight: 800;
     font-size: 20px;
     border-bottom: 2px solid black;
-    margin:0 0 7px 0;
+    margin: 0 0 7px 0;
     padding-bottom: 3px;
   }
 }
@@ -93,7 +115,6 @@ h4{
   }
 }
 
-
 ////////////////////////////////
 @media screen and (min-width: 600px) {
   .home-page {
@@ -133,10 +154,10 @@ h4{
 .about-section {
   padding: 7rem 0;
   // margin-top: 200px;
-  h2{
-    color:$stripe-green;
+  h2 {
+    color: $stripe-green;
     border-bottom: 2px solid black;
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
 }
 @media (min-width: 430px) {
@@ -200,5 +221,20 @@ h4{
     .sub-heading {
       width: max-content;
     }
+  }
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-10px);
   }
 }
