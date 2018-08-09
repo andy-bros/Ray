@@ -67,10 +67,19 @@ class GiftAmount extends Component {
                 id="money-input"
                 type="number"
                 placeholder="Other Amount"
-                onChange={event =>
-                  this.props.handleChange({ event, value: event.target.value })
-                }
+                step="10"
+                min="20"
+                onChange={event => {
+                  console.log(event.target.value);
+                  this.props.handleChange({
+                    event,
+                    value: event.target.value.replace(/[.]+/g, "")
+                  });
+                }}
               />
+              <span className="required-input" require="true">
+                *
+              </span>
             </div>
             <div className="ctrl-inputs">{mappedFrequencies}</div>
           </section>
@@ -190,7 +199,6 @@ export class DonateForm extends Component {
           text: "Check inputs again."
         });
       });
-    // console.log(token);
   };
   render() {
     return (
