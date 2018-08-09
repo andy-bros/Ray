@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import data from "./../../assets/data";
-import ArrowDown from "../../assets/angle-double-down-solid.svg"
-import MobileApp from './MobileApp';
+import ArrowDown from "../../assets/angle-double-down-solid.svg";
+import MobileApp from "./MobileApp";
 
 export default class Home extends Component {
   render() {
@@ -20,8 +20,9 @@ export default class Home extends Component {
               50:4{" "} */}
             </h2>
           </div>
-        <a href="#about">
-          <img className="bouncing-arrow" src={ArrowDown} width="50px" height="50px"/>
+          <a href="#about">
+            <i class="bouncing-arrow fas fa-arrow-circle-down" />
+            <span className="bouncing-arrow background" />
           </a>
         </div>
         <section className="about-section" id="about">
@@ -31,7 +32,7 @@ export default class Home extends Component {
               src={data.profilePic}
               width="200px"
             />
-            <figcaption className="description flex-column" >
+            <figcaption className="description flex-column">
               <h2>ABOUT PASTOR RAY</h2>
               <p>
                 Pastor Ray McCollum has been in pastoral ministry in Middle
