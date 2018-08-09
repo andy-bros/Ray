@@ -35,6 +35,7 @@ class Products extends React.Component {
             <img src={e.product_id == 1 ? bookImg : cdImg} height="390px" />
           </Link>
           <h2 className="text-center heavy">{e.product_name}</h2>
+          {/* <h4>{e.product_desciption}</h4> */}
           <h4>FREE</h4>
           <button className="btn-primary" onClick={() => this.addToCartFn(e)}>
             Add To Cart
