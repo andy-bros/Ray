@@ -190,44 +190,7 @@ app.get("/api/products", getProducts);
 
 app.get("/api/getmessages", getMessageSermons);
 
-// app.post("/api/send-email", ses.emailRay);
-var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS
-  }
-});
-app.post("/api/send-email", (req, res, next) => {
-  console.log(req.body.messsage);
-
-  // var name = req.body.name;
-  // var email = req.body.email;
-  // var messsage = req.body.messsage;
-  var content = `name: Joe \n email: Yo \n message: i hope this works `;
-
-  var mail = {
-    from: "Joe",
-    to: "josephiznot@gmail.com",
-    subject: "New Message from Contact Form",
-    html: content
-  };
-
-  transporter.sendMail(mail, err => {
-    if (err) {
-      res.json({
-        msg: "fail"
-      });
-    } else {
-      res.json({
-        msg: "success"
-      });
-    }
-  });
-});
+app.post("/api/send-email", ses.emailRayOrder);
 
 const path = require("path");
 app.get("*", (req, res) => {

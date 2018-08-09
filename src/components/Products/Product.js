@@ -31,7 +31,7 @@ class Product extends React.Component {
         {item ? (
           <div key={item.product_id} className="each-product">
             <h2 className="section-titles">{item.product_name}</h2>
-            <img src={item.product_id == 1 ? cdImg : bookImg} height="390px" />
+            <img src={item.product_id == 1 ? cdImg : bookImg} height="245px" />
             <figcaption className="description flex-column">
               <h2>Description</h2>
               <br />
