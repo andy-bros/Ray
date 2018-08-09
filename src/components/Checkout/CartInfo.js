@@ -53,7 +53,7 @@ export class CartInfo extends Component {
       return (
         <div key={i} className="product-container">
           <section className="split-info left">
-            <img src={e.product_id == 2 ? cdImg : bookImg} height="75px" />
+            <img src={e.product_id == 2 ? bookImg : cdImg} height="120px" />
           </section>
           <section className="split-info right">
             <h5 className="product-name">{e.product_name}</h5>
@@ -99,6 +99,9 @@ export class CartInfo extends Component {
           </aside>
         </header>
         <div className="cart-border">{cart}</div>
+        <Link to="/products">
+          <button className="btn-primary auto-width">CONTINUE SHOPPING</button>
+        </Link>
         {this.state.edits.includes(true) && (
           <button
             className="btn-condition lead"
