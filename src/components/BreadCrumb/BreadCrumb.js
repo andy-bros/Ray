@@ -29,7 +29,7 @@ class BreadCrumb extends Component {
     return (
       <div className="breadcrumb-nav">
         <Link to="/">
-          <pre className="previous-crumb-tab">HOME > </pre>
+          <pre className="previous-crumb-tab" style={{marginLeft:"10px"}}>HOME > </pre>
         </Link>
         {newCrumbs}
       </div>
