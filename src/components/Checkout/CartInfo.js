@@ -110,6 +110,9 @@ export class CartInfo extends Component {
             UPDATE
           </button>
         )}
+        <Link to="/products">
+          <button>CONTINUE SHOPPING</button>
+        </Link>
       </div>
     );
   }
