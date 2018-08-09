@@ -10,11 +10,13 @@
 }
 .each-product {
   @include flex(space-around, center, column);
-  @include dimensions(95vw, 1200px, 0px);
+  @include dimensions(95vw, auto, 0px);
   max-width: 600px;
   margin: 0 auto;
   padding: 10px;
-
+  * {
+    padding: 20px 0;
+  }
   p {
     line-height: 26px;
   }
@@ -23,6 +25,7 @@
     text-align: center;
   }
 }
+
 @media (min-width: 768px) {
   .products-container {
     @include flex(space-around, center, row);
