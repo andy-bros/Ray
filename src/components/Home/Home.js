@@ -14,10 +14,7 @@ export default class Home extends Component {
             <h2 className="sub-heading">
               Welcome to our donation supported website offering teaching<br />
               materials to the Body of Christ designed to bless the family of<br />
-              God and advance His Kingdom
-              {/* "The Lord has given me the tongue of a disciple<br /> that I may
-              know how to sustain the weary one with<br /> a word"<br /> -Isaiah
-              50:4{" "} */}
+              God and advance His Kingdom.
             </h2>
           </div>
           <a href="#about">

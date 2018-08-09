@@ -28,11 +28,10 @@ class Products extends React.Component {
   render() {
     let { messages } = this.state;
     let newMessages = messages.map(e => {
-      console.log(e);
       return (
         <div key={e.product_id} className="product-in-store">
           <Link to={`/products/${e.product_id}`}>
-            <img src={e.product_id == 1 ? bookImg : cdImg} height="390px" />
+            <img src={e.product_id == 1 ? cdImg : bookImg} height="300px" />
           </Link>
           <h2 className="text-center heavy">{e.product_name}</h2>
           <h4>FREE</h4>

@@ -8,12 +8,14 @@ var ses = require("nodemailer-ses-transport");
 //   })
 // );
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_PASS }
 });
 
 const emailRay = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body)
   const items = req.session.cart.map((e, i, a) => {
     return `
     ${e.product_name}: x${e.quantity}
@@ -31,10 +33,11 @@ const emailRay = (req, res) => {
     state,
     zipCode
   } = req.body;
-  transporter
-    .sendMail({
+
+  transporter.sendMail(
+    {
       from: "raymccollum7@gmail.com",
-      to: "raymccollum7@gmail.com",
+      to: "josephiznot@gmail.com",
       subject: `**NEW ORDER**`,
       text: `
       Customer:
@@ -47,11 +50,14 @@ const emailRay = (req, res) => {
       Request:
         ${items}
       `
-    })
-    .then(response => {
-      res.status(200).send("email sent");
-    })
-    .catch(console.log);
+    },
+    function(err, info) {
+      if (err) console.log(err);
+      else {
+        res.status(200).send("succcess");
+      }
+    }
+  );
 };
 module.exports = {
   emailRay

@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import Menu from "./../animations/Menu";
 import { DonateBtn } from "./../Donate/Customs";
 import { Link } from "react-router-dom";
-import logo from "./RMGrey.jpg";
 import { getCart } from "./../../redux/cartReducer";
 import { connect } from "react-redux";
-import RayLogo from '../../assets/rayLOGO.png';
+import RayLogo from "../../assets/rayLOGO.png";
 
 class TopNavTake2 extends Component {
   constructor() {
