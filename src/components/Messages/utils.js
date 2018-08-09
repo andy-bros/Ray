@@ -31,8 +31,8 @@ class Messages extends Component {
     let { type } = this.props;
     // console.log("CRUMBS", this.props.crumbs);
     let mappedMessages = messages.map((e, i) => {
-      let visibility = "hidden";
-      setTimeout(() => (visibility = "visible"), i);
+      // let visibility = "hidden";
+      // setTimeout(() => (visibility = "visible"), i);
       console.log(e);
       return (
         <Link
@@ -43,15 +43,20 @@ class Messages extends Component {
           <div
             className="ea-message-title"
             style={
-              this.props.type === "Courses"
+              this.props.type === "Courses" && (i ===5 || i ===7)
                 ? {
+                  border:"10px solid rgba(201,0,0,.7)",
+                  borderRadius:"10px",
                     backgroundImage: `url(${imagesArr[i]})`,
                     backgroundSize: "280px 150px",
                     backgroundRepeat: "no-repeat"
                   }
-                : {}
+                : this.props.type === "Courses" && {backgroundImage: `url(${imagesArr[i]})`,
+                backgroundSize: "280px 150px",
+                backgroundRepeat: "no-repeat"}
             }
           >
+          
             {this.props.type !== "Courses" && (
               <h1>
                 {e.Title.slice(this.props.type.length + 1, e.Title.length - 1)
@@ -60,6 +65,8 @@ class Messages extends Component {
               </h1>
             )}
           </div>
+          {this.props.type === "Courses" && (i ===5 || i ===7) && <p id="notice-current-message">Most Current Series</p>}
+
         </Link>
       );
     });
