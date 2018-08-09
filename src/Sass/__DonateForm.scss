@@ -93,6 +93,12 @@
   & > div {
     max-width: 300px;
   }
+  .required-input {
+    position: relative;
+    top: -15px;
+    left: -10px;
+    font-size: 19px;
+  }
 }
 .ctrl-inputs {
   @include dimensions(90vw, 40px, 0px);

@@ -26,6 +26,7 @@ class Product extends React.Component {
     let item = this.state.products.find(
       product => product.product_id == this.props.match.params.id
     );
+    console.log("please done error for me");
     return (
       <div>
         {item ? (
@@ -48,7 +49,7 @@ class Product extends React.Component {
         ) : (
           <Component404
             title="ITEM NOT FOUND"
-            path="/products"
+            pathRedirect="/products"
             button="PRODUCTS"
           />
         )}

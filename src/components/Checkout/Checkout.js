@@ -49,15 +49,25 @@ class Checkout extends Component {
   submitForm = event => {
     console.log("submitting...", this.state);
 
-    swal({
-      type: "success",
-      title: "Your order has been placed.",
-      text: "Check the email you provided for a confirmation receipt."
-    }).then(() => {
-      axios.post("/api/send-email", { ...this.state });
-      this.props.emptyCart();
-      this.props.history.push("/");
-    });
+    axios
+      .post("/api/send-email", { ...this.state })
+      .then(() => {
+        swal({
+          type: "success",
+          title: "Your order has been placed.",
+          text: "Check the email you provided for a confirmation receipt."
+        }).then(() => {
+          this.props.emptyCart();
+          this.props.history.push("/");
+        });
+      })
+      .catch(err => {
+        swal({
+          type: "error",
+          title: "Invalid credentials",
+          text: "Check inputs again."
+        });
+      });
   };
   componentDidMount() {
     this.props.getCart();
