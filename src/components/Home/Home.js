@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import data from "./../../assets/data";
+import rayProfile from "./ray.jpg";
 import ArrowDown from "../../assets/angle-double-down-solid.svg";
 import MobileApp from "./MobileApp";
 
 export default class Home extends Component {
   render() {
-    console.log(this.props);
     return (
       <main className="home-container">
         <div className="home-page">
@@ -24,11 +24,7 @@ export default class Home extends Component {
         </div>
         <section className="about-section" id="about">
           <content className="content-container">
-            <img
-              className="preaching-ray"
-              src={data.profilePic}
-              width="200px"
-            />
+            <img className="preaching-ray" src={rayProfile} width="200px" />
             <figcaption className="description flex-column">
               <h2>ABOUT PASTOR RAY</h2>
               <p>
