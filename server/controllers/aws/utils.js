@@ -14,10 +14,8 @@ const getMessages = function(e) {
     //
     //
     s3.listObjects({ Bucket: "raymp3s", Prefix: e }, function(err, tru) {
-      // console.log("THIS IS THE S3 OJECTS");
-      if (err) console.log(err);
+      if (err) console.error(err);
       if (tru) {
-        // console.log("AYYYEE");
         r(tru.Contents);
       }
     });
@@ -28,11 +26,9 @@ let messageSections = [];
 let coursesSections = [];
 const getMessageSermons = (req, res) => {
   if (req.query.section === "Courses" && coursesSections.length) {
-    console.log("Courses was sent");
     res.status(200).json(coursesSections);
     return;
   } else if (req.query.section === "Messages" && messageSections.length) {
-    console.log("Messages was sent");
     res.status(200).json(messageSections);
     return;
   }
@@ -45,7 +41,7 @@ const getMessageSermons = (req, res) => {
         Delimiter: "/"
       },
       function(err, res) {
-        if (err) console.log(err);
+        if (err) console.error(err);
         if (res) {
           // if (req.query.section === "Courses") {
           //   coursesSections = res.CommonPrefixes;
@@ -53,7 +49,6 @@ const getMessageSermons = (req, res) => {
           //   messageHolders = res.CommonPrefixes;
           // }
 
-          // console.log("====>", messageSections);
           resolve(res.CommonPrefixes);
         }
       }
@@ -72,10 +67,10 @@ const getMessageSermons = (req, res) => {
         } else if (req.query.section === "Messages") {
           messageSections = resultzz;
         }
-        // console.log(messageSections);
+
         res.status(200).json(resultzz);
       })
-      .catch(err => console.log("error on line 80", err));
+      .catch(console.error);
   });
 };
 

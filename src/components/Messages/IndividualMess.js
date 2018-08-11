@@ -28,13 +28,10 @@ class EachIndividualMessage extends Component {
     else if (num === "12") return "December";
   };
   componentDidMount() {
-    console.log(this.findMonth);
     let id = this.props.match.params.id;
     let key = Object.keys(this.props.match.params)[0];
     key = key[0].toUpperCase() + key.slice(1);
-    console.log(key);
     axios.get(`/api/getmessages?section=${key}`).then(res => {
-      console.log(res.data);
       let lastCrumbTitle = res.data[
         this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
       ].Title.split("/")[1];
@@ -46,7 +43,6 @@ class EachIndividualMessage extends Component {
           : res.data[
               this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
             ].messages[id].Key;
-      console.log(message.split("/")[2].slice(3, 11));
       let messageDate = message.split("/")[2];
       let preMessageName = messageDate.split("_").slice(1);
       // let messageName = `${preMessageName[1]} ${
@@ -54,12 +50,10 @@ class EachIndividualMessage extends Component {
       // } ${preMessageName[3].slice(0, preMessageName[3].length - 4)}`;
 
       preMessageName = preMessageName.join(" ");
-      console.log(preMessageName);
       let messageName = preMessageName.slice(0, preMessageName.length - 4);
       let date = `${this.findMonth(
         messageDate.slice(7, 9)
       )} ${messageDate.slice(9, 11)}, ${messageDate.slice(3, 7)}`;
-      console.log(date);
       this.setState({
         pdfQuery: queryString.parse(window.location.search).pdf,
         lastCrumbTitle,
@@ -92,13 +86,6 @@ class EachIndividualMessage extends Component {
       messageName,
       lastCrumbTitle
     } = this.state;
-    console.log(
-      this.props.location.pathname
-        .split("/")
-        .filter(v => v !== "")
-        .slice(0, 2)
-        .join("/")
-    );
     return (
       //if query pdf = true return this
       //make sure you always return an mp3 audio tape though

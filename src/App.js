@@ -6,6 +6,7 @@ import { StripeProvider } from "react-stripe-elements";
 import Footer from "./components/Navbar/Footer";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import { ScrollContext } from "react-router-scroll-4";
 
 class App extends Component {
   constructor() {
@@ -13,10 +14,8 @@ class App extends Component {
     this.state = {
       opened: 0,
       navLinks: [
-        // { nav: "HOME", to: "/" },
         { nav: "PRODUCTS", to: "/products" },
         { nav: "COURSES", to: "/courses" },
-        // { nav: "CHECKOUT", to: "/checkout" },
         { nav: "MESSAGES", to: "/messages" },
         { nav: "DONATE", to: "/donate" }
       ]
@@ -43,19 +42,21 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
-            <Fragment>
-              <TopNavbar {...this.state} handleNav={this.handleNav} />
-              <SideNavbar {...this.state} mappedLinks={mappedLinks} />
-              <section id="routes" onLoad={() => window.scroll(0, 0)}>
-                {routes}
-                <Link to="donate">
-                  <i className="fas fa-donate donate-link" />
-                </Link>
-              </section>
-              <Footer />
-            </Fragment>
-          </StripeProvider>
+          <ScrollContext>
+            <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+              <Fragment>
+                <TopNavbar {...this.state} handleNav={this.handleNav} />
+                <SideNavbar {...this.state} mappedLinks={mappedLinks} />
+                <section id="routes">
+                  {routes}
+                  <Link to="donate">
+                    <i className="fas fa-donate donate-link" />
+                  </Link>
+                </section>
+                <Footer />
+              </Fragment>
+            </StripeProvider>
+          </ScrollContext>
         </Router>
       </Provider>
     );
