@@ -89,6 +89,7 @@ app.post("/charge", (req, res) => {
         description: `A one time payment for ${req.body.name}`,
         source: req.body.token,
         receipt_email: req.body.email
+        //check for email
       })
       .then(res =>
         //send back to the front end to let know that everything is successful
