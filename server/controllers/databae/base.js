@@ -1,8 +1,6 @@
 let products = [];
 
 const getProducts = (req, res) => {
-  console.log("hit");
-  // console.log(req.app.get);
   if (products.length) {
     res.status(200).json(products);
   } else {
@@ -13,7 +11,7 @@ const getProducts = (req, res) => {
         products = results;
         res.status(200).json(results);
       })
-      .catch(() => console.log("error"));
+      .catch(console.log);
   }
 };
 

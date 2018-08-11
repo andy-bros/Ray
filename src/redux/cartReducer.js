@@ -33,7 +33,6 @@ export function updateCart(newCart) {
   };
 }
 export function emptyCart() {
-  console.log("hello");
   return {
     type: EMPTY_CART,
     payload: axios.delete("/api/empty-cart")
@@ -47,7 +46,6 @@ export default function cartReducer(state = initialState, action) {
     case `${GET_CART}_FULFILLED`:
     case `${UPDATE_CART}_FULFILLED`:
     case `${EMPTY_CART}_FULFILLED`:
-      console.log(action.payload);
       return { ...state, cart: action.payload.data };
     default:
       return state;

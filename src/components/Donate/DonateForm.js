@@ -70,7 +70,6 @@ class GiftAmount extends Component {
                 step="10"
                 min="20"
                 onChange={event => {
-                  console.log(event.target.value);
                   this.props.handleChange({
                     event,
                     value: event.target.value.replace(/[.]+/g, "")

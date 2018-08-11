@@ -48,7 +48,6 @@ export class CartInfo extends Component {
     this.props.deleteFromCart(id);
   };
   render() {
-    console.log(this.state.animate);
     const cart = this.props.cart.map((e, i) => {
       return (
         <div key={i} className="product-container">

@@ -12,9 +12,6 @@ import EachIndividualMessage from "./components/Messages/IndividualMess";
 import Component404 from "./components/404/Component404";
 
 export default (
-  /*
-    Here is the backbone for our routes.
-   */
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/products/:id" component={Product} />

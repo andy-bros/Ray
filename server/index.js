@@ -29,7 +29,7 @@ app.use(
 // }
 massive(process.env.DB_CONNECTION)
   .then(db => app.set("db", db))
-  .catch(() => console.log("error"));
+  .catch(console.log);
 app.use((req, _, next) => {
   if (!req.session.cart) {
     req.session.cart = [];
@@ -48,17 +48,16 @@ app.post("/api/add-to-cart", (req, res) => {
   } else {
     cart[index].quantity++;
   }
-  // console.log(req.session.cart);
+
   let email = req.session.cart.map((e, i) => {
     return { item: e.product_name, quantity: e.quantity };
   });
-  console.log(email);
+
   res.status(200).send(cart);
 });
 app.delete("/api/delete-from-cart/:id", (req, res) => {
   const i = req.session.cart.findIndex(e => e.product_id == req.params.id);
   req.session.cart.splice(i, 1);
-  console.log(req.session.cart);
   res.status(200).send(req.session.cart);
 });
 app.put("/api/update-cart", (req, res) => {
@@ -72,7 +71,7 @@ app.put("/api/update-cart", (req, res) => {
 });
 app.delete("/api/empty-cart", (req, res) => {
   req.session.cart = []; //DONT KILL SESSION. JUST EMPTY CART;
-  console.log(req.session.cart);
+
   res.status(200).send(req.session.cart);
 });
 
@@ -91,14 +90,14 @@ app.post("/charge", (req, res) => {
         receipt_email: req.body.email
         //check for email
       })
-      .then(res =>
+      .then(
         //send back to the front end to let know that everything is successful
-        console.log(res)
+        console.log
       )
-      .catch(err =>
+      .catch(
         //send back to the front end to let know that an error occurred
 
-        console.log(err)
+        console.log
       );
     return;
   } else if (req.body.checked === "monthly") {
@@ -129,14 +128,12 @@ app.post("/charge", (req, res) => {
           },
           function(err, plan) {
             // asynchronously called
-            console.log(plan.id);
             subPlan = plan.id;
           }
         );
       }
     };
     if (!req.session.customer) {
-      console.log("customer is not present");
       planForSub();
       //make new customer
       stripe.customers.create(
@@ -151,7 +148,6 @@ app.post("/charge", (req, res) => {
           //store the customer id on sessions
           if (err) console.log("ERROR", err);
           else if (customers) {
-            console.log("CUSTOMER ID", customers.id);
             //this is where the customer id needs to save to sessions
             req.session.customer = customers.id;
             stripe.subscriptions.create(
@@ -170,7 +166,6 @@ app.post("/charge", (req, res) => {
         }
       );
     } else {
-      console.log("customer is on sessions");
       stripe.subscriptions.create(
         {
           customer: req.session.customer,

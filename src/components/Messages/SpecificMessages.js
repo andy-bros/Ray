@@ -10,16 +10,9 @@ class SpecificMessages extends Component {
     title: ""
   };
   componentDidMount() {
-    console.log(this.props.match.params);
     let key = Object.keys(this.props.match.params)[0];
     key = key[0].toUpperCase() + key.slice(1);
-    console.log(key);
     axios.get(`/api/getmessages?section=${key}`).then(res => {
-      console.log(
-        res.data[
-          this.props.match.params[key[0].toLocaleLowerCase() + key.slice(1)]
-        ]
-      );
       this.setState({
         title:
           key === "Courses"
@@ -64,14 +57,11 @@ class SpecificMessages extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props.location.pathname.split("/")[1]);
     let { messages, title } = this.state;
     let newMessages = messages.map((e, i, a) => {
-      console.log("eeee", a[i + 1]);
       let notesFlag = false;
       // let nextArr = [];
       let str = e.Key.split("/")[2];
-      // console.log("check for mp3", a[i + 1].includes("mp3"));
       if (
         i !== a.length - 1 &&
         str.includes("mp3") &&

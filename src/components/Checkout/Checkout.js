@@ -12,7 +12,7 @@ import CartInfo from "./CartInfo";
 import EmptyCartInfo from "./EmptyCartInfo";
 import axios from "axios";
 import swal from "sweetalert2";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 class Checkout extends Component {
   constructor() {
     super();
@@ -39,9 +39,7 @@ class Checkout extends Component {
     };
   }
   handleChange = ({ event, value }) => {
-    console.log(this.state);
     [event.target.name][0] !== "checked" && event.preventDefault();
-    console.log(value);
     this.setState({
       [event.target.name]: value
     });
@@ -80,13 +78,15 @@ class Checkout extends Component {
           <div className="donation-page">
             <CartInfo />
             <Link to="/donate">
-            <div className="donation-alert-holder">
-              <h5>This website is a donation driven website. All teachings within this site are open and free to the public.
-                Any donation is appreciated, and can be used as a tax deductable. 
-              </h5>
-              <p>CLICK HERE TO DONATE</p>
+              <div className="donation-alert-holder">
+                <h5>
+                  This website is a donation driven website. All teachings
+                  within this site are open and free to the public. Any donation
+                  is appreciated, and can be used as a tax deductable.
+                </h5>
+                <p>CLICK HERE TO DONATE</p>
               </div>
-              </Link>
+            </Link>
             <Credentials
               values={this.state}
               inputFields={this.state.inputFields}

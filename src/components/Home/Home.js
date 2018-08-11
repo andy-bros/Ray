@@ -18,7 +18,7 @@ export default class Home extends Component {
             </h2>
           </div>
           <a href="#about">
-            <i class="bouncing-arrow fas fa-arrow-circle-down" />
+            <i className="bouncing-arrow fas fa-arrow-circle-down" />
             <span className="bouncing-arrow background" />
           </a>
         </div>
