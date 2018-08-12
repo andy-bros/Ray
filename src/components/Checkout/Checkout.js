@@ -45,8 +45,35 @@ class Checkout extends Component {
     });
   };
   submitForm = event => {
-    console.log("submitting...", this.state);
-
+    // console.log("submitting...", this.state);
+    let {
+      city,
+      emailAddress,
+      firstName,
+      lastName,
+      zipCode,
+      state,
+      streetAddress
+    } = this.state;
+    let requiredVals = {
+      city,
+      emailAddress,
+      firstName,
+      lastName,
+      zipCode,
+      state,
+      streetAddress
+    };
+    for (let key in requiredVals) {
+      if (!this.state[key].length) {
+        swal({
+          type: "error",
+          title: "Missing credentials",
+          text: "Check inputs again."
+        });
+        return;
+      }
+    }
     axios
       .post("/api/send-email", { ...this.state })
       .then(() => {
