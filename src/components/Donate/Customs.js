@@ -35,6 +35,13 @@ export function InputCredentials({ title, handleChange, name, currentValue }) {
 }
 export function SelectBox({ selection, handleChange }) {
   let options = selection.map((e, i) => {
+    if (e === "Select a State") {
+      return (
+        <option key={e + i} disabled selected value>
+          {e}
+        </option>
+      );
+    }
     return (
       <option key={e + i} value={e}>
         {e}
@@ -66,8 +73,9 @@ export function Card({ text, size, img }) {
   return (
     <div className="pic-and-card">
       <section className="card-container">
-      <i className="fas fa-hands-helping hands-icon"></i>
-      {text}</section>
+        <i className="fas fa-hands-helping hands-icon" />
+        {text}
+      </section>
     </div>
   );
 }
