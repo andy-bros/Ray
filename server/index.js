@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express"),
   app = express(),
   cors = require("cors"),
-  PORT = 9001,
+  PORT = process.env.PORT || 9001,
   { getMessageSermons } = require("./controllers/aws/utils"),
   massive = require("massive"),
   { getProducts } = require("./controllers/databae/base"),
