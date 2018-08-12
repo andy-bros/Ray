@@ -61,11 +61,6 @@ app.delete("/api/delete-from-cart/:id", (req, res) => {
   res.status(200).send(req.session.cart);
 });
 app.put("/api/update-cart", (req, res) => {
-  //THIS DOESNT WORK
-  // let { cart } = req.session;
-  // cart = req.body.newCart;
-  // res.status(200).send(cart);
-  //THIS WORKS
   req.session.cart = req.body.newCart;
   res.status(200).send(req.session.cart);
 });
@@ -75,112 +70,116 @@ app.delete("/api/empty-cart", (req, res) => {
   res.status(200).send(req.session.cart);
 });
 
-app.post("/charge", (req, res) => {
-  // this checks to see if its a monthly payment or one time
-  if (req.body.checked === "one-time") {
-    //a customer is not needed for a one time purchase so we directly create the charge to the account
+app.post(
+  "/charge",
+  (req, res) => {
+    // this checks to see if its a monthly payment or one time
+    if (req.body.checked === "one-time") {
+      //a customer is not needed for a one time purchase so we directly create the charge to the account
 
-    let updatedAmount = req.body.amount.split(".")[0] + "00";
-    stripe.charges
-      .create({
-        amount: +updatedAmount,
-        currency: "usd",
-        description: `A one time payment for ${req.body.name}`,
-        source: req.body.token,
-        receipt_email: req.body.email
-        //check for email
-      })
-      .then(
-        //send back to the front end to let know that everything is successful
-        console.log
-      )
-      .catch(
-        //send back to the front end to let know that an error occurred
+      let updatedAmount = req.body.amount.split(".")[0] + "00";
+      stripe.charges
+        .create({
+          amount: +updatedAmount,
+          currency: "usd",
+          description: `A one time payment for ${req.body.name}`,
+          source: req.body.token,
+          receipt_email: req.body.email
+          //check for email
+        })
+        .then(
+          //send back to the front end to let know that everything is successful
+          console.log
+        )
+        .catch(
+          //send back to the front end to let know that an error occurred
 
-        console.log
-      );
-    return;
-  } else if (req.body.checked === "monthly") {
-    let subPlan;
-    let planForSub = () => {
-      //this is just getting us the plan for the user
-      // check if the amount is the selected stationary or hand imputed
-      //if it is hand imputed then we create a plan for it
-      if (req.body.amount === "25") {
-        subPlan = process.env.TWO_FIVE;
-      } else if (req.body.amount === "50") {
-        subPlan = process.env.FIVE_ZERO;
-      } else if (req.body.amount === "100") {
-        subPlan = process.env.ONE_HUNDRED;
-      } else if (req.body.amount === "200") {
-        subPlan = process.env.TWO_HUNDRED;
-      } else if (req.body.amount === "500") {
-        subPlan = process.env.FIVE_HUNDRED;
-      } else {
-        stripe.plans.create(
-          {
-            amount: +req.body.amount + "00",
-            interval: "month",
-            product: {
-              name: `${req.body.name}'s ${req.body.amount} plan`
+          console.log
+        );
+      return;
+    } else if (req.body.checked === "monthly") {
+      let subPlan;
+      let planForSub = () => {
+        //this is just getting us the plan for the user
+        // check if the amount is the selected stationary or hand imputed
+        //if it is hand imputed then we create a plan for it
+        if (req.body.amount === "25") {
+          subPlan = process.env.TWO_FIVE;
+        } else if (req.body.amount === "50") {
+          subPlan = process.env.FIVE_ZERO;
+        } else if (req.body.amount === "100") {
+          subPlan = process.env.ONE_HUNDRED;
+        } else if (req.body.amount === "200") {
+          subPlan = process.env.TWO_HUNDRED;
+        } else if (req.body.amount === "500") {
+          subPlan = process.env.FIVE_HUNDRED;
+        } else {
+          stripe.plans.create(
+            {
+              amount: +req.body.amount + "00",
+              interval: "month",
+              product: {
+                name: `${req.body.name}'s ${req.body.amount} plan`
+              },
+              currency: "usd"
             },
-            currency: "usd"
+            function(err, plan) {
+              // asynchronously called
+              subPlan = plan.id;
+            }
+          );
+        }
+      };
+      if (!req.session.customer) {
+        planForSub();
+        //make new customer
+        stripe.customers.create(
+          {
+            description: req.body.name,
+            email: req.body.email,
+            source: req.body.token
           },
-          function(err, plan) {
+          function(err, customers) {
             // asynchronously called
-            subPlan = plan.id;
+            //the returned customer id is to be charged
+            //store the customer id on sessions
+            if (err) console.log("ERROR", err);
+            else if (customers) {
+              //this is where the customer id needs to save to sessions
+              req.session.customer = customers.id;
+              stripe.subscriptions.create(
+                {
+                  customer: customers.id,
+
+                  items: [{ plan: subPlan }]
+
+                  // items: [{ plan: newPlan }]
+                }
+                // , function(err, subscription) {
+                //     // asynchronously called
+                //   }
+              );
+            }
           }
         );
-      }
-    };
-    if (!req.session.customer) {
-      planForSub();
-      //make new customer
-      stripe.customers.create(
-        {
-          description: req.body.name,
-          email: req.body.email,
-          source: req.body.token
-        },
-        function(err, customers) {
-          // asynchronously called
-          //the returned customer id is to be charged
-          //store the customer id on sessions
-          if (err) console.log("ERROR", err);
-          else if (customers) {
-            //this is where the customer id needs to save to sessions
-            req.session.customer = customers.id;
-            stripe.subscriptions.create(
-              {
-                customer: customers.id,
+      } else {
+        stripe.subscriptions.create(
+          {
+            customer: req.session.customer,
+            description: req.body.name,
 
-                items: [{ plan: subPlan }]
-
-                // items: [{ plan: newPlan }]
-              }
-              // , function(err, subscription) {
-              //     // asynchronously called
-              //   }
-            );
+            items: [{ plan: subPlan }]
           }
-        }
-      );
-    } else {
-      stripe.subscriptions.create(
-        {
-          customer: req.session.customer,
-          description: req.body.name,
-
-          items: [{ plan: subPlan }]
-        }
-        // , function(err, subscription) {
-        //     // asynchronously called
-        //   }
-      );
-      // charge the customerid
+          // , function(err, subscription) {
+          //     // asynchronously called
+          //   }
+        );
+        // charge the customerid
+      }
     }
-  }
-});
+  },
+  ses.emailDonation
+);
 
 app.get("/api/products", getProducts);
 
