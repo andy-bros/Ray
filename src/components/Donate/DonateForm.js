@@ -11,6 +11,8 @@ import assets from "./../../assets/data";
 import { CardElement, Elements, injectStripe } from "react-stripe-elements";
 import axios from "axios";
 import swal from "sweetalert2";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 //////////////////////
 //___GIFT_AMOUNT___///
 //////////////////////
@@ -146,8 +148,8 @@ export class Credentials extends Component {
 //___DONATE_FORM___///
 //////////////////////
 export class DonateForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       firstName: "",
       lastName: "",
@@ -168,11 +170,15 @@ export class DonateForm extends Component {
     });
   };
   submitForm = () => {
-    console.log("SUBMITTING FORM...", this.state);
-    /*ALL THE INFO YOU NEED FROM 
-    THE USER IS STORED ON STATE.
-    TAKE WHAT YOU NEED IN ORDER 
-    TO CONFIRM PAYMENT.*/
+    for (let key in this.state) {
+      if (!this.state[key].length) {
+        return swal({
+          type: "error",
+          title: "Invalid credentials",
+          text: "Check inputs again."
+        });
+      }
+    }
     let { firstName, lastName, emailAddress, checked } = this.state;
 
     this.props.stripe
@@ -189,9 +195,11 @@ export class DonateForm extends Component {
           type: "success",
           title: `Thank you ${this.state.firstName} for your donation!`,
           text: "Check your email for a receipt."
+        }).then(() => {
+          this.props.history.push("/");
         });
       })
-      .catch(() => {
+      .catch(e => {
         swal({
           type: "error",
           title: "Invalid credentials",
@@ -226,7 +234,10 @@ export class DonateForm extends Component {
     );
   }
 }
-const DonateForm1 = injectStripe(DonateForm);
+
+const DonateForm1 = injectStripe(
+  withRouter(connect(state => state)(DonateForm))
+);
 class DonateForms extends Component {
   render() {
     return (

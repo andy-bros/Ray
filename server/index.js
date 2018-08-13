@@ -178,8 +178,7 @@ app.post(
         // charge the customerid
       }
     }
-  },
-  ses.emailDonation
+  }
 );
 
 app.get("/api/products", getProducts);
