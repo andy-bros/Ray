@@ -72,6 +72,7 @@ app.delete("/api/empty-cart", (req, res) => {
 
 app.post(
   "/charge",
+  //end point for charging the key provided by stripe
   (req, res) => {
     // this checks to see if its a monthly payment or one time
     if (req.body.checked === "one-time") {
