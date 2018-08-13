@@ -249,7 +249,7 @@ const emailRayOrder = (req, res) => {
       </div><br>
    
       <div class="receipt container">
-      <h4>Order Receipt:</h4><
+      <h4>Order Receipt:</h4>
 
       <h6>${firstName} ${lastName}</h6>
       <h6>${streetAddress} ${streetAddress2}</h6>
