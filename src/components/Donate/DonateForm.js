@@ -178,6 +178,13 @@ export class DonateForm extends Component {
           text: "Try again."
         });
       }
+      if (key === "selected" && !+this.state[key]) {
+        return swal({
+          type: "error",
+          title: "Invalid Donation amount",
+          text: "Try again."
+        });
+      }
       if (!this.state[key].length) {
         return swal({
           type: "error",

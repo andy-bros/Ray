@@ -65,6 +65,13 @@ class Checkout extends Component {
       streetAddress
     };
     for (let key in requiredVals) {
+      if (key === "emailAddress" && !/^\w+@\w+\.\w+$/.test(this.state[key])) {
+        return swal({
+          type: "error",
+          title: "Invalid email address",
+          text: "Try again."
+        });
+      }
       if (!this.state[key].length) {
         swal({
           type: "error",
