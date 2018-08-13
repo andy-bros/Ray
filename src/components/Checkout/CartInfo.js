@@ -43,14 +43,23 @@ export class CartInfo extends Component {
     }
     this.setState({ edits: edits });
   };
-  removeItem = id => {
-    this.setState({ animate: true });
-    this.props.deleteFromCart(id);
+  removeItem = (id, name) => {
+    console.log(name);
+    this.setState({ [name]: true });
+    setTimeout(() => this.props.deleteFromCart(id), 1000);
   };
   render() {
     const cart = this.props.cart.map((e, i) => {
+      console.log(this.state[e.product_name]);
       return (
-        <div key={i} className="product-container">
+        <div
+          key={i}
+          className={
+            this.state[e.product_name]
+              ? "product-container animate-removal"
+              : "product-container"
+          }
+        >
           <section className="split-info left">
             <img src={e.product_id == 2 ? bookImg : cdImg} height="120px" />
           </section>
@@ -74,12 +83,15 @@ export class CartInfo extends Component {
             </div>
             <h6>FREE</h6>
             <button
+              name={e.product_name}
               className={
                 this.state.animate
                   ? "btn-condition warning animate-removal"
                   : "btn-condition warning"
               }
-              onClick={() => this.removeItem(e.product_id)}
+              onClick={event =>
+                this.removeItem(e.product_id, event.target.name)
+              }
             >
               REMOVE
             </button>
