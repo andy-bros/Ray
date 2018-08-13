@@ -38,6 +38,10 @@
     @include dimensions(95%, 200px, 0px);
     @include flex(center, stretch, row);
     margin: 20px 0;
+    &.animate-removal {
+      visibility: hidden;
+      animation: dismissalLeft 1s;
+    }
     .split-info {
       // @include borderfy(black);
       &.right {
@@ -66,6 +70,8 @@
     }
     .product-container {
       height: 120px;
+      position: relative;
+
       .split-info {
         &.right {
           @include flex(space-around, center, row);
@@ -108,16 +114,14 @@
     }
   }
 }
-.animate-removal {
-  animation: dismissalLeft, 1s;
-}
 @keyframes dismissalLeft {
   from {
-    position: relative;
-    left: 0;
+    left: 0vw;
+    visibility: visible;
   }
   to {
     left: -100vw;
+    display: none;
   }
 }
 .component404 {
