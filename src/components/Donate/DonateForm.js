@@ -171,10 +171,17 @@ export class DonateForm extends Component {
   };
   submitForm = () => {
     for (let key in this.state) {
+      if (key === "emailAddress" && !/^\w+@\w+\.\w+$/.test(this.state[key])) {
+        return swal({
+          type: "error",
+          title: "Invalid email address",
+          text: "Try again."
+        });
+      }
       if (!this.state[key].length) {
         return swal({
           type: "error",
-          title: "Invalid credentials",
+          title: "Don't leave any inputs empty!",
           text: "Check inputs again."
         });
       }
@@ -202,7 +209,7 @@ export class DonateForm extends Component {
       .catch(e => {
         swal({
           type: "error",
-          title: "Invalid credentials",
+          title: "Invalid card credentials",
           text: "Check inputs again."
         });
       });
