@@ -47,7 +47,12 @@ class TopNavTake2 extends Component {
         {navigationTop.slice(0, 2)}
         <Link to="/">
           {/* <h1 className="logo-font">PR</h1> */}
-          <img src={RayLogo} width="45px" height="55px" />
+          <img
+            src={RayLogo}
+            width="45px"
+            height="55px"
+            onClick={() => handleNav(false)}
+          />
         </Link>
         {navigationTop.slice(2)}
         <Link to="/checkout">

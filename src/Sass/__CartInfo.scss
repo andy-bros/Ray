@@ -34,16 +34,15 @@
   }
 
   .product-container {
-    // @include borderfy(green);
     @include dimensions(95%, 200px, 0px);
     @include flex(center, stretch, row);
     margin: 20px 0;
+    position: relative;
     &.animate-removal {
       visibility: hidden;
       animation: dismissalLeft 1s;
     }
     .split-info {
-      // @include borderfy(black);
       &.right {
         @include dimensions(calc(100% - 150px), 100%, 0px);
 
@@ -71,7 +70,10 @@
     .product-container {
       height: 120px;
       position: relative;
-
+      &.animate-removal {
+        visibility: hidden;
+        animation: dismissalLeft 1s;
+      }
       .split-info {
         &.right {
           @include flex(space-around, center, row);
