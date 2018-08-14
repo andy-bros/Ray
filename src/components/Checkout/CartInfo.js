@@ -44,13 +44,11 @@ export class CartInfo extends Component {
     this.setState({ edits: edits });
   };
   removeItem = (id, name) => {
-    console.log(name);
     this.setState({ [name]: true });
     setTimeout(() => this.props.deleteFromCart(id), 1000);
   };
   render() {
     const cart = this.props.cart.map((e, i) => {
-      console.log(this.state[e.product_name]);
       return (
         <div
           key={i}

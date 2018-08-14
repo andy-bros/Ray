@@ -194,7 +194,7 @@ const emailRayOrder = (req, res) => {
   transporter.sendMail(
     {
       from: "raymccollum7@gmail.com",
-      to: "raymccollum7@gmail.com",
+      to: "rwmccollum@att.net",
       subject: `**NEW ORDER**`,
       html: `
       ${styles}
