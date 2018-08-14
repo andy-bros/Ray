@@ -45,7 +45,6 @@ class Checkout extends Component {
     });
   };
   submitForm = event => {
-    // console.log("submitting...", this.state);
     let {
       city,
       emailAddress,
