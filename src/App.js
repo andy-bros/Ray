@@ -50,7 +50,10 @@ class App extends Component {
                 <section id="routes">
                   {routes}
                   <Link to="donate">
-                    <i className="fas fa-donate donate-link" />
+                    {/* <i className="fas fa-donate donate-link" /> */}
+                    <div className="donate-button-link">
+                      <p>Donate</p>
+                    </div>
                   </Link>
                 </section>
                 <Footer />
