@@ -128,6 +128,7 @@ class Checkout extends Component {
               selectBox={true}
               purpose="Shipping"
             />
+
             <SubmitButton text="Submit Order" submitForm={this.submitForm} />
           </div>
         ) : (
