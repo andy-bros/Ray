@@ -112,14 +112,15 @@ class Checkout extends Component {
           <div className="donation-page">
             <CartInfo />
             <Link to="/donate">
-              <div className="donation-alert-holder">
+              {/* <div className="donation-alert-holder">
                 <h5>
-                  This website is a donation driven website. All teachings
-                  within this site are open and free to the public. Any donation
-                  is appreciated, and can be used as a tax deductable.
+                  Pastor Ray’s teaching materials on this website are free. But
+                  would you consider supporting us with a financial gift so we
+                  can expand the site and make it better? Any gift of any size
+                  would be deeply appreciated!
                 </h5>
                 <p>CLICK HERE TO DONATE</p>
-              </div>
+              </div> */}
             </Link>
             <Credentials
               values={this.state}

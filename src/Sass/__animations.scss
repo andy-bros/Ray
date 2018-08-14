@@ -2,6 +2,23 @@
   transition: all 0.3s ease-in-out;
   position: relative;
 }
+.donate-button-link {
+  box-shadow: 2px 5px 6px 1px rgba(0, 0, 0, 0.53);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  // background: blue;
+  @extend %pseudoNavs;
+  @include flex(center, center, row);
+  p {
+    color: white;
+  }
+  font-size: 45px;
+  background: $stripe-green;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
 .dots {
   @include flex(space-around, center, row);
   height: 90vh;
