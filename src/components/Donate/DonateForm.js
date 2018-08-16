@@ -13,6 +13,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import StripeSecureLogo from "./powered_by_stripe.svg";
 //////////////////////
 //___GIFT_AMOUNT___///
 //////////////////////
@@ -231,19 +232,29 @@ export class DonateForm extends Component {
           selected={this.state.selected}
           checked={this.state.checked}
         />
-        <h2 className="bottom-border title">Payment Information</h2>
-        <div className="card-info sexy-input">
-          {/* <Elements> */}
-          <CardElement />
-          {/* </Elements> */}
+        <div className="secure-checkout">
+          <h2 className="bottom-border title">Payment Information</h2>
+
+          <section className="security-images">
+            <i class="fa fa-lock fa-3x" />
+
+            <img src={StripeSecureLogo} width="200px" height="45px" />
+          </section>
+          <div className="card-info sexy-input">
+            {/* <Elements> */}
+            <CardElement />
+
+            {/* </Elements> */}
+          </div>
+
+          <Credentials
+            values={this.state}
+            handleChange={this.handleChange}
+            inputFields={this.state.inputFields}
+          />
+          <SubmitButton text="Confirm Donation" submitForm={this.submitForm} />
+          <br />
         </div>
-        <Credentials
-          values={this.state}
-          handleChange={this.handleChange}
-          inputFields={this.state.inputFields}
-        />
-        <SubmitButton text="Confirm Donation" submitForm={this.submitForm} />
-        <br />
       </div>
     );
   }
