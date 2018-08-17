@@ -33,16 +33,6 @@ export default function Footer() {
         </span>
       </section>
       <section className="social-media" />
-      <h6>
-        Designed and Developed By
-        <a
-          className="email-me"
-          href={`mailto:jake@jakea.io
-            ?subject=Greetings%20Jacob!&body=Lets%20grab%20a%20coffee!`}
-        >
-          <span>Jacob Anderson</span>
-        </a>
-      </h6>
     </footer>
   );
 }
